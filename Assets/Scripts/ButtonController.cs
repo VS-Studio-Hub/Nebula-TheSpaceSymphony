@@ -5,25 +5,16 @@ public class ButtonController : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputAction;
 
-    private InputAction upButtonPressAction;
-    private InputAction downButtonPressAction;
-    private InputAction leftButtonPressAction;
-    private InputAction rightButtonPressAction;
+    private InputAction a_ButtonPressAction;
+    private InputAction s_ButtonPressAction;
+    private InputAction d_ButtonPressAction;
+    private InputAction f_ButtonPressAction;
 
-    public GameObject upButton;
-    public GameObject downButton;
-    public GameObject leftButton;
-    public GameObject rightButton;
+    public GameObject a_Button, s_Button, d_Button, f_Button;
 
-    private Animator upAnimator;
-    private Animator downAnimator;
-    private Animator leftAnimator;
-    private Animator rightAnimator;
+    private Animator a_Animator, s_Animator, d_Animator, f_Animator;
 
-    float upButtonInput;
-    float leftButtonInput;
-    float rightButtonInput;
-    float downButtonInput;
+    float a_ButtonInput, s_ButtonInput, d_ButtonInput, f_ButtonInput;
 
     /*bool upPressed = true;
     bool leftPressed = true;
@@ -43,18 +34,18 @@ public class ButtonController : MonoBehaviour
     private void Awake()
     {
         var playerMap = inputAction.FindActionMap("Player");
-        upButtonPressAction = playerMap.FindAction("UpButton");
-        leftButtonPressAction = playerMap.FindAction("LeftButton");
-        rightButtonPressAction = playerMap.FindAction("RightButton");
-        downButtonPressAction = playerMap.FindAction("DownButton");
+        a_ButtonPressAction = playerMap.FindAction("A");
+        s_ButtonPressAction = playerMap.FindAction("S");
+        d_ButtonPressAction = playerMap.FindAction("D");
+        f_ButtonPressAction = playerMap.FindAction("F");
     }
 
     private void Start()
     {
-        upAnimator = upButton.GetComponent<Animator>();
-        downAnimator = downButton.GetComponent<Animator>();
-        leftAnimator = leftButton.GetComponent<Animator>();
-        rightAnimator = rightButton.GetComponent<Animator>();
+        s_Animator = s_Button.GetComponent<Animator>(); 
+        f_Animator = f_Button.GetComponent<Animator>();
+        a_Animator = a_Button.GetComponent<Animator>();
+        d_Animator = d_Button.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -66,51 +57,50 @@ public class ButtonController : MonoBehaviour
 
     void GetInput()
     {
-        upButtonInput = upButtonPressAction.ReadValue<float>();
-        leftButtonInput = leftButtonPressAction.ReadValue<float>();
-        rightButtonInput = rightButtonPressAction.ReadValue<float>();
-        downButtonInput = downButtonPressAction.ReadValue<float>();
+        s_ButtonInput = s_ButtonPressAction.ReadValue<float>();
+        a_ButtonInput = a_ButtonPressAction.ReadValue<float>();
+        d_ButtonInput = d_ButtonPressAction.ReadValue<float>();
+        f_ButtonInput = f_ButtonPressAction.ReadValue<float>();
     }
 
     void HandleButtonPresses()
     {
-        
 
-        if (upButtonInput > 0.1f)
+        if (s_ButtonInput > 0.1f)
         {
-            upAnimator.SetBool("PressedB",true);
+            s_Animator.SetBool("PressedB", true);
             /*leftPressed = false;
             rightPressed = false;
             downPressed = false;*/
         }
         else
         {
-            upAnimator.SetBool("PressedB", false);
+            s_Animator.SetBool("PressedB", false);
             /*upPressed = true;
             leftPressed = true;
             rightPressed = true;
             downPressed = true;*/
         }
 
-        if (leftButtonInput > 0.1f)
+        if (a_ButtonInput > 0.1f)
         {
-            leftAnimator.SetBool("PressedB", true);
+            a_Animator.SetBool("PressedB", true);
             /*upPressed = false;
             rightPressed = false;
             downPressed = false;*/
         }
         else
         {
-            leftAnimator.SetBool("PressedB", false);
+            a_Animator.SetBool("PressedB", false);
             /*upPressed = true;
             leftPressed = true;
             rightPressed = true;
             downPressed = true;*/
         }
 
-        if (rightButtonInput > 0.1f)
+        if (d_ButtonInput > 0.1f)
         {
-            rightAnimator.SetBool("PressedB", true);
+            d_Animator.SetBool("PressedB", true);
             /*upPressed = false;
             leftPressed = false;
             downPressed = false;*/
@@ -118,23 +108,23 @@ public class ButtonController : MonoBehaviour
     
         else
         {
-            rightAnimator.SetBool("PressedB", false);
+            d_Animator.SetBool("PressedB", false);
             /*upPressed = true;
             leftPressed = true;
             rightPressed = true;
             downPressed = true;*/
         }
 
-        if (downButtonInput > 0.1f)
+        if (f_ButtonInput > 0.1f)
         {
-            downAnimator.SetBool("PressedB", true);
+            f_Animator.SetBool("PressedB", true);
             /*upPressed = false;
             leftPressed = false;
             rightPressed = false;*/
         }
         else
         {
-            downAnimator.SetBool("PressedB", false);
+            f_Animator.SetBool("PressedB", false);
             /*upPressed = true;
             leftPressed = true;
             rightPressed = true;

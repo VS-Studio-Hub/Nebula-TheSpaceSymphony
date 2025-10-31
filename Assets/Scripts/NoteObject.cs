@@ -5,17 +5,17 @@ public class NoteObject : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputAction;
 
-    private InputAction upButtonPressAction;
-    private InputAction downButtonPressAction;
-    private InputAction leftButtonPressAction;
-    private InputAction rightButtonPressAction;
+    private InputAction a_ButtonPressAction;
+    private InputAction s_ButtonPressAction;
+    private InputAction d_ButtonPressAction;
+    private InputAction f_ButtonPressAction;
 
     public GameObject hitEffect, goodEffect, perfectEffect, missEffect;
 
-    float upButtonInput;
-    float leftButtonInput;
-    float rightButtonInput;
-    float downButtonInput;
+    float a_ButtonInput;
+    float s_ButtonInput;
+    float d_ButtonInput;
+    float f_ButtonInput;
 
     public bool canBePressed;
 
@@ -32,10 +32,10 @@ public class NoteObject : MonoBehaviour
     private void Awake()
     {
         var playerMap = inputAction.FindActionMap("Player");
-        upButtonPressAction = playerMap.FindAction("UpButton");
-        leftButtonPressAction = playerMap.FindAction("LeftButton");
-        rightButtonPressAction = playerMap.FindAction("RightButton");
-        downButtonPressAction = playerMap.FindAction("DownButton");
+        a_ButtonPressAction = playerMap.FindAction("A");
+        s_ButtonPressAction = playerMap.FindAction("S");
+        d_ButtonPressAction = playerMap.FindAction("D");
+        f_ButtonPressAction = playerMap.FindAction("F");
     }
     void Start()
     {
@@ -52,14 +52,14 @@ public class NoteObject : MonoBehaviour
     }
     void GetInput()
     {
-        upButtonInput = upButtonPressAction.ReadValue<float>();
-        leftButtonInput = leftButtonPressAction.ReadValue<float>();
-        rightButtonInput = rightButtonPressAction.ReadValue<float>();
-        downButtonInput = downButtonPressAction.ReadValue<float>();
+        s_ButtonInput = s_ButtonPressAction.ReadValue<float>();
+        a_ButtonInput = a_ButtonPressAction.ReadValue<float>();
+        d_ButtonInput = d_ButtonPressAction.ReadValue<float>();
+        f_ButtonInput = f_ButtonPressAction.ReadValue<float>();
     }
     void HandleButtonPresses()
     {
-        if (upButtonInput > .1f)
+        if (s_ButtonInput > .1f)
         {
             if (canBePressed)
             {
@@ -100,7 +100,7 @@ public class NoteObject : MonoBehaviour
             }
         }
 
-        if (leftButtonInput > .1f)
+        if (a_ButtonInput > .1f)
         {
             if (canBePressed)
             {
@@ -141,7 +141,7 @@ public class NoteObject : MonoBehaviour
             }
         }
 
-        if (rightButtonInput > .1f)
+        if (d_ButtonInput > .1f)
         {
             if (canBePressed)
             {
@@ -182,7 +182,7 @@ public class NoteObject : MonoBehaviour
             }
         }
 
-        if (downButtonInput > .1f)
+        if (f_ButtonInput > .1f)
         {
             if (canBePressed)
             {
