@@ -194,6 +194,7 @@ MonoBehaviour:
       - rid: 7945433969531289624
       - rid: 7945433969531289625
       - rid: 7945433969531289626
+      - rid: 7316128773009833984
     m_RuntimeSettings:
       m_List: []
   renderingLayerNames:
@@ -240,6 +241,10 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 7316128773009833984
+      type: {class: RenderingDebuggerRuntimeResources, ns: UnityEngine.Rendering, asm: Unity.RenderPipelines.Core.Runtime}
+      data:
+        m_version: 0
     - rid: 7945433969531289600
       type: {class: LensSettings, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:
