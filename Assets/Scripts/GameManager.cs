@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,16 +32,27 @@ public class GameManager : MonoBehaviour
 
     public GameObject resultsScreen;
     public Text percentHitText, normalsText, goodsText, perfectsText, missesText, rankText, finalScoreText;
+    public float MusicTimeLeft;
+    public NodeSpawnManager nodeSpawnManager;
+    public AudioClip music;
 
-
+    [SerializeField] public int PurpleNoteHitCounter = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake()
+    {
+        music = theMusic.clip;
+        MusicTimeLeft = music.length;
+    }
     void Start()
     {
+        
+        nodeSpawnManager = GameObject.Find("NodeSpawnManager").GetComponent<NodeSpawnManager>();
         instance = this;
         scoreText.text = "Score: 0";
         currentMultiplayer = 1;
 
         totalNotes = Object.FindObjectsByType<NoteObject>(FindObjectsSortMode.None).Length;
+
     }
 
     // Update is called once per frame
@@ -52,9 +64,16 @@ public class GameManager : MonoBehaviour
                 theBS.hasStarted = true;
 
                 theMusic.Play();
+                
+                
         }
         else
         {
+            MusicTimeLeft -= Time.deltaTime;
+            if (MusicTimeLeft <= 7.5f)
+            {
+                nodeSpawnManager.StopSpawning();
+            }
             if (!theMusic.isPlaying && !resultsScreen.activeInHierarchy)
             {
                 resultsScreen.SetActive(true);
@@ -65,7 +84,11 @@ public class GameManager : MonoBehaviour
                 missesText.text = "" + missedHits;
 
                 float totalHit = normalHits + goodHits + perfectHits;
-                float percentHit = (totalHit / totalNotes) * 100f;
+                float percentHit = (totalHit / (totalHit + missedHits)) * 100;
+                if (totalHit + missedHits == 0)
+                {
+                    percentHit = 0;
+                }
 
                 percentHitText.text = percentHit.ToString("F1") + "%";
 
@@ -97,6 +120,15 @@ public class GameManager : MonoBehaviour
                 finalScoreText.text = currentScore.ToString();
             }
         }
+        if (PurpleNoteHitCounter == 1)
+        {
+            nodeSpawnManager.DoublePointState = true;
+            PurpleNoteHitCounter = 0;
+            if (nodeSpawnManager.DoublePointState)
+            {
+                StartCoroutine(EndDoublePointState());
+            }
+        }
     }
 
     public void NoteHit()
@@ -123,6 +155,10 @@ public class GameManager : MonoBehaviour
         currentScore += scorePerNote * currentMultiplayer;
         NoteHit();
         normalHits++;
+        if (nodeSpawnManager.DoublePointState)
+        {
+            currentScore += scorePerNote * currentMultiplayer * 2;
+        }
     }
 
     public void GoodHit()
@@ -130,6 +166,10 @@ public class GameManager : MonoBehaviour
         currentScore += scorePerGoodNote * currentMultiplayer;
         NoteHit();
         goodHits++;
+        if (nodeSpawnManager.DoublePointState)
+        {
+            currentScore += scorePerNote * currentMultiplayer * 2;
+        }
     }
 
     public void PerfectHit()
@@ -137,6 +177,10 @@ public class GameManager : MonoBehaviour
         currentScore += scorePerPerfectNote * currentMultiplayer;
         NoteHit();
         perfectHits++;
+        if (nodeSpawnManager.DoublePointState)
+        {
+            currentScore += scorePerNote * currentMultiplayer * 2;
+        }
     }
 
     public void NoteMissed()
@@ -149,5 +193,11 @@ public class GameManager : MonoBehaviour
         multiText.text = "Multiplier: x" + currentMultiplayer;
 
         missedHits++;
+    }
+    IEnumerator EndDoublePointState()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        nodeSpawnManager.DoublePointState = false;
+        
     }
 }
