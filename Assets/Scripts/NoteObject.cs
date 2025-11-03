@@ -5,20 +5,19 @@ public class NoteObject : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputAction;
 
-    private InputAction upButtonPressAction;
-    private InputAction downButtonPressAction;
-    private InputAction leftButtonPressAction;
-    private InputAction rightButtonPressAction;
+    private InputAction a_ButtonPressAction;
+    private InputAction s_ButtonPressAction;
+    private InputAction d_ButtonPressAction;
+    private InputAction f_ButtonPressAction;
 
     public GameObject hitEffect, goodEffect, perfectEffect, missEffect;
 
-    float upButtonInput;
-    float leftButtonInput;
-    float rightButtonInput;
-    float downButtonInput;
+    float a_ButtonInput;
+    float s_ButtonInput;
+    float d_ButtonInput;
+    float f_ButtonInput;
 
     public bool canBePressed;
-    public GameManager manager = null;
 
     private void OnEnable()
     {
@@ -33,17 +32,14 @@ public class NoteObject : MonoBehaviour
     private void Awake()
     {
         var playerMap = inputAction.FindActionMap("Player");
-        upButtonPressAction = playerMap.FindAction("UpButton");
-        leftButtonPressAction = playerMap.FindAction("LeftButton");
-        rightButtonPressAction = playerMap.FindAction("RightButton");
-        downButtonPressAction = playerMap.FindAction("DownButton");
+        a_ButtonPressAction = playerMap.FindAction("A");
+        s_ButtonPressAction = playerMap.FindAction("S");
+        d_ButtonPressAction = playerMap.FindAction("D");
+        f_ButtonPressAction = playerMap.FindAction("F");
     }
     void Start()
     {
-        if (manager == null)
-        {
-            manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        }
+
     }
 
     void Update()
@@ -56,85 +52,19 @@ public class NoteObject : MonoBehaviour
     }
     void GetInput()
     {
-        upButtonInput = upButtonPressAction.ReadValue<float>();
-        leftButtonInput = leftButtonPressAction.ReadValue<float>();
-        rightButtonInput = rightButtonPressAction.ReadValue<float>();
-        downButtonInput = downButtonPressAction.ReadValue<float>();
+        s_ButtonInput = s_ButtonPressAction.ReadValue<float>();
+        a_ButtonInput = a_ButtonPressAction.ReadValue<float>();
+        d_ButtonInput = d_ButtonPressAction.ReadValue<float>();
+        f_ButtonInput = f_ButtonPressAction.ReadValue<float>();
     }
     void HandleButtonPresses()
     {
-        if (upButtonInput > .1f)
+        if (s_ButtonInput > .1f)
         {
             if (canBePressed)
             {
-                if (gameObject.tag == "ShortNote")
-                {
-                    gameObject.SetActive(false);
-                    Debug.Log(gameObject.tag);
-                }
-                else if (gameObject.tag == "LongNote")
-                {
-                    gameObject.SetActive(true);
-                    Debug.Log(gameObject.tag);
-                }
+                gameObject.SetActive(false);
 
-                //GameManager.instance.NoteHit();
-                if (gameObject.GetComponent<Renderer>().material.color == Color.purple)
-                {
-                    manager.PurpleNoteHitCounter++;
-                }
-                if (Mathf.Abs(transform.position.y) < 14.75f)
-                {
-                    Debug.Log("Hit");
-                    GameManager.instance.NormalHit();
-                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 14.20)
-                {
-                    Debug.Log("Good");
-                    GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 13.85f)
-                {
-                    Debug.Log("Perfect");
-                    GameManager.instance.PerfectHit();
-                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 12.10f)
-                {
-                    Debug.Log("Good");
-                    GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                }
-                if (Mathf.Abs(transform.position.y) < 12.45f)
-                {
-                    Debug.Log("Hit");
-                    GameManager.instance.NormalHit();
-                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
-                }
-            }
-        }
-
-        if (leftButtonInput > .1f)
-        {
-            if (canBePressed)
-            {
-                if (gameObject.tag == "ShortNote")
-                {
-                    gameObject.SetActive(false);
-                    Debug.Log(gameObject.tag);
-                }
-                else if (gameObject.tag == "LongNote")
-                {
-                    gameObject.SetActive(true);
-                    Debug.Log(gameObject.tag);
-                }
-
-                if (gameObject.GetComponent<Renderer>().material.color == Color.purple)
-                {
-                    manager.PurpleNoteHitCounter++;
-                }
                 //GameManager.instance.NoteHit();
 
                 if (Mathf.Abs(transform.position.y) < 14.75f)
@@ -170,25 +100,12 @@ public class NoteObject : MonoBehaviour
             }
         }
 
-        if (rightButtonInput > .1f)
+        if (a_ButtonInput > .1f)
         {
             if (canBePressed)
             {
-                if (gameObject.tag == "ShortNote")
-                {
-                    gameObject.SetActive(false);
-                    Debug.Log(gameObject.tag);
-                }
-                else if (gameObject.tag == "LongNote")
-                {
-                    gameObject.SetActive(true);
-                    Debug.Log(gameObject.tag);
-                }
+                gameObject.SetActive(false);
 
-                if (gameObject.GetComponent<Renderer>().material.color == Color.purple)
-                {
-                    manager.PurpleNoteHitCounter++;
-                }
                 //GameManager.instance.NoteHit();
 
                 if (Mathf.Abs(transform.position.y) < 14.75f)
@@ -224,25 +141,53 @@ public class NoteObject : MonoBehaviour
             }
         }
 
-        if (downButtonInput > .1f)
+        if (d_ButtonInput > .1f)
         {
             if (canBePressed)
             {
-                if (gameObject.tag == "ShortNote")
-                {
-                    gameObject.SetActive(false);
-                    Debug.Log(gameObject.tag);
-                }
-                else if (gameObject.tag == "LongNote")
-                {
-                    gameObject.SetActive(true);
-                    Debug.Log(gameObject.tag);
-                }
+                gameObject.SetActive(false);
 
-                if (gameObject.GetComponent<Renderer>().sharedMaterial.color == Color.purple)
+                //GameManager.instance.NoteHit();
+
+                if (Mathf.Abs(transform.position.y) < 14.75f)
                 {
-                    manager.PurpleNoteHitCounter++;
+                    Debug.Log("Hit");
+                    GameManager.instance.NormalHit();
+                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
                 }
+                else if (Mathf.Abs(transform.position.y) < 14.20)
+                {
+                    Debug.Log("Good");
+                    GameManager.instance.GoodHit();
+                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
+                }
+                else if (Mathf.Abs(transform.position.y) < 13.85f)
+                {
+                    Debug.Log("Perfect");
+                    GameManager.instance.PerfectHit();
+                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
+                }
+                else if (Mathf.Abs(transform.position.y) < 12.10f)
+                {
+                    Debug.Log("Good");
+                    GameManager.instance.GoodHit();
+                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
+                }
+                if (Mathf.Abs(transform.position.y) < 12.45f)
+                {
+                    Debug.Log("Hit");
+                    GameManager.instance.NormalHit();
+                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
+                }
+            }
+        }
+
+        if (f_ButtonInput > .1f)
+        {
+            if (canBePressed)
+            {
+                gameObject.SetActive(false);
+
                 //GameManager.instance.NoteHit();
 
                 if (Mathf.Abs(transform.position.y) < 14.75f)
