@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LeftButton",
+                    "name": "A",
                     "type": "Button",
                     "id": "34094cb2-82b5-4e25-ab68-ba590ec9f92f",
                     "expectedControlType": "",
@@ -96,7 +96,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UpButton",
+                    "name": "S",
                     "type": "Button",
                     "id": "fba85621-a6a3-4f66-b3dd-bfe5ec1f4e33",
                     "expectedControlType": "",
@@ -105,7 +105,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightButton",
+                    "name": "D",
                     "type": "Button",
                     "id": "8e442a04-1e41-498c-ab9a-65d0ef04e9ee",
                     "expectedControlType": "",
@@ -114,7 +114,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DownButton",
+                    "name": "F",
                     "type": "Button",
                     "id": "3a0930b9-d149-469c-ba20-d737be39e7ba",
                     "expectedControlType": "",
@@ -516,7 +516,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "LeftButton",
+                    "action": "A",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -527,18 +527,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "LeftButton",
+                    "action": "A",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "60f48b6f-2fc3-4c18-ab6a-33332396a7ce",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "UpButton",
+                    "action": "S",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -549,7 +549,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "UpButton",
+                    "action": "S",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -560,7 +560,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "RightButton",
+                    "action": "D",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -571,18 +571,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "RightButton",
+                    "action": "D",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "265bd258-2376-4ff8-8605-dd7512119431",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "DownButton",
+                    "action": "F",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -593,7 +593,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "DownButton",
+                    "action": "F",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

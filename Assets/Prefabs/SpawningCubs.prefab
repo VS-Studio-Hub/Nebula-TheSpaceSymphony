@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 2182175368091725448}
   - component: {fileID: 5278379457438611813}
   - component: {fileID: -6185893660189259150}
-  - component: {fileID: 5256895726548167990}
   m_Layer: 0
   m_Name: SpawningCubs
-  m_TagString: ShortNote
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.082438, y: 2.082438, z: 2.082438}
+  m_LocalScale: {x: 2.0824382, y: 2.0824382, z: 2.0824382}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -65,12 +64,10 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd111c95e8eb2904280616a87fd541ba, type: 2}
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,7 +85,6 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -146,20 +142,3 @@ MonoBehaviour:
   perfectEffect: {fileID: 1989052463084812574, guid: 9a478b5f632aa8945ba6348b6f4d083f, type: 3}
   missEffect: {fileID: 6800777640240049159, guid: 4c99a139814a65749a19483401665a06, type: 3}
   canBePressed: 0
-  manager: {fileID: 0}
---- !u!114 &5256895726548167990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8336861063433661525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e389b303d28ad6b498ccf52cf24b5dc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RainbowEffect
-  rainbowSpeed: 1000
-  Randomizer: 1
-  Invert: 1
-  NodeSpawnmanager: {fileID: 0}
