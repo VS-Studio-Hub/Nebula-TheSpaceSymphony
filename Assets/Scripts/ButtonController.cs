@@ -3,142 +3,41 @@ using UnityEngine.InputSystem;
 
 public class ButtonController : MonoBehaviour
 {
-    [SerializeField] private InputActionAsset inputAction;
+    private GameControls controls;
 
-    private InputAction upButtonPressAction;
-    private InputAction downButtonPressAction;
-    private InputAction leftButtonPressAction;
-    private InputAction rightButtonPressAction;
+    [Header("Button Animators")]
+    public Animator aAnimator;
+    public Animator sAnimator;
+    public Animator dAnimator;
+    public Animator fAnimator;
 
-    public GameObject upButton;
-    public GameObject downButton;
-    public GameObject leftButton;
-    public GameObject rightButton;
-
-    private Animator upAnimator;
-    private Animator downAnimator;
-    private Animator leftAnimator;
-    private Animator rightAnimator;
-
-    float upButtonInput;
-    float leftButtonInput;
-    float rightButtonInput;
-    float downButtonInput;
-
-    /*bool upPressed = true;
-    bool leftPressed = true;
-    bool rightPressed = true;
-    bool downPressed = true;*/
+    private void Awake()
+    {
+        controls = new GameControls();
+    }
 
     private void OnEnable()
     {
-        inputAction.FindActionMap("Player").Enable();
+        controls.PlayerInput.Enable();
+
+        controls.PlayerInput.HitA.performed += ctx => HoldKey(aAnimator, true);
+        controls.PlayerInput.HitS.performed += ctx => HoldKey(sAnimator, true);
+        controls.PlayerInput.HitD.performed += ctx => HoldKey(dAnimator, true);
+        controls.PlayerInput.HitF.performed += ctx => HoldKey(fAnimator, true);
+
+        controls.PlayerInput.HitA.canceled += ctx => HoldKey(aAnimator, false);
+        controls.PlayerInput.HitS.canceled += ctx => HoldKey(sAnimator, false);
+        controls.PlayerInput.HitD.canceled += ctx => HoldKey(dAnimator, false);
+        controls.PlayerInput.HitF.canceled += ctx => HoldKey(fAnimator, false);
     }
 
     private void OnDisable()
     {
-        inputAction.FindActionMap("Player").Disable();
+        controls.PlayerInput.Disable();
     }
 
-    private void Awake()
+    void HoldKey(Animator anim, bool isPressed)
     {
-        var playerMap = inputAction.FindActionMap("Player");
-        upButtonPressAction = playerMap.FindAction("UpButton");
-        leftButtonPressAction = playerMap.FindAction("LeftButton");
-        rightButtonPressAction = playerMap.FindAction("RightButton");
-        downButtonPressAction = playerMap.FindAction("DownButton");
-    }
-
-    private void Start()
-    {
-        upAnimator = upButton.GetComponent<Animator>();
-        downAnimator = downButton.GetComponent<Animator>();
-        leftAnimator = leftButton.GetComponent<Animator>();
-        rightAnimator = rightButton.GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        GetInput();
-        HandleButtonPresses();
-    }
-
-    void GetInput()
-    {
-        upButtonInput = upButtonPressAction.ReadValue<float>();
-        leftButtonInput = leftButtonPressAction.ReadValue<float>();
-        rightButtonInput = rightButtonPressAction.ReadValue<float>();
-        downButtonInput = downButtonPressAction.ReadValue<float>();
-    }
-
-    void HandleButtonPresses()
-    {
-        
-
-        if (upButtonInput > 0.1f)
-        {
-            upAnimator.SetBool("PressedB",true);
-            /*leftPressed = false;
-            rightPressed = false;
-            downPressed = false;*/
-        }
-        else
-        {
-            upAnimator.SetBool("PressedB", false);
-            /*upPressed = true;
-            leftPressed = true;
-            rightPressed = true;
-            downPressed = true;*/
-        }
-
-        if (leftButtonInput > 0.1f)
-        {
-            leftAnimator.SetBool("PressedB", true);
-            /*upPressed = false;
-            rightPressed = false;
-            downPressed = false;*/
-        }
-        else
-        {
-            leftAnimator.SetBool("PressedB", false);
-            /*upPressed = true;
-            leftPressed = true;
-            rightPressed = true;
-            downPressed = true;*/
-        }
-
-        if (rightButtonInput > 0.1f)
-        {
-            rightAnimator.SetBool("PressedB", true);
-            /*upPressed = false;
-            leftPressed = false;
-            downPressed = false;*/
-        }
-    
-        else
-        {
-            rightAnimator.SetBool("PressedB", false);
-            /*upPressed = true;
-            leftPressed = true;
-            rightPressed = true;
-            downPressed = true;*/
-        }
-
-        if (downButtonInput > 0.1f)
-        {
-            downAnimator.SetBool("PressedB", true);
-            /*upPressed = false;
-            leftPressed = false;
-            rightPressed = false;*/
-        }
-        else
-        {
-            downAnimator.SetBool("PressedB", false);
-            /*upPressed = true;
-            leftPressed = true;
-            rightPressed = true;
-            downPressed = true;*/
-        }
+        anim.SetBool("Hold", isPressed);
     }
 }

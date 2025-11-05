@@ -3,299 +3,112 @@ using UnityEngine.InputSystem;
 
 public class NoteObject : MonoBehaviour
 {
-    [SerializeField] private InputActionAsset inputAction;
-
-    private InputAction upButtonPressAction;
-    private InputAction downButtonPressAction;
-    private InputAction leftButtonPressAction;
-    private InputAction rightButtonPressAction;
+    private GameControls controls;
 
     public GameObject hitEffect, goodEffect, perfectEffect, missEffect;
-
-    float upButtonInput;
-    float leftButtonInput;
-    float rightButtonInput;
-    float downButtonInput;
-
     public bool canBePressed;
     public GameManager manager = null;
 
+    public KeyCode laneKey; // <-- Assign in Inspector: A, S, D, F
+
+    private void Awake()
+    {
+        controls = new GameControls();
+    }
+
     private void OnEnable()
     {
-        inputAction.FindActionMap("Player").Enable();
+        controls.PlayerInput.Enable();
+
+        // Bind each lane key separately
+        controls.PlayerInput.HitA.performed += ctx => TryHitKey(KeyCode.A);
+        controls.PlayerInput.HitS.performed += ctx => TryHitKey(KeyCode.S);
+        controls.PlayerInput.HitD.performed += ctx => TryHitKey(KeyCode.D);
+        controls.PlayerInput.HitF.performed += ctx => TryHitKey(KeyCode.F);
+
+        controls.PlayerInput.HitA.canceled += ctx => TryHitKey(KeyCode.A);
+        controls.PlayerInput.HitS.canceled += ctx => TryHitKey(KeyCode.S);
+        controls.PlayerInput.HitD.canceled += ctx => TryHitKey(KeyCode.D);
+        controls.PlayerInput.HitF.canceled += ctx => TryHitKey(KeyCode.F);
     }
 
     private void OnDisable()
     {
-        inputAction.FindActionMap("Player").Disable();
+        controls.PlayerInput.Disable();
     }
 
-    private void Awake()
+    void TryHitKey(KeyCode pressedKey)
     {
-        var playerMap = inputAction.FindActionMap("Player");
-        upButtonPressAction = playerMap.FindAction("UpButton");
-        leftButtonPressAction = playerMap.FindAction("LeftButton");
-        rightButtonPressAction = playerMap.FindAction("RightButton");
-        downButtonPressAction = playerMap.FindAction("DownButton");
+        if (!canBePressed) return;
+
+        //// Only hit if the key matches this note's lane
+        //if (pressedKey != laneKey) return;
+
+        //if (tag == "ShortNote" || tag == "LongNote")
+        //    gameObject.SetActive(false);
+
+        if (GetComponent<Renderer>().material.color == Color.purple)
+            manager.PurpleNoteHitCounter++;
+
+        CheckScore();
     }
-    void Start()
+
+    void CheckScore()
     {
-        if (manager == null)
+
+        if (transform.position.x <= 16.7f && transform.position.x >= 14.7f)
         {
-            manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+            Debug.Log("Hit");
+            GameManager.instance.NormalHit();
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        else if (transform.position.x <= 14.8f && transform.position.x >= 13.64f)
+        {
+            Debug.Log("Good");
+            GameManager.instance.GoodHit();
+            Instantiate(goodEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        else if (transform.position.x <= 13.65f && transform.position.x >= 12.7f)
+        {
+            Debug.Log("Perfect");
+            GameManager.instance.PerfectHit();
+            Instantiate(perfectEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        else if (transform.position.x <= 12.8f && transform.position.x >= 11.4f)
+        {
+            Debug.Log("Hit");
+            GameManager.instance.NormalHit();
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        else if (transform.position.x < 11.5f)
+        {
+            MissNote();
         }
     }
 
-    void Update()
-    {
-        GetInput();
-        HandleButtonPresses();
-
-
-
-    }
-    void GetInput()
-    {
-        upButtonInput = upButtonPressAction.ReadValue<float>();
-        leftButtonInput = leftButtonPressAction.ReadValue<float>();
-        rightButtonInput = rightButtonPressAction.ReadValue<float>();
-        downButtonInput = downButtonPressAction.ReadValue<float>();
-    }
-    void HandleButtonPresses()
-    {
-        if (upButtonInput > .1f)
-        {
-            if (canBePressed)
-            {
-                if (gameObject.tag == "ShortNote")
-                {
-                    gameObject.SetActive(false);
-                    Debug.Log(gameObject.tag);
-                }
-                else if (gameObject.tag == "LongNote")
-                {
-                    gameObject.SetActive(true);
-                    Debug.Log(gameObject.tag);
-                }
-
-                //GameManager.instance.NoteHit();
-                if (gameObject.GetComponent<Renderer>().material.color == Color.purple)
-                {
-                    manager.PurpleNoteHitCounter++;
-                }
-                if (Mathf.Abs(transform.position.y) < 14.75f)
-                {
-                    Debug.Log("Hit");
-                    GameManager.instance.NormalHit();
-                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 14.20)
-                {
-                    Debug.Log("Good");
-                    GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 13.85f)
-                {
-                    Debug.Log("Perfect");
-                    GameManager.instance.PerfectHit();
-                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 12.10f)
-                {
-                    Debug.Log("Good");
-                    GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                }
-                if (Mathf.Abs(transform.position.y) < 12.45f)
-                {
-                    Debug.Log("Hit");
-                    GameManager.instance.NormalHit();
-                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
-                }
-            }
-        }
-
-        if (leftButtonInput > .1f)
-        {
-            if (canBePressed)
-            {
-                if (gameObject.tag == "ShortNote")
-                {
-                    gameObject.SetActive(false);
-                    Debug.Log(gameObject.tag);
-                }
-                else if (gameObject.tag == "LongNote")
-                {
-                    gameObject.SetActive(true);
-                    Debug.Log(gameObject.tag);
-                }
-
-                if (gameObject.GetComponent<Renderer>().material.color == Color.purple)
-                {
-                    manager.PurpleNoteHitCounter++;
-                }
-                //GameManager.instance.NoteHit();
-
-                if (Mathf.Abs(transform.position.y) < 14.75f)
-                {
-                    Debug.Log("Hit");
-                    GameManager.instance.NormalHit();
-                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 14.20)
-                {
-                    Debug.Log("Good");
-                    GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 13.85f)
-                {
-                    Debug.Log("Perfect");
-                    GameManager.instance.PerfectHit();
-                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 12.10f)
-                {
-                    Debug.Log("Good");
-                    GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                }
-                if (Mathf.Abs(transform.position.y) < 12.45f)
-                {
-                    Debug.Log("Hit");
-                    GameManager.instance.NormalHit();
-                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
-                }
-            }
-        }
-
-        if (rightButtonInput > .1f)
-        {
-            if (canBePressed)
-            {
-                if (gameObject.tag == "ShortNote")
-                {
-                    gameObject.SetActive(false);
-                    Debug.Log(gameObject.tag);
-                }
-                else if (gameObject.tag == "LongNote")
-                {
-                    gameObject.SetActive(true);
-                    Debug.Log(gameObject.tag);
-                }
-
-                if (gameObject.GetComponent<Renderer>().material.color == Color.purple)
-                {
-                    manager.PurpleNoteHitCounter++;
-                }
-                //GameManager.instance.NoteHit();
-
-                if (Mathf.Abs(transform.position.y) < 14.75f)
-                {
-                    Debug.Log("Hit");
-                    GameManager.instance.NormalHit();
-                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 14.20)
-                {
-                    Debug.Log("Good");
-                    GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 13.85f)
-                {
-                    Debug.Log("Perfect");
-                    GameManager.instance.PerfectHit();
-                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 12.10f)
-                {
-                    Debug.Log("Good");
-                    GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                }
-                if (Mathf.Abs(transform.position.y) < 12.45f)
-                {
-                    Debug.Log("Hit");
-                    GameManager.instance.NormalHit();
-                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
-                }
-            }
-        }
-
-        if (downButtonInput > .1f)
-        {
-            if (canBePressed)
-            {
-                if (gameObject.tag == "ShortNote")
-                {
-                    gameObject.SetActive(false);
-                    Debug.Log(gameObject.tag);
-                }
-                else if (gameObject.tag == "LongNote")
-                {
-                    gameObject.SetActive(true);
-                    Debug.Log(gameObject.tag);
-                }
-
-                if (gameObject.GetComponent<Renderer>().sharedMaterial.color == Color.purple)
-                {
-                    manager.PurpleNoteHitCounter++;
-                }
-                //GameManager.instance.NoteHit();
-
-                if (Mathf.Abs(transform.position.y) < 14.75f)
-                {
-                    Debug.Log("Hit");
-                    GameManager.instance.NormalHit();
-                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 14.20)
-                {
-                    Debug.Log("Good");
-                    GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 13.85f)
-                {
-                    Debug.Log("Perfect");
-                    GameManager.instance.PerfectHit();
-                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
-                }
-                else if (Mathf.Abs(transform.position.y) < 12.10f)
-                {
-                    Debug.Log("Good");
-                    GameManager.instance.GoodHit();
-                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
-                }
-                if (Mathf.Abs(transform.position.y) < 12.45f)
-                {
-                    Debug.Log("Hit");
-                    GameManager.instance.NormalHit();
-                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
-                }
-            }
-        }
-
-    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Activator")
-        {
+        if (other.CompareTag("Activator"))
             canBePressed = true;
-        }
     }
-
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Activator")
+        if (other.CompareTag("Activator") && gameObject.activeSelf)
         {
             canBePressed = false;
-
-            GameManager.instance.NoteMissed();
-            Instantiate(missEffect, transform.position, missEffect.transform.rotation);
+            MissNote();
         }
+    }
+
+    void MissNote()
+    {
+        GameManager.instance.NoteMissed();
+        Instantiate(missEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

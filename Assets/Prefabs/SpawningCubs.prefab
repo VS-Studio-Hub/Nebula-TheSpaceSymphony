@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf566beada769c24fa2d97614cb9f87c, type: 2}
+  - {fileID: 2100000, guid: c4b91a03407906d488561e6b2735ba2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,8 +109,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9980848, y: 1, z: 1}
+  m_Center: {x: -0.001606783, y: 0, z: 0}
 --- !u!114 &5278379457438611813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,13 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b234ef07e3d21a34583d849fabb8fd99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputAction: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   hitEffect: {fileID: 1558725806215378535, guid: 7fda46ee8c9916e46b7faff7cfd7f9dd, type: 3}
   goodEffect: {fileID: 7351607583570229049, guid: 03111ed7c47928d479b2cd7e0ff3e751, type: 3}
   perfectEffect: {fileID: 1989052463084812574, guid: 9a478b5f632aa8945ba6348b6f4d083f, type: 3}
   missEffect: {fileID: 6800777640240049159, guid: 4c99a139814a65749a19483401665a06, type: 3}
   canBePressed: 0
   manager: {fileID: 0}
+  laneKey: 0
 --- !u!114 &5256895726548167990
 MonoBehaviour:
   m_ObjectHideFlags: 0
