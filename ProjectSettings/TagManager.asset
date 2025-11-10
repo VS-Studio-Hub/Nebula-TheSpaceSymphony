@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Activator
+  - ShortNote
+  - LongNote
+  - LaneOne
+  - LaneTwo
+  - LaneThree
+  - LaneFour
   layers:
   - Default
   - TransparentFX

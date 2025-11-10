@@ -7,20 +7,22 @@ public class NodeMovement : MonoBehaviour
 
     void Start()
     {
-        beatTempo = beatTempo / 60f;
+        //beatTempo = beatTempo / 60f;
     }
 
     void Update()
     {
-        if (!hasStarted)
-        {
-           
-                //hasStarted = true;
-            
-        }
-        else
-        {
-            transform.position -= new Vector3(beatTempo * Time.deltaTime, 0f, 0f);
-        }
+        transform.position -= new Vector3(beatTempo * Time.deltaTime, 0f, 0f);
+        //    
+        //if (!hasStarted)
+        //{
+
+        //        //hasStarted = true;
+
+        //}
+        //else
+        //{
+        //    transform.position -= new Vector3(beatTempo * Time.deltaTime, 0f, 0f);
+        //}
     }
 }
