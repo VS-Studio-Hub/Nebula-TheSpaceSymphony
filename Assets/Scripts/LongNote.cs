@@ -7,6 +7,7 @@ public class LongNote : MonoBehaviour
     public GameObject hitEffect, goodEffect, perfectEffect, missEffect;
     public bool canBePressed, laneOne, laneTwo, laneThree, laneFour;
 
+    public bool singleScore = true;
 
     public InputActionAsset InputActions;
 
@@ -39,15 +40,54 @@ public class LongNote : MonoBehaviour
     private void Update()
     {
         if (!canBePressed) return;
+        if (singleScore)
+        {
+            if (hitAAction.IsPressed() && laneOne)
+            {
+                SingleHitValue();
+                singleScore = false;
+            }
 
-        if (hitAAction.IsPressed() && laneOne)
-            CheckScore();
-        if (hitSAction.IsPressed() && laneTwo)
-            CheckScore();
-        if(hitDAction.IsPressed() && laneThree)
-            CheckScore();
-        if(hitFAction.IsPressed() && laneFour)
-            CheckScore();
+            if (hitSAction.IsPressed() && laneTwo)
+            {
+                SingleHitValue();
+                singleScore = false;
+            }
+
+            if (hitDAction.IsPressed() && laneThree)
+            {
+                SingleHitValue();
+                singleScore = false;
+            }
+
+            if (hitFAction.IsPressed() && laneFour)
+            {
+                SingleHitValue();
+                singleScore = false;
+            }
+        }
+        else
+        {
+            if (hitAAction.IsPressed() && laneOne)
+            {
+                CheckScore();
+            }
+
+            if (hitSAction.IsPressed() && laneTwo)
+            {
+                CheckScore();
+            }
+
+            if (hitDAction.IsPressed() && laneThree)
+            {
+                CheckScore();
+            }
+
+            if (hitFAction.IsPressed() && laneFour)
+            {
+                CheckScore();
+            }
+        }
     }
 
     void CheckScore()
@@ -55,26 +95,46 @@ public class LongNote : MonoBehaviour
         if (transform.position.x <= 15.1f && transform.position.x >= 14.6f)
         {
             Debug.Log("Hit");
-            GameManager.instance.LargeNoteHitValue();
-            Instantiate(hitEffect, transform.position, Quaternion.identity);
+            GameManager.instance.LongNoteHitValue();
         }
         else if (transform.position.x <= 14.5f && transform.position.x >= 13.6f)
         {
             Debug.Log("Good");
-            GameManager.instance.LargeNoteHitValue();
-            Instantiate(goodEffect, transform.position, Quaternion.identity);
+            GameManager.instance.LongNoteHitValue();
         }
         else if (transform.position.x <= 13.5f && transform.position.x >= 12.6f)
         {
             Debug.Log("Perfect");
-            GameManager.instance.LargeNoteHitValue();
-            Instantiate(perfectEffect, transform.position, Quaternion.identity);
+            GameManager.instance.LongNoteHitValue();
         }
         else if (transform.position.x < 12.6f)
         {
             Debug.Log("Hit");
-            GameManager.instance.LargeNoteHitValue();
-            Instantiate(hitEffect, transform.position, Quaternion.identity);
+            GameManager.instance.LongNoteHitValue();
+        }
+    }
+
+    void SingleHitValue()
+    {
+        if (transform.position.x <= 15.1f && transform.position.x >= 14.6f)
+        {
+            Debug.Log("Hit");
+            GameManager.instance.LongNoteHit();
+        }
+        else if (transform.position.x <= 14.5f && transform.position.x >= 13.6f)
+        {
+            Debug.Log("Good");
+            GameManager.instance.LongNoteGood();
+        }
+        else if (transform.position.x <= 13.5f && transform.position.x >= 12.6f)
+        {
+            Debug.Log("Perfect");
+            GameManager.instance.LongNotePerfect();
+        }
+        else if (transform.position.x < 12.6f)
+        {
+            Debug.Log("Hit");
+            GameManager.instance.LongNoteHit();
         }
     }
 

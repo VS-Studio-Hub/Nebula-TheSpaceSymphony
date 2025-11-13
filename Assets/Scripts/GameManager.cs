@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public AudioClip musicClip;
 
     [Header("Score Settings")]
-    public int currentScore;
+    public int currentScore, totalScore;
     public int currentMultiplier = 1;
     public int[] multiplierThresholds;
     private int multiplierTracker = 0;
@@ -35,30 +35,15 @@ public class GameManager : MonoBehaviour
         musicSource.PlayScheduled(startTime);
     }
 
-    public void SmallNoteHit()
-    {
-        AddScore(100);
-    }
+    public void SmallNoteHit() => AddScore(100);
+    public void SmallNoteGood() => AddScore(125);
+    public void SmallNotePerfect() => AddScore(150);
+    public void LongNoteHitValue() => AddScore(1);
+    public void LongNoteHit() => AddScore(10);
+    public void LongNoteGood() => AddScore(25);
+    public void LongNotePerfect() => AddScore(50);
+    public void PurpleNoteValue() => PurpleValue(1);
 
-    public void SmallNoteGood()
-    {
-        AddScore(125);
-    }
-
-    public void SmallNotePerfect()
-    {
-        AddScore(150);
-    }
-
-    public void LargeNoteHitValue()
-    {
-        AddScore(1);
-    }
-
-    public void PurpleNoteValue()
-    {
-        PurpleValue(1);
-    }
     public void NoteMissed()
     {
         currentMultiplier = 1;
@@ -71,9 +56,13 @@ public class GameManager : MonoBehaviour
         note = 0;
     }
 
-    void AddScore(int baseScore)
+    private void AddScore(int baseScore)
     {
-        currentScore += baseScore * currentMultiplier;
+        int finalScore = baseScore * currentMultiplier;
+
+        currentScore += finalScore;
+        totalScore += finalScore;
+
         multiplierTracker++;
 
         if (currentMultiplier - 1 < multiplierThresholds.Length)
@@ -105,11 +94,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateUI()
     {
-        scoreText.text = "Score: " + currentScore;
+        scoreText.text = "Score: " + totalScore;
         multiText.text = "x" + currentMultiplier;
     }
-
-
-
-
 }
