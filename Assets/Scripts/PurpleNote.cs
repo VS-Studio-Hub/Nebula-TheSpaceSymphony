@@ -17,6 +17,7 @@ public class PurpleNote : MonoBehaviour
     private InputAction hitDAction;
     private InputAction hitFAction;
 
+    private bool colourChanging = false;
 
     private void OnEnable()
     {
@@ -45,12 +46,9 @@ public class PurpleNote : MonoBehaviour
 
     private void Update()
     {
-        if(GameManager.activatePurpleNote)
+        if (GameManager.activatePurpleNote && !colourChanging)
         {
-            colourIndex++;
-            if (colourIndex >= noteColours.Length)
-                colourIndex = 0;
-            StartCoroutine(WaitForFewSecond());
+            StartCoroutine(ColourFlashRoutine());
         }
 
         if (!canBePressed) return;
@@ -81,12 +79,31 @@ public class PurpleNote : MonoBehaviour
         }
     }
 
+    IEnumerator ColourFlashRoutine()
+    {
+        colourChanging = true;
+
+        // cycle through all materials one time
+        for (int i = 0; i < noteColours.Length; i++)
+        {
+            colourIndex = (colourIndex + 1) % noteColours.Length;
+            GetComponent<Renderer>().material = noteColours[colourIndex];
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        GameManager.activatePurpleNote = false;
+        GameManager.instance.ResetPurpleCooldown();
+
+        colourChanging = false;
+    }
+
     void CheckScore()
     {
         if (transform.position.x <= 16.7f && transform.position.x >= 14.7f)
         {
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
+            GameManager.instance.PurpleNoteValue();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
@@ -94,6 +111,7 @@ public class PurpleNote : MonoBehaviour
         {
             Debug.Log("Good");
             GameManager.instance.SmallNoteGood();
+            GameManager.instance.PurpleNoteValue();
             Instantiate(goodEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
@@ -101,6 +119,7 @@ public class PurpleNote : MonoBehaviour
         {
             Debug.Log("Perfect");
             GameManager.instance.SmallNotePerfect();
+            GameManager.instance.PurpleNoteValue();
             Instantiate(perfectEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
@@ -108,6 +127,7 @@ public class PurpleNote : MonoBehaviour
         {
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
+            GameManager.instance.PurpleNoteValue();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
@@ -139,14 +159,8 @@ public class PurpleNote : MonoBehaviour
 
     void MissNote()
     {
-        //GameManager.instance.NoteMissed();
         Instantiate(missEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
-    }
-
-    IEnumerator WaitForFewSecond()
-    {
-        yield return new WaitForSeconds(5);
-        GameManager.activatePurpleNote = false;
+        GameManager.instance.PurpleNoteMiss();
     }
 }

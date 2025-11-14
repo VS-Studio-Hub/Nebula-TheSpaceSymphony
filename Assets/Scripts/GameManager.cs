@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     bool missedNote = false;
     public static bool activatePurpleNote = false;
+    private bool purpleReadyToTrigger = true;
 
     void Awake()
     {
@@ -79,19 +80,24 @@ public class GameManager : MonoBehaviour
 
     void PurpleValue(int value)
     {
+        note += value;
         if (missedNote)
         {
             note = 0;
             missedNote = false;
         }
         note += value;
-        if (note < 5)
+        if (note == 5)
         {
             activatePurpleNote = true;
             note = 0;
+            Debug.Log("Acttivated");
         }
     }
-
+    public void ResetPurpleCooldown()
+    {
+        purpleReadyToTrigger = true;
+    }
     void UpdateUI()
     {
         scoreText.text = "Score: " + totalScore;
