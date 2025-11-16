@@ -14,20 +14,14 @@ public class SmallNote : MonoBehaviour
     private InputAction hitDAction;
     private InputAction hitFAction;
 
-    public Material[] noteColours;
-    private int colourIndex;
+    private Renderer rend;
+    public Material[] defaultMaterial;
+
 
     private void OnEnable()
     {
         InputActions.FindActionMap("PlayerInput");
     }
-
-    //private void OnDisable()
-    //{
-    //    InputActions.FindActionMap("PlayerInput").Disable();
-    //}
-
-
 
     private void Awake()
     {
@@ -39,18 +33,35 @@ public class SmallNote : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Renderer>().material = noteColours[colourIndex];
+        rend = GetComponent<Renderer>();
+        if(laneOne) 
+            rend.material = defaultMaterial[0];
+        if(laneTwo)
+            rend.material = defaultMaterial[1];
+        if(laneThree)
+            rend.material = defaultMaterial[2];
+        if(laneFour)
+            rend.material = defaultMaterial[3];
     }
 
     private void Update()
     {
-        if (GameManager.activatePurpleNote)
+        if (GameManager.instance.activatePurpleNote)
         {
-            colourIndex++;
-            if (colourIndex >= noteColours.Length)
-                colourIndex = 0;
-            StartCoroutine(WaitForFewSecond());
+            rend.material = MaterialManager.instance.GetCurrentMaterial();
         }
+        else
+        {
+            if (laneOne)
+                rend.material = defaultMaterial[0];
+            if (laneTwo)
+                rend.material = defaultMaterial[1];
+            if (laneThree)
+                rend.material = defaultMaterial[2];
+            if (laneFour)
+                rend.material = defaultMaterial[3];
+        }
+
         if (!canBePressed) return;
 
         if (hitAAction.WasPressedThisFrame() && laneOne)
@@ -140,11 +151,5 @@ public class SmallNote : MonoBehaviour
         //GameManager.instance.NoteMissed();
         Instantiate(missEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
-    }
-
-    IEnumerator WaitForFewSecond()
-    {
-        yield return new WaitForSeconds(5);
-        GameManager.activatePurpleNote = false;
     }
 }

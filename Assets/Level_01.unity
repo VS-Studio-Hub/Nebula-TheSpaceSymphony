@@ -1988,6 +1988,58 @@ MonoBehaviour:
   purpleNote: {fileID: 6972460200654758418, guid: c8fbcc857cdc827458074761eaee76d2, type: 3}
   spawnPoint: {fileID: 740529772}
   noteTravelTime: 1
+--- !u!1 &850881621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 850881623}
+  - component: {fileID: 850881622}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &850881622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850881621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3668496ae84b33d43b35988d3140bed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteColours:
+  - {fileID: 2100000, guid: 7a564618f9b855e4bab942fb1ded933e, type: 2}
+  - {fileID: 2100000, guid: bf566beada769c24fa2d97614cb9f87c, type: 2}
+  - {fileID: 2100000, guid: ad11c7d2522a3994e993335de21aa6c1, type: 2}
+  - {fileID: 2100000, guid: dd111c95e8eb2904280616a87fd541ba, type: 2}
+  - {fileID: 2100000, guid: c4b91a03407906d488561e6b2735ba2b, type: 2}
+  colourIndex: 0
+  colorInterval: 0.2
+--- !u!4 &850881623
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850881621}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 35.4324, y: -0, z: -9.42253}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860382998
 GameObject:
   m_ObjectHideFlags: 0
@@ -3058,6 +3110,7 @@ MonoBehaviour:
   multiplierThresholds: 020000000300000004000000
   scoreText: {fileID: 898578581}
   multiText: {fileID: 671712127}
+  activatePurpleNote: 0
 --- !u!4 &1116607254
 Transform:
   m_ObjectHideFlags: 0
@@ -6956,3 +7009,4 @@ SceneRoots:
   - {fileID: 1695480446}
   - {fileID: 335250902}
   - {fileID: 1203175547}
+  - {fileID: 850881623}

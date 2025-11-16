@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4748957637956183374}
   - component: {fileID: 656781556092842707}
   - component: {fileID: 978533415772315100}
-  - component: {fileID: 7264589740279517186}
+  - component: {fileID: -6692571496385756529}
   m_Layer: 0
   m_Name: PurpleSpawningCubs
   m_TagString: ShortNote
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c4b91a03407906d488561e6b2735ba2b, type: 2}
+  - {fileID: 2100000, guid: 7a564618f9b855e4bab942fb1ded933e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beatTempo: 15
   hasStarted: 0
---- !u!114 &7264589740279517186
+--- !u!114 &-6692571496385756529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6972460200654758418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db2c1d2d0d49d0f44b83c606aab8230e, type: 3}
+  m_Script: {fileID: 11500000, guid: da4e64d6d3900a84a939f09b4d906065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 1558725806215378535, guid: 7fda46ee8c9916e46b7faff7cfd7f9dd, type: 3}
@@ -145,8 +145,5 @@ MonoBehaviour:
   laneTwo: 0
   laneThree: 0
   laneFour: 0
+  defaultMaterial: {fileID: 2100000, guid: 7a564618f9b855e4bab942fb1ded933e, type: 2}
   InputActions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
-  noteColours:
-  - {fileID: 2100000, guid: 7a564618f9b855e4bab942fb1ded933e, type: 2}
-  - {fileID: 2100000, guid: bf566beada769c24fa2d97614cb9f87c, type: 2}
-  - {fileID: 2100000, guid: c4b91a03407906d488561e6b2735ba2b, type: 2}

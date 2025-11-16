@@ -1,14 +1,16 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.HighDefinition;
 
 public class PurpleNote : MonoBehaviour
 {
     public GameObject hitEffect, goodEffect, perfectEffect, missEffect;
     public bool canBePressed, laneOne, laneTwo, laneThree, laneFour;
 
-    public Material[] noteColours;
-    private int colourIndex;
+    private Renderer rend;
+    public Material defaultMaterial;
 
     public InputActionAsset InputActions;
 
@@ -17,17 +19,14 @@ public class PurpleNote : MonoBehaviour
     private InputAction hitDAction;
     private InputAction hitFAction;
 
-    private bool colourChanging = false;
+
+    private float interval = .2f;
+    private float timer;
 
     private void OnEnable()
     {
         InputActions.FindActionMap("PlayerInput");
     }
-
-    //private void OnDisable()
-    //{
-    //    InputActions.FindActionMap("PlayerInput").Disable();
-    //}
 
 
 
@@ -41,14 +40,19 @@ public class PurpleNote : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Renderer>().material = noteColours[colourIndex];
+        rend = GetComponent<Renderer>();
+        rend.material = defaultMaterial;
     }
 
     private void Update()
     {
-        if (GameManager.activatePurpleNote && !colourChanging)
+        if(GameManager.instance.activatePurpleNote)
         {
-            StartCoroutine(ColourFlashRoutine());
+            rend.material = MaterialManager.instance.GetCurrentMaterial();
+        }
+        else
+        {
+            rend.material = defaultMaterial;
         }
 
         if (!canBePressed) return;
@@ -79,56 +83,50 @@ public class PurpleNote : MonoBehaviour
         }
     }
 
-    IEnumerator ColourFlashRoutine()
-    {
-        colourChanging = true;
-
-        // cycle through all materials one time
-        for (int i = 0; i < noteColours.Length; i++)
-        {
-            colourIndex = (colourIndex + 1) % noteColours.Length;
-            GetComponent<Renderer>().material = noteColours[colourIndex];
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        GameManager.activatePurpleNote = false;
-        GameManager.instance.ResetPurpleCooldown();
-
-        colourChanging = false;
-    }
-
     void CheckScore()
     {
         if (transform.position.x <= 16.7f && transform.position.x >= 14.7f)
         {
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
-            GameManager.instance.PurpleNoteValue();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
+            if (GameManager.instance.activatePurpleNote)
+                GameManager.instance.PurpleActivatedNoteValue();
+            else
+                GameManager.instance.PurpleNoteValue();
             Destroy(gameObject);
         }
         else if (transform.position.x <= 14.8f && transform.position.x >= 13.64f)
         {
             Debug.Log("Good");
             GameManager.instance.SmallNoteGood();
-            GameManager.instance.PurpleNoteValue();
             Instantiate(goodEffect, transform.position, Quaternion.identity);
+            if (GameManager.instance.activatePurpleNote)
+                GameManager.instance.PurpleActivatedNoteValue();
+            else
+                GameManager.instance.PurpleNoteValue();
             Destroy(gameObject);
         }
         else if (transform.position.x <= 13.65f && transform.position.x >= 12.7f)
         {
             Debug.Log("Perfect");
             GameManager.instance.SmallNotePerfect();
-            GameManager.instance.PurpleNoteValue();
-            Instantiate(perfectEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            if (GameManager.instance.activatePurpleNote)
+                GameManager.instance.PurpleActivatedNoteValue();
+            else
+                GameManager.instance.PurpleNoteValue();
+            Instantiate(perfectEffect, transform.position, Quaternion.identity);
         }
         else if (transform.position.x <= 12.8f && transform.position.x >= 11.4f)
         {
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
-            GameManager.instance.PurpleNoteValue();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
+            if (GameManager.instance.activatePurpleNote)
+                GameManager.instance.PurpleActivatedNoteValue();
+            else
+                GameManager.instance.PurpleNoteValue();
             Destroy(gameObject);
         }
     }

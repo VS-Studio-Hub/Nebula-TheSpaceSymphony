@@ -146,9 +146,8 @@ MonoBehaviour:
   laneThree: 0
   laneFour: 0
   InputActions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
-  noteColours:
+  defaultMaterial:
   - {fileID: 2100000, guid: bf566beada769c24fa2d97614cb9f87c, type: 2}
-  - {fileID: 2100000, guid: 7a564618f9b855e4bab942fb1ded933e, type: 2}
-  - {fileID: 2100000, guid: ad11c7d2522a3994e993335de21aa6c1, type: 2}
   - {fileID: 2100000, guid: dd111c95e8eb2904280616a87fd541ba, type: 2}
   - {fileID: 2100000, guid: c4b91a03407906d488561e6b2735ba2b, type: 2}
+  - {fileID: 2100000, guid: ad11c7d2522a3994e993335de21aa6c1, type: 2}

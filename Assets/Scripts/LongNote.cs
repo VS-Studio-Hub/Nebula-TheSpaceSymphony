@@ -17,15 +17,14 @@ public class LongNote : MonoBehaviour
     private InputAction hitFAction;
 
 
+    private Renderer rend;
+    public Material[] defaultMaterial;
+
     private void OnEnable()
     {
         InputActions.FindActionMap("PlayerInput");
     }
 
-    //private void OnDisable()
-    //{
-    //    InputActions.FindActionMap("PlayerInput").Disable();
-    //}
 
 
     private void Awake()
@@ -35,10 +34,36 @@ public class LongNote : MonoBehaviour
         hitDAction = InputSystem.actions.FindAction("HitD");
         hitFAction = InputSystem.actions.FindAction("HitF");
     }
-
+    private void Start()
+    {
+        rend = GetComponentInChildren<Renderer>();
+        if (laneOne)
+            rend.material = defaultMaterial[0];
+        if (laneTwo)
+            rend.material = defaultMaterial[1];
+        if (laneThree)
+            rend.material = defaultMaterial[2];
+        if (laneFour)
+            rend.material = defaultMaterial[3];
+    }
 
     private void Update()
     {
+        if (GameManager.instance.activatePurpleNote)
+        {
+            rend.material = MaterialManager.instance.GetCurrentMaterial();
+        }
+        else
+        {
+            if (laneOne)
+                rend.material = defaultMaterial[0];
+            if (laneTwo)
+                rend.material = defaultMaterial[1];
+            if (laneThree)
+                rend.material = defaultMaterial[2];
+            if (laneFour)
+                rend.material = defaultMaterial[3];
+        }
         if (!canBePressed) return;
         if (singleScore)
         {

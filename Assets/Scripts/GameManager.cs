@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,16 +21,35 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text multiText;
 
+
+
     bool missedNote = false;
-    public static bool activatePurpleNote = false;
-    private bool purpleReadyToTrigger = true;
+    public  bool activatePurpleNote = false;
+    private bool purpleTimerRunning = false;
 
     void Awake()
     {
         instance = this;
     }
 
-    // Called from NodeSpawnManager
+    private void Update()
+    {
+        if (activatePurpleNote && !purpleTimerRunning)
+        {
+            StartCoroutine(DeactivateNote());
+        }
+    }
+
+    IEnumerator DeactivateNote()
+    {
+        purpleTimerRunning = true;
+
+        yield return new WaitForSecondsRealtime(5);
+
+        activatePurpleNote = false;
+        purpleTimerRunning = false;
+    }
+
     public void StartMusic(double startTime)
     {
         musicSource.clip = musicClip;
@@ -44,6 +64,7 @@ public class GameManager : MonoBehaviour
     public void LongNoteGood() => AddScore(25);
     public void LongNotePerfect() => AddScore(50);
     public void PurpleNoteValue() => PurpleValue(1);
+    public void PurpleActivatedNoteValue() => PurpleValue(0);
 
     public void NoteMissed()
     {
@@ -54,7 +75,7 @@ public class GameManager : MonoBehaviour
 
     public void PurpleNoteMiss()
     {
-        note = 0;
+        missedNote = true;
     }
 
     private void AddScore(int baseScore)
@@ -86,17 +107,13 @@ public class GameManager : MonoBehaviour
             note = 0;
             missedNote = false;
         }
-        note += value;
-        if (note == 5)
+
+        if (note == 1)
         {
             activatePurpleNote = true;
             note = 0;
             Debug.Log("Acttivated");
         }
-    }
-    public void ResetPurpleCooldown()
-    {
-        purpleReadyToTrigger = true;
     }
     void UpdateUI()
     {
