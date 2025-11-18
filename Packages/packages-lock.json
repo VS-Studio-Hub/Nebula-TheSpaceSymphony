@@ -91,7 +91,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.14.0",
+      "version": "1.14.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -143,26 +143,22 @@
         "com.unity.rendering.light-transport": "1.0.1"
       }
     },
-    "com.unity.render-pipelines.high-definition": {
+    "com.unity.render-pipelines.universal": {
       "version": "17.1.0",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
-        "com.unity.modules.video": "1.0.0",
-        "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.render-pipelines.core": "17.1.0",
         "com.unity.shadergraph": "17.1.0",
-        "com.unity.visualeffectgraph": "17.1.0",
-        "com.unity.render-pipelines.high-definition-config": "17.1.0"
+        "com.unity.render-pipelines.universal-config": "17.0.3"
       }
     },
-    "com.unity.render-pipelines.high-definition-config": {
-      "version": "17.1.0",
+    "com.unity.render-pipelines.universal-config": {
+      "version": "17.0.3",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
-        "com.unity.render-pipelines.core": "17.1.0"
+        "com.unity.render-pipelines.core": "17.0.3"
       }
     },
     "com.unity.rendering.light-transport": {
@@ -229,7 +225,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.8.7",
+      "version": "1.8.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -249,17 +245,8 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-    "com.unity.visualeffectgraph": {
-      "version": "17.1.0",
-      "depth": 1,
-      "source": "builtin",
-      "dependencies": {
-        "com.unity.shadergraph": "17.1.0",
-        "com.unity.render-pipelines.core": "17.1.0"
-      }
-    },
     "com.unity.visualscripting": {
-      "version": "1.9.6",
+      "version": "1.9.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {

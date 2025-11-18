@@ -24,6 +24,8 @@ public class PlanetSpawn : MonoBehaviour
             worldLevelTwo.SetActive(false);
             LevelThree();
         }
+
+
     }
 
     private void LevelTwo()
