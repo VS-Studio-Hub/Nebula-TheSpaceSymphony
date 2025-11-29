@@ -12,7 +12,10 @@ public class NodeSpawnManager : MonoBehaviour
     public GameObject longNotePrefab;
     public GameObject purpleNote;
     public Transform spawnPoint;
- 
+
+    public AudioClip[] smnClip;
+    private int smnIndex = 0;
+
 
     [Header("Settings")]
     public float noteTravelTime = 2.0f;
@@ -76,15 +79,21 @@ public class NodeSpawnManager : MonoBehaviour
 
         if (purple)
         {
-            Instantiate(purpleNote, spawnPoint.position, Quaternion.identity);
+            GameObject pur = Instantiate(purpleNote, spawnPoint.position, Quaternion.identity);
+            AudioSource audio = pur.GetComponent<AudioSource>();
+            audio.clip = smnClip[smnIndex];
+
             purple = false;
         }
         else
         {
-            Instantiate(smallNotePrefab, spawnPoint.position, Quaternion.identity);
+            GameObject smn = Instantiate(smallNotePrefab, spawnPoint.position, Quaternion.identity);
+
+            AudioSource audio = smn.GetComponent<AudioSource>();
+            audio.clip = smnClip[smnIndex];
         }
 
-        
+        smnIndex++;
     }
 
     private void SpawnLongNote(float startTime, float endTime)

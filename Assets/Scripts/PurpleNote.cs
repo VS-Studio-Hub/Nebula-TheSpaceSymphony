@@ -19,19 +19,19 @@ public class PurpleNote : MonoBehaviour
     private InputAction hitDAction;
     private InputAction hitFAction;
 
-
     private float interval = .2f;
     private float timer;
+
+    private AudioSource audioSource;
 
     private void OnEnable()
     {
         InputActions.FindActionMap("PlayerInput");
     }
 
-
-
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         hitAAction = InputSystem.actions.FindAction("HitA");
         hitSAction = InputSystem.actions.FindAction("HitS");
         hitDAction = InputSystem.actions.FindAction("HitD");
@@ -85,6 +85,7 @@ public class PurpleNote : MonoBehaviour
 
     void CheckScore()
     {
+        audioSource.Play();
         if (transform.position.x <= 16.7f && transform.position.x >= 14.7f)
         {
             Debug.Log("Hit");

@@ -17,6 +17,8 @@ public class SmallNote : MonoBehaviour
     private Renderer rend;
     public Material[] defaultMaterial;
 
+    private AudioSource audioSource;
+
 
     private void OnEnable()
     {
@@ -25,6 +27,7 @@ public class SmallNote : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         hitAAction = InputSystem.actions.FindAction("HitA");
         hitSAction = InputSystem.actions.FindAction("HitS");
         hitDAction = InputSystem.actions.FindAction("HitD");
@@ -63,6 +66,8 @@ public class SmallNote : MonoBehaviour
         }
 
         if (!canBePressed) return;
+        if (!SPButtonController.instance.Swapped())
+        {
 
         if (hitAAction.WasPressedThisFrame() && laneOne)
         {
@@ -88,37 +93,68 @@ public class SmallNote : MonoBehaviour
 
             CheckScore();
         }
+        }
+        else
+        {
+
+            if (hitAAction.WasPressedThisFrame() && laneFour)
+            {
+                Debug.Log("Hit");
+
+                CheckScore();
+            }
+            if (hitSAction.WasPressedThisFrame() && laneThree)
+            {
+                Debug.Log("Hit");
+
+                CheckScore();
+            }
+            if (hitDAction.WasPressedThisFrame() && laneTwo)
+            {
+                Debug.Log("Hit");
+
+                CheckScore();
+            }
+            if (hitFAction.WasPressedThisFrame() && laneOne)
+            {
+                Debug.Log("Hit");
+
+                CheckScore();
+            }
+        }
+
     }
 
     void CheckScore()
     {
+        audioSource.Play();
         if (transform.position.x <= 16.7f && transform.position.x >= 14.7f)
         {
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         else if (transform.position.x <= 14.8f && transform.position.x >= 13.64f)
         {
             Debug.Log("Good");
             GameManager.instance.SmallNoteGood();
             Instantiate(goodEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         else if (transform.position.x <= 13.65f && transform.position.x >= 12.7f)
         {
             Debug.Log("Perfect");
             GameManager.instance.SmallNotePerfect();
             Instantiate(perfectEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         else if (transform.position.x <= 12.8f && transform.position.x >= 11.4f)
         {
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
@@ -150,6 +186,6 @@ public class SmallNote : MonoBehaviour
     {
         //GameManager.instance.NoteMissed();
         Instantiate(missEffect, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
