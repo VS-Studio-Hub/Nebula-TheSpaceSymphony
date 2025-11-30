@@ -70,7 +70,8 @@ public class NodeSpawnManager : MonoBehaviour
 
     private void SpawnSmallNote()
     {
-        rand = Random.Range(0, 2);
+        rand = 1;
+            //Random.Range(0, 2);
 
         if(rand == 0)
         {
