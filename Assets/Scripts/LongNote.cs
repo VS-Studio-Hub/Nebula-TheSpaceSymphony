@@ -20,15 +20,17 @@ public class LongNote : MonoBehaviour
     private Renderer rend;
     public Material[] defaultMaterial;
 
+    private AudioSource audioSource;
+
+
     private void OnEnable()
     {
         InputActions.FindActionMap("PlayerInput");
     }
 
-
-
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         hitAAction = InputSystem.actions.FindAction("HitA");
         hitSAction = InputSystem.actions.FindAction("HitS");
         hitDAction = InputSystem.actions.FindAction("HitD");
@@ -166,7 +168,10 @@ public class LongNote : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Activator"))
+        {
             canBePressed = true;
+            audioSource.Play();
+        }
         if (other.CompareTag("LaneOne"))
             laneOne = true;
         if (other.CompareTag("LaneTwo"))

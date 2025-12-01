@@ -9,9 +9,6 @@ public class PurpleNote : MonoBehaviour
     public GameObject hitEffect, goodEffect, perfectEffect, missEffect;
     public bool canBePressed, laneOne, laneTwo, laneThree, laneFour;
 
-    private Renderer rend;
-    public Material defaultMaterial;
-
     public InputActionAsset InputActions;
 
     private InputAction hitAAction;
@@ -19,10 +16,7 @@ public class PurpleNote : MonoBehaviour
     private InputAction hitDAction;
     private InputAction hitFAction;
 
-    private float interval = .2f;
-    private float timer;
 
-    private AudioSource audioSource;
 
     private void OnEnable()
     {
@@ -31,7 +25,6 @@ public class PurpleNote : MonoBehaviour
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
         hitAAction = InputSystem.actions.FindAction("HitA");
         hitSAction = InputSystem.actions.FindAction("HitS");
         hitDAction = InputSystem.actions.FindAction("HitD");
@@ -40,20 +33,11 @@ public class PurpleNote : MonoBehaviour
 
     private void Start()
     {
-        rend = GetComponent<Renderer>();
-        rend.material = defaultMaterial;
+
     }
 
     private void Update()
     {
-        if(GameManager.instance.activatePurpleNote)
-        {
-            rend.material = MaterialManager.instance.GetCurrentMaterial();
-        }
-        else
-        {
-            rend.material = defaultMaterial;
-        }
 
         if (!canBePressed) return;
 
@@ -85,7 +69,6 @@ public class PurpleNote : MonoBehaviour
 
     void CheckScore()
     {
-        audioSource.Play();
         if (transform.position.x <= 16.7f && transform.position.x >= 14.7f)
         {
             Debug.Log("Hit");

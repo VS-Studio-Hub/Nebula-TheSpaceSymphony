@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class NoteMaterial : MonoBehaviour
+public class PurpleNoteMaterial : MonoBehaviour
 {
     public bool laneOne, laneTwo, laneThree, laneFour;
     private Renderer rend;
-    public Material[] defaultMaterial;
+    public Material defaultMaterial;
     void Awake()
     {
 
@@ -12,14 +12,7 @@ public class NoteMaterial : MonoBehaviour
     private void Start()
     {
         rend = GetComponent<Renderer>();
-        if (laneOne)
-            rend.material = defaultMaterial[0];
-        if (laneTwo)
-            rend.material = defaultMaterial[1];
-        if (laneThree)
-            rend.material = defaultMaterial[2];
-        if (laneFour)
-            rend.material = defaultMaterial[3];
+        rend.material = defaultMaterial;
     }
     void Update()
     {
@@ -29,14 +22,7 @@ public class NoteMaterial : MonoBehaviour
         }
         else
         {
-            if (laneOne)
-                rend.material = defaultMaterial[0];
-            if (laneTwo)
-                rend.material = defaultMaterial[1];
-            if (laneThree)
-                rend.material = defaultMaterial[2];
-            if (laneFour)
-                rend.material = defaultMaterial[3];
+            rend.material = defaultMaterial;
         }
 
     }

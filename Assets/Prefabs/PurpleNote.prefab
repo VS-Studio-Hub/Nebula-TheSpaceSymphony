@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 301025239807562794}
   - component: {fileID: 2285514864911088575}
   - component: {fileID: 8971846158806463605}
-  - component: {fileID: 393388469441014653}
+  - component: {fileID: 2471083429853944278}
   m_Layer: 0
   m_Name: PurpleSpawningCubs
   m_TagString: ShortNote
@@ -109,7 +109,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9980848, y: 1, z: 1}
   m_Center: {x: -0.001606783, y: 0, z: 0}
---- !u!114 &393388469441014653
+--- !u!114 &2471083429853944278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,20 +118,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1292213319110758101}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da4e64d6d3900a84a939f09b4d906065, type: 3}
+  m_Script: {fileID: 11500000, guid: f9e09b0d89fcbde44a0c9b0cdf81d5aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 1558725806215378535, guid: 7fda46ee8c9916e46b7faff7cfd7f9dd, type: 3}
-  goodEffect: {fileID: 7351607583570229049, guid: 03111ed7c47928d479b2cd7e0ff3e751, type: 3}
-  perfectEffect: {fileID: 1989052463084812574, guid: 9a478b5f632aa8945ba6348b6f4d083f, type: 3}
-  missEffect: {fileID: 6800777640240049159, guid: 4c99a139814a65749a19483401665a06, type: 3}
-  canBePressed: 0
   laneOne: 0
   laneTwo: 0
   laneThree: 0
   laneFour: 0
   defaultMaterial: {fileID: 2100000, guid: 7a564618f9b855e4bab942fb1ded933e, type: 2}
-  InputActions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
 --- !u!1 &4635521362082182415
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,9 +138,10 @@ GameObject:
   - component: {fileID: 2246631862231661870}
   - component: {fileID: 5392003744026422282}
   - component: {fileID: 652614962089123070}
+  - component: {fileID: 2887739255017126430}
   m_Layer: 0
   m_Name: PurpleNote
-  m_TagString: Untagged
+  m_TagString: ShortNote
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +272,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatTempo: 15
-  hasStarted: 0
 --- !u!114 &652614962089123070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,5 +293,25 @@ MonoBehaviour:
   laneTwo: 0
   laneThree: 0
   laneFour: 0
-  defaultMaterial: {fileID: 2100000, guid: 7a564618f9b855e4bab942fb1ded933e, type: 2}
   InputActions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
+--- !u!65 &2887739255017126430
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4635521362082182415}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9980848, y: 1, z: 1}
+  m_Center: {x: -0.001606783, y: 0, z: 0}
