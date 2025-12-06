@@ -6,9 +6,9 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class PurpleNote : MonoBehaviour
 {
-    public GameObject hitEffect, goodEffect, perfectEffect, missEffect;
+    public GameObject hitEffect, goodEffect, perfectEffect, missEffect,mesh;
     public bool canBePressed, laneOne, laneTwo, laneThree, laneFour;
-
+    public bool activatedNote = false;
     public InputActionAsset InputActions;
 
     private InputAction hitAAction;
@@ -16,6 +16,8 @@ public class PurpleNote : MonoBehaviour
     private InputAction hitDAction;
     private InputAction hitFAction;
 
+    private AudioSource audioSource;
+    public AudioClip missSound;
 
 
     private void OnEnable()
@@ -25,6 +27,7 @@ public class PurpleNote : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         hitAAction = InputSystem.actions.FindAction("HitA");
         hitSAction = InputSystem.actions.FindAction("HitS");
         hitDAction = InputSystem.actions.FindAction("HitD");
@@ -41,36 +44,33 @@ public class PurpleNote : MonoBehaviour
 
         if (!canBePressed) return;
 
-        if (hitAAction.WasPressedThisFrame() && laneOne)
+        if (hitAAction.WasPressedThisFrame() && laneOne && !activatedNote)
         {
-            Debug.Log("Hit");
-
             CheckScore();
+
         }
-        if (hitSAction.WasPressedThisFrame() && laneTwo)
+        if (hitSAction.WasPressedThisFrame() && laneTwo && !activatedNote)
         {
-            Debug.Log("Hit");
-
             CheckScore();
+
         }
-        if (hitDAction.WasPressedThisFrame() && laneThree)
+        if (hitDAction.WasPressedThisFrame() && laneThree && !activatedNote)
         {
-            Debug.Log("Hit");
-
             CheckScore();
+
         }
-        if (hitFAction.WasPressedThisFrame() && laneFour)
+        if (hitFAction.WasPressedThisFrame() && laneFour && !activatedNote)
         {
-            Debug.Log("Hit");
-
             CheckScore();
+
         }
     }
 
     void CheckScore()
     {
-        if (transform.position.x <= 16.7f && transform.position.x >= 14.7f)
+        if (transform.position.x <= 8.6f && transform.position.x >= 7.9f)
         {
+            audioSource.Play();
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
@@ -78,41 +78,42 @@ public class PurpleNote : MonoBehaviour
                 GameManager.instance.PurpleActivatedNoteValue();
             else
                 GameManager.instance.PurpleNoteValue();
-            Destroy(gameObject);
+            mesh.SetActive(false);
         }
-        else if (transform.position.x <= 14.8f && transform.position.x >= 13.64f)
+        else if (transform.position.x <= 7.8f && transform.position.x >= 6f)
         {
-            Debug.Log("Good");
+            audioSource.Play();
             GameManager.instance.SmallNoteGood();
             Instantiate(goodEffect, transform.position, Quaternion.identity);
             if (GameManager.instance.activatePurpleNote)
                 GameManager.instance.PurpleActivatedNoteValue();
             else
                 GameManager.instance.PurpleNoteValue();
-            Destroy(gameObject);
+            mesh.SetActive(false);
         }
-        else if (transform.position.x <= 13.65f && transform.position.x >= 12.7f)
+        else if (transform.position.x <= 5.9f && transform.position.x >= 4.4f)
         {
-            Debug.Log("Perfect");
+            audioSource.Play();
             GameManager.instance.SmallNotePerfect();
-            Destroy(gameObject);
+            Instantiate(perfectEffect, transform.position, Quaternion.identity);
             if (GameManager.instance.activatePurpleNote)
                 GameManager.instance.PurpleActivatedNoteValue();
             else
                 GameManager.instance.PurpleNoteValue();
-            Instantiate(perfectEffect, transform.position, Quaternion.identity);
+            mesh.SetActive(false);
         }
-        else if (transform.position.x <= 12.8f && transform.position.x >= 11.4f)
+        else if (transform.position.x <= 4.3f && transform.position.x >= 1f)
         {
-            Debug.Log("Hit");
+            audioSource.Play();
             GameManager.instance.SmallNoteHit();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
             if (GameManager.instance.activatePurpleNote)
                 GameManager.instance.PurpleActivatedNoteValue();
             else
                 GameManager.instance.PurpleNoteValue();
-            Destroy(gameObject);
+            mesh.SetActive(false);
         }
+        activatedNote = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -132,7 +133,7 @@ public class PurpleNote : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Activator") && gameObject.activeSelf)
+        if (other.CompareTag("Activator") && mesh.activeSelf)
         {
             canBePressed = false;
             MissNote();
@@ -141,8 +142,9 @@ public class PurpleNote : MonoBehaviour
 
     void MissNote()
     {
+        audioSource.PlayOneShot(missSound);
         Instantiate(missEffect, transform.position, Quaternion.identity);
-        Destroy(gameObject);
         GameManager.instance.PurpleNoteMiss();
+        mesh.SetActive(false);
     }
 }

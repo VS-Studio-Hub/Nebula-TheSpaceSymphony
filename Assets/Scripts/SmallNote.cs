@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 public class SmallNote : MonoBehaviour
 {
     public GameObject hitEffect, goodEffect, perfectEffect, missEffect, mesh;
-    public bool canBePressed, laneOne, laneTwo, laneThree, laneFour;
 
+    public bool canBePressed = false;
+    public bool activatedNote = false;
     public bool pressed = true;
 
     public InputActionAsset InputActions;
@@ -17,7 +18,7 @@ public class SmallNote : MonoBehaviour
     private InputAction hitFAction;
 
     private AudioSource audioSource;
-
+    public AudioClip missSound;
 
     private void OnEnable()
     {
@@ -42,25 +43,25 @@ public class SmallNote : MonoBehaviour
         if (!SPButtonController.instance.Swapped())
         {
 
-        if (hitAAction.WasPressedThisFrame() && laneOne)
+        if (hitAAction.WasPressedThisFrame() && !activatedNote)
         {
             Debug.Log("Hit");
 
             CheckScore();
         }
-        if (hitSAction.WasPressedThisFrame() && laneTwo)
+        if (hitSAction.WasPressedThisFrame() && !activatedNote)
         {
             Debug.Log("Hit");
 
             CheckScore();
         }
-        if (hitDAction.WasPressedThisFrame() && laneThree)
+        if (hitDAction.WasPressedThisFrame() && !activatedNote)
         {
             Debug.Log("Hit");
 
             CheckScore();
         }
-        if (hitFAction.WasPressedThisFrame() && laneFour)
+        if (hitFAction.WasPressedThisFrame() && !activatedNote)
         {
             Debug.Log("Hit");
 
@@ -70,25 +71,25 @@ public class SmallNote : MonoBehaviour
         else
         {
 
-            if (hitAAction.WasPressedThisFrame() && laneFour)
+            if (hitAAction.WasPressedThisFrame() && !activatedNote)
             {
                 Debug.Log("Hit");
 
                 CheckScore();
             }
-            if (hitSAction.WasPressedThisFrame() && laneThree)
+            if (hitSAction.WasPressedThisFrame() && !activatedNote)
             {
                 Debug.Log("Hit");
 
                 CheckScore();
             }
-            if (hitDAction.WasPressedThisFrame() && laneTwo)
+            if (hitDAction.WasPressedThisFrame() && !activatedNote)
             {
                 Debug.Log("Hit");
 
                 CheckScore();
             }
-            if (hitFAction.WasPressedThisFrame() && laneOne)
+            if (hitFAction.WasPressedThisFrame() && !activatedNote)
             {
                 Debug.Log("Hit");
 
@@ -101,58 +102,58 @@ public class SmallNote : MonoBehaviour
     void CheckScore()
     {
         pressed = false;
-        audioSource.Play();
-        if (transform.position.x <= 16.7f && transform.position.x >= 14.7f)
+        
+        if (transform.position.x <= 8.6f && transform.position.x >= 7.9f)
         {
+            audioSource.Play();
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
-            Destroy(mesh);
+            mesh.SetActive(false);
+            activatedNote = true;
         }
-        else if (transform.position.x <= 14.8f && transform.position.x >= 13.64f)
+        else if (transform.position.x <= 7.8f && transform.position.x >= 6f)
         {
+            audioSource.Play();
             Debug.Log("Good");
             GameManager.instance.SmallNoteGood();
             Instantiate(goodEffect, transform.position, Quaternion.identity);
-            Destroy(mesh);
+            mesh.SetActive(false);
+            activatedNote = true;
 
         }
-        else if (transform.position.x <= 13.65f && transform.position.x >= 12.7f)
+        else if (transform.position.x <= 5.9f && transform.position.x >= 4.4f)
         {
+            audioSource.Play();
             Debug.Log("Perfect");
             GameManager.instance.SmallNotePerfect();
-            Instantiate(perfectEffect, transform.position, Quaternion.identity);
-            Destroy(mesh);
-
+            Instantiate(perfectEffect, transform.position, Quaternion.identity); 
+            mesh.SetActive(false);
+            activatedNote = true;
         }
-        else if (transform.position.x <= 12.8f && transform.position.x >= 11.4f)
+        else if (transform.position.x <= 4.3f && transform.position.x >= 1f)
         {
+            audioSource.Play();
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
-            Destroy(mesh);
-
+            mesh.SetActive(false);
+            activatedNote = true;
         }
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Activator"))
+        {
             canBePressed = true;
-
-        if (other.CompareTag("LaneOne"))
-            laneOne = true;
-        if (other.CompareTag("LaneTwo"))
-            laneTwo = true;
-        if (other.CompareTag("LaneThree"))
-            laneThree = true;
-        if (other.CompareTag("LaneFour"))
-            laneFour = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Activator") && gameObject.activeSelf)
+        if (other.CompareTag("Activator") && mesh.activeSelf)
         {
             canBePressed = false;
             MissNote();
@@ -161,8 +162,9 @@ public class SmallNote : MonoBehaviour
 
     void MissNote()
     {
-        //GameManager.instance.NoteMissed();
-        //Instantiate(missEffect, transform.position, Quaternion.identity);
-        //Destroy(gameObject);
+        audioSource.PlayOneShot(missSound);
+        GameManager.instance.NoteMissed();
+        Instantiate(missEffect, transform.position, Quaternion.identity);
+        mesh.SetActive(false);
     }
 }

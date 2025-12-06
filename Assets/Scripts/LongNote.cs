@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class LongNote : MonoBehaviour
 {
-    public GameObject hitEffect, goodEffect, perfectEffect, missEffect;
+    public GameObject  hitEffect, goodEffect, perfectEffect, missEffect;
     public bool canBePressed, laneOne, laneTwo, laneThree, laneFour;
 
     public bool singleScore = true;
@@ -119,22 +119,22 @@ public class LongNote : MonoBehaviour
 
     void CheckScore()
     {
-        if (transform.position.x <= 15.1f && transform.position.x >= 14.6f)
+        if (transform.position.x <= 6.8f && transform.position.x >= 5.9f)
         {
             Debug.Log("Hit");
             GameManager.instance.LongNoteHitValue();
         }
-        else if (transform.position.x <= 14.5f && transform.position.x >= 13.6f)
+        else if (transform.position.x <= 6f && transform.position.x >= 4.8f)
         {
             Debug.Log("Good");
             GameManager.instance.LongNoteHitValue();
         }
-        else if (transform.position.x <= 13.5f && transform.position.x >= 12.6f)
+        else if (transform.position.x <= 4.9f && transform.position.x >= 3.5f)
         {
             Debug.Log("Perfect");
             GameManager.instance.LongNoteHitValue();
         }
-        else if (transform.position.x < 12.6f)
+        else if (transform.position.x < 2.8f)
         {
             Debug.Log("Hit");
             GameManager.instance.LongNoteHitValue();
@@ -143,22 +143,22 @@ public class LongNote : MonoBehaviour
 
     void SingleHitValue()
     {
-        if (transform.position.x <= 15.1f && transform.position.x >= 14.6f)
+        if (transform.position.x <= 6.8f && transform.position.x >= 5.9f)
         {
             Debug.Log("Hit");
             GameManager.instance.LongNoteHit();
         }
-        else if (transform.position.x <= 14.5f && transform.position.x >= 13.6f)
+        else if (transform.position.x <= 6f && transform.position.x >= 4.8f)
         {
             Debug.Log("Good");
             GameManager.instance.LongNoteGood();
         }
-        else if (transform.position.x <= 13.5f && transform.position.x >= 12.6f)
+        else if (transform.position.x <= 4.9f && transform.position.x >= 3.5f)
         {
             Debug.Log("Perfect");
             GameManager.instance.LongNotePerfect();
         }
-        else if (transform.position.x < 12.6f)
+        else if (transform.position.x < 2.8f)
         {
             Debug.Log("Hit");
             GameManager.instance.LongNoteHit();

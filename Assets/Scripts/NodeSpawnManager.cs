@@ -14,7 +14,9 @@ public class NodeSpawnManager : MonoBehaviour
     public Transform spawnPoint;
 
     public AudioClip[] smnClip;
+    public AudioClip[] lgnClip;
     private int smnIndex = 0;
+    private int lgnIndex = 0;
 
 
     [Header("Settings")]
@@ -104,5 +106,8 @@ public class NodeSpawnManager : MonoBehaviour
         Vector3 scale = longNote.transform.localScale;
         scale.x = noteLength;
         longNote.transform.localScale = scale;
+        AudioSource audio = longNote.GetComponent<AudioSource>();
+        audio.clip = lgnClip[lgnIndex];
+        lgnIndex++;
     }
 }
