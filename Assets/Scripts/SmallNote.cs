@@ -108,6 +108,7 @@ public class SmallNote : MonoBehaviour
             audioSource.Play();
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
+            UIManager.instance.Hit();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
             mesh.SetActive(false);
             activatedNote = true;
@@ -117,6 +118,7 @@ public class SmallNote : MonoBehaviour
             audioSource.Play();
             Debug.Log("Good");
             GameManager.instance.SmallNoteGood();
+            UIManager.instance.Hit();
             Instantiate(goodEffect, transform.position, Quaternion.identity);
             mesh.SetActive(false);
             activatedNote = true;
@@ -127,6 +129,7 @@ public class SmallNote : MonoBehaviour
             audioSource.Play();
             Debug.Log("Perfect");
             GameManager.instance.SmallNotePerfect();
+            UIManager.instance.Hit();
             Instantiate(perfectEffect, transform.position, Quaternion.identity); 
             mesh.SetActive(false);
             activatedNote = true;
@@ -136,6 +139,7 @@ public class SmallNote : MonoBehaviour
             audioSource.Play();
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
+            UIManager.instance.Hit();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
             mesh.SetActive(false);
             activatedNote = true;
@@ -164,6 +168,7 @@ public class SmallNote : MonoBehaviour
     {
         audioSource.PlayOneShot(missSound);
         GameManager.instance.NoteMissed();
+        UIManager.instance.Miss();
         Instantiate(missEffect, transform.position, Quaternion.identity);
         mesh.SetActive(false);
     }

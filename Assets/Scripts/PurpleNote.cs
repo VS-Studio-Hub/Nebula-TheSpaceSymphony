@@ -73,6 +73,9 @@ public class PurpleNote : MonoBehaviour
             audioSource.Play();
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
+            UIManager.instance.Hit();
+            if(!GameManager.instance.activatePurpleNote)
+                UIManager.instance.BoostHit();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
             if (GameManager.instance.activatePurpleNote)
                 GameManager.instance.PurpleActivatedNoteValue();
@@ -84,6 +87,9 @@ public class PurpleNote : MonoBehaviour
         {
             audioSource.Play();
             GameManager.instance.SmallNoteGood();
+            UIManager.instance.Hit();
+            if (!GameManager.instance.activatePurpleNote)
+                UIManager.instance.BoostHit();
             Instantiate(goodEffect, transform.position, Quaternion.identity);
             if (GameManager.instance.activatePurpleNote)
                 GameManager.instance.PurpleActivatedNoteValue();
@@ -95,6 +101,9 @@ public class PurpleNote : MonoBehaviour
         {
             audioSource.Play();
             GameManager.instance.SmallNotePerfect();
+            UIManager.instance.Hit();
+            if (!GameManager.instance.activatePurpleNote)
+                UIManager.instance.BoostHit();
             Instantiate(perfectEffect, transform.position, Quaternion.identity);
             if (GameManager.instance.activatePurpleNote)
                 GameManager.instance.PurpleActivatedNoteValue();
@@ -106,6 +115,9 @@ public class PurpleNote : MonoBehaviour
         {
             audioSource.Play();
             GameManager.instance.SmallNoteHit();
+            UIManager.instance.Hit();
+            if (!GameManager.instance.activatePurpleNote)
+                UIManager.instance.BoostHit();
             Instantiate(hitEffect, transform.position, Quaternion.identity);
             if (GameManager.instance.activatePurpleNote)
                 GameManager.instance.PurpleActivatedNoteValue();
@@ -140,11 +152,12 @@ public class PurpleNote : MonoBehaviour
         }
     }
 
-    void MissNote()
+    public void MissNote()
     {
         audioSource.PlayOneShot(missSound);
         Instantiate(missEffect, transform.position, Quaternion.identity);
         GameManager.instance.PurpleNoteMiss();
+        UIManager.instance.Miss();
         mesh.SetActive(false);
     }
 }

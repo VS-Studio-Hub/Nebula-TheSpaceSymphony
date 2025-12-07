@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -38,6 +39,11 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(DeactivateNote());
         }
+
+        if (musicSource.isPlaying == false && musicSource.time > 0)
+        {
+            StartCoroutine(WaitAndLoadMenu(10f));
+        }
     }
 
     IEnumerator DeactivateNote()
@@ -48,6 +54,12 @@ public class GameManager : MonoBehaviour
 
         activatePurpleNote = false;
         purpleTimerRunning = false;
+    }
+
+    IEnumerator WaitAndLoadMenu(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        SceneManager.LoadScene("MainMenuSample");
     }
 
     public void StartMusic(double startTime)
