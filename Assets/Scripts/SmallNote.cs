@@ -103,7 +103,7 @@ public class SmallNote : MonoBehaviour
     {
         pressed = false;
         
-        if (transform.position.x <= 8.6f && transform.position.x >= 7.9f)
+        if (transform.position.x <= 9.7f && transform.position.x >= 8.6f)
         {
             audioSource.Play();
             Debug.Log("Hit");
@@ -113,7 +113,7 @@ public class SmallNote : MonoBehaviour
             mesh.SetActive(false);
             activatedNote = true;
         }
-        else if (transform.position.x <= 7.8f && transform.position.x >= 6f)
+        else if (transform.position.x <= 8.5f && transform.position.x >= 6f)
         {
             audioSource.Play();
             Debug.Log("Good");
