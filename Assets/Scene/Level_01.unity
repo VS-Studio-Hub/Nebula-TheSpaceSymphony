@@ -1143,23 +1143,136 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480395809}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d2b32d530d3b3448898b8e356d3856b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   smallNoteTimings:
-  - 1
-  - 5
-  - 8
-  - 10
-  - 13
+  - 2.8
+  - 6.7
+  - 10.5
+  - 14.3
+  - 17.9
+  - 21.7
+  - 25.3
+  - 29.1
+  - 32.8
+  - 36.6
+  - 40.2
+  - 44
+  - 47.2
+  - 50.6
+  - 54.6
+  - 58.5
+  - 62.3
+  - 66.1
+  - 70.3
+  - 73.9
+  - 79.7
+  - 83.5
+  - 86.6
+  - 91.1
+  - 94.9
+  - 98.7
+  - 101.8
+  - 106.1
+  - 107.8
+  - 111.6
+  - 115.6
+  - 119.4
+  - 123.4
+  - 127
+  - 130.8
+  - 134.6
+  - 139.1
+  - 142.9
+  - 146.7
+  - 150.1
   longNoteSize: []
   smallNotePrefab: {fileID: 1208171725425555866, guid: 86b6cb56df7ce604abfce830bc194c07, type: 3}
   longNotePrefab: {fileID: 4725651696160794862, guid: 794537e3ebd02dd4c838a39141c6a760, type: 3}
   purpleNote: {fileID: 4635521362082182415, guid: da6d5383cb46fe147af2802dada7f7ff, type: 3}
   spawnPoint: {fileID: 480395810}
   smnClip:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1885,13 +1998,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671854404}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1073934, y: 0.6989039, z: -0.107393414, w: 0.6989039}
-  m_LocalPosition: {x: -20.22, y: 15.28, z: 0}
+  m_LocalRotation: {x: 0.17819805, y: 0.6842846, z: -0.17819807, w: 0.6842846}
+  m_LocalPosition: {x: -16.21, y: 20.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 17.471, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 29.193, y: 90, z: 0}
 --- !u!114 &671854409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2133,23 +2246,126 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740529771}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d2b32d530d3b3448898b8e356d3856b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   smallNoteTimings:
-  - 1
-  - 5
-  - 8
-  - 10
-  - 13
+  - 8.1
+  - 8.6
+  - 15.7
+  - 16.2
+  - 23.1
+  - 23.6
+  - 30.5
+  - 31
+  - 31
+  - 38
+  - 38.5
+  - 45.4
+  - 52
+  - 56
+  - 59.9
+  - 63.7
+  - 67.5
+  - 71.3
+  - 75.3
+  - 76.7
+  - 77.2
+  - 85.2
+  - 100.4
+  - 109.2
+  - 113
+  - 114.4
+  - 114.9
+  - 117
+  - 120.8
+  - 122.2
+  - 122.7
+  - 124.8
+  - 128.4
+  - 129.8
+  - 130.1
+  - 132.2
+  - 135.8
+  - 137.2
+  - 137.7
+  - 144.3
+  - 151.7
+  - 152.4
   longNoteSize: []
   smallNotePrefab: {fileID: 1208171725425555866, guid: 86b6cb56df7ce604abfce830bc194c07, type: 3}
   longNotePrefab: {fileID: 4725651696160794862, guid: 794537e3ebd02dd4c838a39141c6a760, type: 3}
   purpleNote: {fileID: 4635521362082182415, guid: da6d5383cb46fe147af2802dada7f7ff, type: 3}
   spawnPoint: {fileID: 740529772}
   smnClip:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -3535,7 +3751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1116607255}
-  musicClip: {fileID: 8300000, guid: a31486b834a629c449c0dff3c49e57c1, type: 3}
+  musicClip: {fileID: 8300000, guid: 9d43d561ef3366346b83eb0dfff505f7, type: 3}
   currentScore: 0
   totalScore: 0
   currentMultiplier: 1
@@ -3568,8 +3784,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9d43d561ef3366346b83eb0dfff505f7, type: 3}
+  m_Resource: {fileID: 8300000, guid: 9d43d561ef3366346b83eb0dfff505f7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -5667,23 +5883,166 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881058992}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d2b32d530d3b3448898b8e356d3856b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   smallNoteTimings:
-  - 1
-  - 5
-  - 8
-  - 10
-  - 13
+  - 3.5
+  - 7.4
+  - 11.2
+  - 15
+  - 18.6
+  - 22.4
+  - 26
+  - 29.8
+  - 33.5
+  - 37.3
+  - 40.9
+  - 44.7
+  - 47.7
+  - 51.3
+  - 52.7
+  - 53.4
+  - 53.9
+  - 55.3
+  - 59.2
+  - 60.6
+  - 61.3
+  - 63
+  - 66.8
+  - 68.2
+  - 68.9
+  - 69.6
+  - 70.6
+  - 74.6
+  - 76
+  - 78.3
+  - 80.4
+  - 82.1
+  - 84.2
+  - 85.9
+  - 89.7
+  - 91.8
+  - 93.5
+  - 95.6
+  - 97.3
+  - 99.4
+  - 101.1
+  - 104.7
+  - 106.8
+  - 108.5
+  - 112.3
+  - 113.7
+  - 116.3
+  - 120.1
+  - 121.5
+  - 124.1
+  - 127.7
+  - 129.1
+  - 131.5
+  - 135.3
+  - 136.5
+  - 139.8
+  - 143.6
+  - 145
+  - 145.5
+  - 147.4
+  - 150.8
   longNoteSize: []
   smallNotePrefab: {fileID: 1208171725425555866, guid: 86b6cb56df7ce604abfce830bc194c07, type: 3}
   longNotePrefab: {fileID: 4725651696160794862, guid: 794537e3ebd02dd4c838a39141c6a760, type: 3}
   purpleNote: {fileID: 4635521362082182415, guid: da6d5383cb46fe147af2802dada7f7ff, type: 3}
   spawnPoint: {fileID: 1881058993}
   smnClip:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -7199,27 +7558,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7750452961547045306}
   m_Mesh: {fileID: -8753884753034225260, guid: 6a2cd5044ab3a0d4a8a3287c6085c2e7, type: 3}
---- !u!65 &2287399349377287213
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6449891732080710063}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0067532, y: 1, z: 1}
-  m_Center: {x: 0.00052916957, y: 0, z: 0}
 --- !u!23 &2342946093223740014
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8271,27 +8609,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5046838406610341125
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7940514920891782155}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.9959593, y: 1, z: 1}
-  m_Center: {x: -0.0058106654, y: 0, z: 0}
 --- !u!1 &5058344641791308275
 GameObject:
   m_ObjectHideFlags: 0
@@ -8487,27 +8804,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5736572939095462820
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5971119464317816705}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0023727, y: 1, z: 1}
-  m_Center: {x: -0.003028005, y: 0, z: 0}
 --- !u!1 &5790765379814167221
 GameObject:
   m_ObjectHideFlags: 0
@@ -8577,8 +8873,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0091804, y: 1, z: 1}
-  m_Center: {x: -0.001527705, y: 0, z: 0}
+  m_Size: {x: 5.6650977, y: 1, z: 1}
+  m_Center: {x: 2.3264384, y: 0, z: 0}
 --- !u!23 &5901893354496350675
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8658,9 +8954,9 @@ GameObject:
   - component: {fileID: 3375176609362820210}
   - component: {fileID: 8976729116924307681}
   - component: {fileID: 143897770561406020}
-  - component: {fileID: 5736572939095462820}
   - component: {fileID: 1903051291068826715}
   - component: {fileID: 8976729116924307682}
+  - component: {fileID: 8976729116924307683}
   m_Layer: 0
   m_Name: Button_Three
   m_TagString: Activator
@@ -8878,9 +9174,9 @@ GameObject:
   - component: {fileID: 6854188688201355899}
   - component: {fileID: 7880765899204898211}
   - component: {fileID: 4267135971775377667}
-  - component: {fileID: 2287399349377287213}
   - component: {fileID: 1492132513672753979}
   - component: {fileID: 7880765899204898212}
+  - component: {fileID: 7880765899204898213}
   m_Layer: 0
   m_Name: Button_Two
   m_TagString: Activator
@@ -8924,22 +9220,119 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smallNoteTimings:
-  - 1
-  - 5
-  - 8
-  - 10
-  - 12
+  - 2
+  - 6
+  - 9.8
+  - 13.6
+  - 17.2
+  - 21
+  - 24.6
+  - 28.4
+  - 32.1
+  - 35.9
+  - 39.5
+  - 43.3
+  - 77.6
+  - 79
+  - 81.4
+  - 82.8
+  - 87.5
+  - 88
+  - 89
+  - 90.4
+  - 92.8
+  - 94.2
+  - 96.6
+  - 98
+  - 102.5
+  - 103
+  - 103.8
+  - 105.4
+  - 138.4
+  - 142.2
+  - 145.8
+  - 149.6
   longNoteSize: []
   smallNotePrefab: {fileID: 1208171725425555866, guid: 86b6cb56df7ce604abfce830bc194c07, type: 3}
   longNotePrefab: {fileID: 4725651696160794862, guid: 794537e3ebd02dd4c838a39141c6a760, type: 3}
   purpleNote: {fileID: 4635521362082182415, guid: da6d5383cb46fe147af2802dada7f7ff, type: 3}
   spawnPoint: {fileID: 6518380564345311821}
   smnClip:
-  - {fileID: 8300000, guid: d84431e34b7fe654aae08df65b99ee95, type: 3}
-  - {fileID: 8300000, guid: d84431e34b7fe654aae08df65b99ee95, type: 3}
-  - {fileID: 8300000, guid: d84431e34b7fe654aae08df65b99ee95, type: 3}
-  - {fileID: 8300000, guid: d84431e34b7fe654aae08df65b99ee95, type: 3}
-  - {fileID: 8300000, guid: d84431e34b7fe654aae08df65b99ee95, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   lgnClip: []
   noteTravelTime: 1
 --- !u!4 &6544328055684405449
@@ -9378,6 +9771,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7880765899204898213
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6449891732080710063}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.6650977, y: 1, z: 1}
+  m_Center: {x: 2.3264384, y: 0, z: 0}
 --- !u!1 &7940514920891782155
 GameObject:
   m_ObjectHideFlags: 0
@@ -9389,9 +9803,9 @@ GameObject:
   - component: {fileID: 7643130696397344749}
   - component: {fileID: 5930530697863769874}
   - component: {fileID: 5673924447951315463}
-  - component: {fileID: 5046838406610341125}
   - component: {fileID: 4419391435972464844}
   - component: {fileID: 7940514920891782156}
+  - component: {fileID: 7940514920891782157}
   m_Layer: 0
   m_Name: Button_Four
   m_TagString: Activator
@@ -9426,6 +9840,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7940514920891782157
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7940514920891782155}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.6650977, y: 1, z: 1}
+  m_Center: {x: 2.3264384, y: 0, z: 0}
 --- !u!33 &8014414128002135402
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9663,6 +10098,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &8976729116924307683
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5971119464317816705}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.6650977, y: 1, z: 1}
+  m_Center: {x: 2.3264384, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

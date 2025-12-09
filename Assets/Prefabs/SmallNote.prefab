@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 374100850136020958}
   - component: {fileID: 2469982979465621653}
   - component: {fileID: 96324594228802428}
+  - component: {fileID: 1070488239625746209}
   m_Layer: 0
   m_Name: SmallNote
   m_TagString: ShortNote
@@ -188,8 +189,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f880b81c654d2479a300086c56b0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatTempo: 35
+  beatTempo: 27
   pathWay: {fileID: 0}
+--- !u!114 &1070488239625746209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208171725425555866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 757662795a34d8d4b99721eb04e8528d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laneOne: 0
+  laneTwo: 0
+  laneThree: 0
+  laneFour: 0
+  defaultMaterial:
+  - {fileID: 2100000, guid: bf566beada769c24fa2d97614cb9f87c, type: 2}
+  - {fileID: 2100000, guid: ad11c7d2522a3994e993335de21aa6c1, type: 2}
+  - {fileID: 2100000, guid: c4b91a03407906d488561e6b2735ba2b, type: 2}
+  - {fileID: 2100000, guid: dd111c95e8eb2904280616a87fd541ba, type: 2}
 --- !u!1001 &8320995960400300878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -307,6 +329,6 @@ MonoBehaviour:
   laneFour: 0
   defaultMaterial:
   - {fileID: 2100000, guid: bf566beada769c24fa2d97614cb9f87c, type: 2}
+  - {fileID: 2100000, guid: ad11c7d2522a3994e993335de21aa6c1, type: 2}
   - {fileID: 2100000, guid: dd111c95e8eb2904280616a87fd541ba, type: 2}
-  - {fileID: 2100000, guid: c4b91a03407906d488561e6b2735ba2b, type: 2}
   - {fileID: 2100000, guid: c4b91a03407906d488561e6b2735ba2b, type: 2}

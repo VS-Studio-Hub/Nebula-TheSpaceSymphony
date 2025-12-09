@@ -68,7 +68,7 @@ public class PurpleNote : MonoBehaviour
 
     void CheckScore()
     {
-        if (transform.position.x <= 9.7f && transform.position.x >= 8.6f)
+        if (transform.position.x <= 15.4f && transform.position.x >= 8.6f)
         {
             audioSource.Play();
             Debug.Log("Hit");
