@@ -11,7 +11,7 @@ public class NoteMaterial : MonoBehaviour
     }
     private void Start()
     {
-        rend = GetComponent<Renderer>();
+        rend = GetComponentInChildren<Renderer>();
         if (laneOne)
             rend.material = defaultMaterial[0];
         if (laneTwo)

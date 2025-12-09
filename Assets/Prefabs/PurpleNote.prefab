@@ -286,7 +286,7 @@ MonoBehaviour:
   laneTwo: 0
   laneThree: 0
   laneFour: 0
-  defaultMaterial: {fileID: 2100000, guid: 7a564618f9b855e4bab942fb1ded933e, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: dc87dbb3b41595b48aeb25ac77eedf31, type: 2}
 --- !u!64 &6251054477487588122
 MeshCollider:
   m_ObjectHideFlags: 0
