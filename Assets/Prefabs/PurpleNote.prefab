@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f880b81c654d2479a300086c56b0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatTempo: 15
+  beatTempo: 27
   pathWay: {fileID: 0}
 --- !u!114 &652614962089123070
 MonoBehaviour:
@@ -169,6 +169,7 @@ MonoBehaviour:
   laneTwo: 0
   laneThree: 0
   laneFour: 0
+  activatedNote: 0
   InputActions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   missSound: {fileID: 8300000, guid: 8184e10fa0ac0b642a6d7236539c273c, type: 3}
 --- !u!65 &2887739255017126430
