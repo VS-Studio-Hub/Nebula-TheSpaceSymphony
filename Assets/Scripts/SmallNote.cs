@@ -6,6 +6,8 @@ public class SmallNote : MonoBehaviour
 {
     public GameObject hitEffect, goodEffect, perfectEffect, missEffect, mesh;
 
+    public bool laneOne, laneTwo, laneThree, laneFour;
+
     public bool canBePressed = false;
     public bool activatedNote = false;
     public bool pressed = true;
@@ -43,25 +45,25 @@ public class SmallNote : MonoBehaviour
         if (!SPButtonController.instance.Swapped())
         {
 
-        if (hitAAction.WasPressedThisFrame() && !activatedNote)
+        if (hitAAction.WasPressedThisFrame() && !activatedNote && laneOne)
         {
             Debug.Log("Hit");
 
             CheckScore();
         }
-        if (hitSAction.WasPressedThisFrame() && !activatedNote)
+        if (hitSAction.WasPressedThisFrame() && !activatedNote && laneTwo)
         {
             Debug.Log("Hit");
 
             CheckScore();
         }
-        if (hitDAction.WasPressedThisFrame() && !activatedNote)
+        if (hitDAction.WasPressedThisFrame() && !activatedNote && laneThree)
         {
             Debug.Log("Hit");
 
             CheckScore();
         }
-        if (hitFAction.WasPressedThisFrame() && !activatedNote)
+        if (hitFAction.WasPressedThisFrame() && !activatedNote && laneFour)
         {
             Debug.Log("Hit");
 
@@ -71,25 +73,25 @@ public class SmallNote : MonoBehaviour
         else
         {
 
-            if (hitAAction.WasPressedThisFrame() && !activatedNote)
+            if (hitAAction.WasPressedThisFrame() && !activatedNote && laneOne)
             {
                 Debug.Log("Hit");
 
                 CheckScore();
             }
-            if (hitSAction.WasPressedThisFrame() && !activatedNote)
+            if (hitSAction.WasPressedThisFrame() && !activatedNote && laneTwo)
             {
                 Debug.Log("Hit");
 
                 CheckScore();
             }
-            if (hitDAction.WasPressedThisFrame() && !activatedNote)
+            if (hitDAction.WasPressedThisFrame() && !activatedNote && laneThree)
             {
                 Debug.Log("Hit");
 
                 CheckScore();
             }
-            if (hitFAction.WasPressedThisFrame() && !activatedNote)
+            if (hitFAction.WasPressedThisFrame() && !activatedNote && laneFour)
             {
                 Debug.Log("Hit");
 
@@ -153,6 +155,14 @@ public class SmallNote : MonoBehaviour
         {
             canBePressed = true;
         }
+        if (other.CompareTag("LaneOne"))
+            laneOne = true;
+        if (other.CompareTag("LaneTwo"))
+            laneTwo = true;
+        if (other.CompareTag("LaneThree"))
+            laneThree = true;
+        if (other.CompareTag("LaneFour"))
+            laneFour = true;
     }
 
     private void OnTriggerExit(Collider other)

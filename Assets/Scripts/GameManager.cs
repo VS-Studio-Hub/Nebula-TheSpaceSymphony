@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
         if (musicSource.isPlaying == false && musicSource.time > 0)
         {
-            StartCoroutine(WaitAndLoadMenu(10f));
+            StartCoroutine(WaitAndLoadMenu(4f));
         }
     }
 
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
             missedNote = false;
         }
 
-        if (note == 1)
+        if (note == 5)
         {
             activatePurpleNote = true;
             note = 0;
