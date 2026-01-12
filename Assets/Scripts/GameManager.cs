@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,8 +20,8 @@ public class GameManager : MonoBehaviour
     private int note;
 
     [Header("UI")]
-    public Text scoreText;
-    public Text multiText;
+    public TMP_Text scoreText;
+    public TMP_Text multiText;
 
 
 
