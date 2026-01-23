@@ -1241,6 +1241,24 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""91a8651c-698e-457f-9ee9-7c974c9892fc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""faae77e3-4a55-45cb-ba19-2214bc70ec32"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1285,6 +1303,28 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""HitF"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b9f3cbd-d236-4efb-83de-04187874b5d1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97cf79fa-e0c1-4cdb-8d6d-09ef25a6face"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1387,6 +1427,8 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         m_PlayerInput_HitS = m_PlayerInput.FindAction("HitS", throwIfNotFound: true);
         m_PlayerInput_HitD = m_PlayerInput.FindAction("HitD", throwIfNotFound: true);
         m_PlayerInput_HitF = m_PlayerInput.FindAction("HitF", throwIfNotFound: true);
+        m_PlayerInput_LeftClick = m_PlayerInput.FindAction("Left Click", throwIfNotFound: true);
+        m_PlayerInput_MouseLook = m_PlayerInput.FindAction("Mouse Look", throwIfNotFound: true);
     }
 
     ~@GameControls()
@@ -1896,6 +1938,8 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_HitS;
     private readonly InputAction m_PlayerInput_HitD;
     private readonly InputAction m_PlayerInput_HitF;
+    private readonly InputAction m_PlayerInput_LeftClick;
+    private readonly InputAction m_PlayerInput_MouseLook;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerInput".
     /// </summary>
@@ -1923,6 +1967,14 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerInput/HitF".
         /// </summary>
         public InputAction @HitF => m_Wrapper.m_PlayerInput_HitF;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInput/LeftClick".
+        /// </summary>
+        public InputAction @LeftClick => m_Wrapper.m_PlayerInput_LeftClick;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerInput/MouseLook".
+        /// </summary>
+        public InputAction @MouseLook => m_Wrapper.m_PlayerInput_MouseLook;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1961,6 +2013,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @HitF.started += instance.OnHitF;
             @HitF.performed += instance.OnHitF;
             @HitF.canceled += instance.OnHitF;
+            @LeftClick.started += instance.OnLeftClick;
+            @LeftClick.performed += instance.OnLeftClick;
+            @LeftClick.canceled += instance.OnLeftClick;
+            @MouseLook.started += instance.OnMouseLook;
+            @MouseLook.performed += instance.OnMouseLook;
+            @MouseLook.canceled += instance.OnMouseLook;
         }
 
         /// <summary>
@@ -1984,6 +2042,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @HitF.started -= instance.OnHitF;
             @HitF.performed -= instance.OnHitF;
             @HitF.canceled -= instance.OnHitF;
+            @LeftClick.started -= instance.OnLeftClick;
+            @LeftClick.performed -= instance.OnLeftClick;
+            @LeftClick.canceled -= instance.OnLeftClick;
+            @MouseLook.started -= instance.OnMouseLook;
+            @MouseLook.performed -= instance.OnMouseLook;
+            @MouseLook.canceled -= instance.OnMouseLook;
         }
 
         /// <summary>
@@ -2294,5 +2358,19 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHitF(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Left Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeftClick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Mouse Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMouseLook(InputAction.CallbackContext context);
     }
 }

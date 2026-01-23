@@ -8,6 +8,12 @@ public class UI : MonoBehaviour
     {
         SceneManager.LoadScene("Level_01");
     }
+
+    public void SolarSystem()
+    {
+        SceneManager.LoadScene("Solar System");
+    }
+
     public void Quit()
     {
         Application.Quit();

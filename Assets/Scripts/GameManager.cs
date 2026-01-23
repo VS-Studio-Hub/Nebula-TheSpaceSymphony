@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitAndLoadMenu(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        SceneManager.LoadScene("MainMenuSample");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void StartMusic(double startTime)

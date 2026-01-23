@@ -5,6 +5,7 @@
     "com.unity.formats.fbx": "5.1.5",
     "com.unity.inputsystem": "1.14.2",
     "com.unity.multiplayer.center": "1.0.0",
+    "com.unity.render-pipelines.high-definition": "17.1.0",
     "com.unity.render-pipelines.universal": "17.1.0",
     "com.unity.timeline": "1.8.9",
     "com.unity.ugui": "2.0.0",

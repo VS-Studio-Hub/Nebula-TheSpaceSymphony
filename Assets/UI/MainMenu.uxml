@@ -1,9 +1,0 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; width: 1920px; height: 1080px; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.55);">
-        <ui:Button text="PLAY" style="width: 400px; height: 100px; margin-left: 50px; margin-bottom: 0; margin-top: 50px; font-size: 50px; -unity-font-style: bold;" />
-        <ui:Button text="LEVELS" style="width: 400px; height: 100px; margin-left: 50px; margin-bottom: 0; margin-top: 50px; font-size: 50px; -unity-font-style: bold;" />
-        <ui:Button text="SETINGS" style="width: 400px; height: 100px; margin-left: 50px; margin-bottom: 0; margin-top: 50px; font-size: 50px; -unity-font-style: bold;" />
-        <ui:Button text="EXTRAS" style="width: 400px; height: 100px; margin-left: 50px; margin-bottom: 0; margin-top: 50px; font-size: 50px; -unity-font-style: bold;" />
-        <ui:Button text="QUIT" style="width: 400px; height: 100px; margin-left: 50px; margin-bottom: 100px; margin-top: 50px; font-size: 50px; -unity-font-style: bold;" />
-    </ui:VisualElement>
-</ui:UXML>
