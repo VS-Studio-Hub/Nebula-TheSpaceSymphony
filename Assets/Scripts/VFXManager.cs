@@ -2,6 +2,7 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.VFX;
+using System.Collections;
 
 public class VFXManager : MonoBehaviour
 {
@@ -13,21 +14,124 @@ public class VFXManager : MonoBehaviour
 
     public GameObject[] laneVFXTransform;
 
+    public static bool blackHole, spark, greenSpark;
+
+    private float blackHoleDuration = 0.3f;
+
     void Awake()
     {
         instance = this;
     }
 
-    void Start()
+    public void LaneOneVFX()
     {
-        
+        if (spark)
+        {
+            VisualEffect clone = Instantiate(Spark, laneVFXTransform[0].transform.position, Quaternion.identity);
+            Spark.Play();
+            spark = false;
+            StartCoroutine(DestroyVisualEffectAfterTime(clone, 2f));
+        }
+        else if (greenSpark)
+        {
+            ParticleSystem clone = Instantiate(GreenSpark, laneVFXTransform[0].transform.position, Quaternion.identity);
+            GreenSpark.Play();
+            greenSpark = false;
+            StartCoroutine(DestroyParticleSystemAfterTime(clone, 2f));
+        }
+        else if (blackHole)
+        {
+            GameObject clone = Instantiate(BlackHoles, laneVFXTransform[0].transform.position, Quaternion.identity);
+            blackHole = false;
+            StartCoroutine(DestroyGameObjectAfterTime(clone, blackHoleDuration));
+        }
+    }
+    public void LaneTwoVFX()
+    {
+        if (spark)
+        {
+            VisualEffect clone = Instantiate(Spark, laneVFXTransform[1].transform.position, Quaternion.identity);
+            Spark.Play();
+            spark = false;
+            StartCoroutine(DestroyVisualEffectAfterTime(clone, 2f));
+        }
+        else if (greenSpark)
+        {
+            ParticleSystem clone = Instantiate(GreenSpark, laneVFXTransform[1].transform.position, Quaternion.identity);
+            GreenSpark.Play();
+            greenSpark = false;
+            StartCoroutine(DestroyParticleSystemAfterTime(clone, 2f));
+        }
+        else if (blackHole)
+        {
+            GameObject clone = Instantiate(BlackHoles, laneVFXTransform[1].transform.position, Quaternion.identity);
+            blackHole = false;
+            StartCoroutine(DestroyGameObjectAfterTime(clone, blackHoleDuration));
+        }
     }
 
-    void Update()
+    public void LaneThreeVFX()
     {
-        Instantiate(Spark, laneVFXTransform[0].transform.position, Quaternion.identity);
-        Spark.Play();
+        if (spark)
+        {
+            VisualEffect clone = Instantiate(Spark, laneVFXTransform[2].transform.position, Quaternion.identity);
+            Spark.Play();
+            spark = false;
+            StartCoroutine(DestroyVisualEffectAfterTime(clone, 2f));
+        }
+        else if (greenSpark)
+        {
+            ParticleSystem clone = Instantiate(GreenSpark, laneVFXTransform[2].transform.position, Quaternion.identity);
+            GreenSpark.Play();
+            greenSpark = false;
+            StartCoroutine(DestroyParticleSystemAfterTime(clone, 2f));
+        }
+        else if (blackHole)
+        {
+            GameObject clone = Instantiate(BlackHoles, laneVFXTransform[2].transform.position, Quaternion.identity);
+            blackHole = false;
+            StartCoroutine(DestroyGameObjectAfterTime(clone, blackHoleDuration));
+        }
+    }
+    public void LaneFourVFX()
+    {
+        if (spark)
+        {
+            VisualEffect clone = Instantiate(Spark, laneVFXTransform[3].transform.position, Quaternion.identity);
+            Spark.Play();
+            spark = false;
+            StartCoroutine(DestroyVisualEffectAfterTime(clone, 2f));
+        }
+        else if (greenSpark)
+        {
+            ParticleSystem clone = Instantiate(GreenSpark, laneVFXTransform[3].transform.position, Quaternion.identity);
+            GreenSpark.Play();
+            greenSpark = false;
+            StartCoroutine(DestroyParticleSystemAfterTime(clone, 2f));
+        }
+        else if (blackHole)
+        {
+            GameObject clone = Instantiate(BlackHoles, laneVFXTransform[3].transform.position, Quaternion.identity);
+            blackHole = false;
+            StartCoroutine(DestroyGameObjectAfterTime(clone, blackHoleDuration));
+        }
     }
 
+    IEnumerator DestroyGameObjectAfterTime(GameObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(obj);
+    }
 
+    IEnumerator DestroyParticleSystemAfterTime(ParticleSystem ps, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(ps.gameObject);
+    }
+
+    IEnumerator DestroyVisualEffectAfterTime(VisualEffect vfx, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(vfx.gameObject);
+    }
 }
