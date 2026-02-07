@@ -14,6 +14,8 @@ public class VFXManager : MonoBehaviour
 
     public GameObject[] laneVFXTransform;
 
+    [SerializeField] private GameObject leftSideBarrier, rightSideBarrier;
+
     public static bool blackHole, spark, greenSpark;
 
     private float blackHoleDuration = 0.3f;
@@ -21,6 +23,26 @@ public class VFXManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+    }
+
+    void Start()
+    {
+        leftSideBarrier.SetActive(false);
+        rightSideBarrier.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(GameManager.instance.activatePurpleNote)
+        {
+            leftSideBarrier.SetActive(true);
+            rightSideBarrier.SetActive(true);
+        }
+        else
+        {
+            leftSideBarrier.SetActive(false);
+            rightSideBarrier.SetActive(false);
+        }
     }
 
     public void LaneOneVFX()

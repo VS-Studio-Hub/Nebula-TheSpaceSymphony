@@ -36,6 +36,10 @@ public class UIManager : MonoBehaviour
         {
             currentBoostPoints = 0;
         }
+        else if(currentBoostPoints <= 0)
+        {
+            currentBoostPoints = 0;
+        }
 
     }
 
@@ -62,6 +66,8 @@ public class UIManager : MonoBehaviour
     }
 
     public void BoostHit() => AddPoints(20);
+
+    public void BoostMiss() => AddPoints(-100);
 
     public void Hit() => AddScore(10);
 

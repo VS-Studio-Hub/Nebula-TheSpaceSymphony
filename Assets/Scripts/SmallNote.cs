@@ -45,62 +45,25 @@ public class SmallNote : MonoBehaviour
     {
 
         if (!canBePressed && !pressed) return;
-        if (!SPButtonController.instance.Swapped())
+
+
+        if (hitAAction.WasPressedThisFrame() && !activatedNote && laneOne)
         {
-
-            if (hitAAction.WasPressedThisFrame() && !activatedNote && laneOne)
-            {
-                Debug.Log("Hit");
-
-                CheckScore();
-            }
-            if (hitSAction.WasPressedThisFrame() && !activatedNote && laneTwo)
-            {
-                Debug.Log("Hit");
-
-                CheckScore();
-            }
-            if (hitDAction.WasPressedThisFrame() && !activatedNote && laneThree)
-            {
-                Debug.Log("Hit");
-
-                CheckScore();
-            }
-            if (hitFAction.WasPressedThisFrame() && !activatedNote && laneFour)
-            {
-                Debug.Log("Hit");
-
-                CheckScore();
-            }
+            CheckScore();
         }
-        else
+        if (hitSAction.WasPressedThisFrame() && !activatedNote && laneTwo)
         {
-
-            if (hitAAction.WasPressedThisFrame() && !activatedNote && laneOne)
-            {
-                Debug.Log("Hit");
-
-                CheckScore();
-            }
-            if (hitSAction.WasPressedThisFrame() && !activatedNote && laneTwo)
-            {
-                Debug.Log("Hit");
-
-                CheckScore();
-            }
-            if (hitDAction.WasPressedThisFrame() && !activatedNote && laneThree)
-            {
-                Debug.Log("Hit");
-
-                CheckScore();
-            }
-            if (hitFAction.WasPressedThisFrame() && !activatedNote && laneFour)
-            {
-                Debug.Log("Hit");
-
-                CheckScore();
-            }
+            CheckScore();
         }
+        if (hitDAction.WasPressedThisFrame() && !activatedNote && laneThree)
+        {
+            CheckScore();
+        }
+        if (hitFAction.WasPressedThisFrame() && !activatedNote && laneFour)
+        {
+            CheckScore();
+        }
+
 
     }
 
@@ -117,42 +80,8 @@ public class SmallNote : MonoBehaviour
             Instantiate(hitEffect, transform.position, Quaternion.identity);
             mesh.SetActive(false);
             activatedNote = true;
-            if (laneOne)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneOneVFX();
-            }
-            if (laneTwo)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneTwoVFX();
-            }
-            if (laneThree)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneThreeVFX();
-            }
-            if (laneFour)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneFourVFX();
-            }
+            VFX();
+            GameManager.instance.ResetEmptyPressCount();
         }
         else if (transform.position.x <= 8.5f && transform.position.x >= 6f)
         {
@@ -163,42 +92,8 @@ public class SmallNote : MonoBehaviour
             Instantiate(goodEffect, transform.position, Quaternion.identity);
             mesh.SetActive(false);
             activatedNote = true;
-            if (laneOne)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneOneVFX();
-            }
-            if (laneTwo)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneTwoVFX();
-            }
-            if (laneThree)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneThreeVFX();
-            }
-            if (laneFour)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneFourVFX();
-            }
+            VFX();
+            GameManager.instance.ResetEmptyPressCount();
         }
         else if (transform.position.x <= 5.9f && transform.position.x >= 4.4f)
         {
@@ -209,42 +104,8 @@ public class SmallNote : MonoBehaviour
             Instantiate(perfectEffect, transform.position, Quaternion.identity);
             mesh.SetActive(false);
             activatedNote = true;
-            if (laneOne)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneOneVFX();
-            }
-            if (laneTwo)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneTwoVFX();
-            }
-            if (laneThree)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneThreeVFX();
-            }
-            if (laneFour)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneFourVFX();
-            }
+            VFX();
+            GameManager.instance.ResetEmptyPressCount();
         }
         else if (transform.position.x <= 4.3f && transform.position.x >= 1f)
         {
@@ -255,44 +116,50 @@ public class SmallNote : MonoBehaviour
             Instantiate(hitEffect, transform.position, Quaternion.identity);
             mesh.SetActive(false);
             activatedNote = true;
-            if (laneOne)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneOneVFX();
-            }
-            if (laneTwo)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneTwoVFX();
-            }
-            if (laneThree)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneThreeVFX();
-            }
-            if (laneFour)
-            {
-                if (GameManager.instance.activatePurpleNote)
-                    VFXManager.greenSpark = true;
-                else
-                    VFXManager.spark = true;
-
-                VFXManager.instance.LaneFourVFX();
-            }
+            VFX();
+            GameManager.instance.ResetEmptyPressCount();
         }
 
+    }
+
+    private void VFX()
+    {
+        if (laneOne)
+        {
+            if (GameManager.instance.activatePurpleNote)
+                VFXManager.greenSpark = true;
+            else
+                VFXManager.spark = true;
+
+            VFXManager.instance.LaneOneVFX();
+        }
+        if (laneTwo)
+        {
+            if (GameManager.instance.activatePurpleNote)
+                VFXManager.greenSpark = true;
+            else
+                VFXManager.spark = true;
+
+            VFXManager.instance.LaneTwoVFX();
+        }
+        if (laneThree)
+        {
+            if (GameManager.instance.activatePurpleNote)
+                VFXManager.greenSpark = true;
+            else
+                VFXManager.spark = true;
+
+            VFXManager.instance.LaneThreeVFX();
+        }
+        if (laneFour)
+        {
+            if (GameManager.instance.activatePurpleNote)
+                VFXManager.greenSpark = true;
+            else
+                VFXManager.spark = true;
+
+            VFXManager.instance.LaneFourVFX();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

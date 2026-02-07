@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -23,16 +24,30 @@ public class GameManager : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text multiText;
 
+    public GameObject score;
+
 
 
     bool missedNote = false;
     public  bool activatePurpleNote = false;
     private bool purpleTimerRunning = false;
 
+
+    public int emptyPressLimit = 5;
+    public int emptyPressCount = 0;
+
+
     void Awake()
     {
         instance = this;
     }
+
+    void Start()
+    {
+        emptyPressCount = 0;
+        score.SetActive(false);
+    }
+
 
     private void Update()
     {
@@ -41,9 +56,11 @@ public class GameManager : MonoBehaviour
             StartCoroutine(DeactivateNote());
         }
 
-        if (musicSource.isPlaying == false && musicSource.time > 0)
+        if (musicSource.isPlaying == false && musicSource.time > 0 && !PauseMenu.gameIsPaused)
         {
+            score.SetActive(true);
             StartCoroutine(WaitAndLoadMenu(4f));
+            PauseMenu.gameIsPaused = true;
         }
     }
 
@@ -78,6 +95,26 @@ public class GameManager : MonoBehaviour
     public void LongNotePerfect() => AddScore(50);
     public void PurpleNoteValue() => PurpleValue(1);
     public void PurpleActivatedNoteValue() => PurpleValue(0);
+
+
+    public void EmptyPressCount()
+    {
+        Debug.Log("Empty Pressed");
+        if (Time.timeScale == 0) return;
+
+        emptyPressCount++;
+
+        emptyPressCount = Mathf.Min(emptyPressCount, emptyPressLimit);
+        if (emptyPressCount >= emptyPressLimit)
+        {
+            Time.timeScale = 0;
+            emptyPressCount = 0;
+        }
+    }
+    public void ResetEmptyPressCount()
+    {
+        emptyPressCount = 0;
+    }
 
     public void NoteMissed()
     {
@@ -114,12 +151,14 @@ public class GameManager : MonoBehaviour
 
     void PurpleValue(int value)
     {
-        note += value;
         if (missedNote)
         {
             note = 0;
             missedNote = false;
         }
+
+        note += value;
+        
 
         if (note == 5)
         {
@@ -133,4 +172,6 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + totalScore;
         multiText.text = "x" + currentMultiplier;
     }
+
+    
 }
