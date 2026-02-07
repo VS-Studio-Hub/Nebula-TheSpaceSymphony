@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MaterialLowPoly
-    second: {fileID: 2100000, guid: aad3a5b71077c344e8788fe2aa586849, type: 2}
+    second: {fileID: 2100000, guid: fa8f56d3121157442b18c00af69634b5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
