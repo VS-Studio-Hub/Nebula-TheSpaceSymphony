@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
         emptyPressCount = Mathf.Min(emptyPressCount, emptyPressLimit);
         if (emptyPressCount >= emptyPressLimit)
         {
-            Time.timeScale = 0;
+            SceneManager.LoadScene("MainMenu");
             emptyPressCount = 0;
         }
     }
