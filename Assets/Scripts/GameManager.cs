@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
     public int currentMultiplier = 1;
     public int[] multiplierThresholds;
     private int multiplierTracker = 0;
-    private int note;
+    private int note = 0;
+    public int purpleNoteValue;
 
     [Header("UI")]
     public TMP_Text scoreText;
@@ -28,7 +29,6 @@ public class GameManager : MonoBehaviour
 
 
 
-    bool missedNote = false;
     public  bool activatePurpleNote = false;
     private bool purpleTimerRunning = false;
 
@@ -59,8 +59,7 @@ public class GameManager : MonoBehaviour
         if (musicSource.isPlaying == false && musicSource.time > 0 && !PauseMenu.gameIsPaused)
         {
             score.SetActive(true);
-            StartCoroutine(WaitAndLoadMenu(4f));
-            PauseMenu.gameIsPaused = true;
+            ScoreManager.gameOver = true;
         }
     }
 
@@ -72,12 +71,6 @@ public class GameManager : MonoBehaviour
 
         activatePurpleNote = false;
         purpleTimerRunning = false;
-    }
-
-    IEnumerator WaitAndLoadMenu(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        SceneManager.LoadScene("MainMenu");
     }
 
     public void StartMusic(double startTime)
@@ -107,7 +100,9 @@ public class GameManager : MonoBehaviour
         emptyPressCount = Mathf.Min(emptyPressCount, emptyPressLimit);
         if (emptyPressCount >= emptyPressLimit)
         {
-            SceneManager.LoadScene("MainMenu");
+            ScoreManager.gameOver = true;
+            score.SetActive(true);
+            ScoreManager.winState = false;
             emptyPressCount = 0;
         }
     }
@@ -125,7 +120,7 @@ public class GameManager : MonoBehaviour
 
     public void PurpleNoteMiss()
     {
-        missedNote = true;
+        note = 0;
     }
 
     private void AddScore(int baseScore)
@@ -151,14 +146,9 @@ public class GameManager : MonoBehaviour
 
     void PurpleValue(int value)
     {
-        if (missedNote)
-        {
-            note = 0;
-            missedNote = false;
-        }
-
         note += value;
-        
+       
+        purpleNoteValue += value;
 
         if (note == 5)
         {
@@ -173,5 +163,11 @@ public class GameManager : MonoBehaviour
         multiText.text = "x" + currentMultiplier;
     }
 
-    
+    public void ScoreBoard()
+    {
+
+        score.SetActive(true);
+        ScoreManager.gameOver = true;
+
+    }
 }
