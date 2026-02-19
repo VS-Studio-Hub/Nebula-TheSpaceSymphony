@@ -43,6 +43,7 @@ public class VFXManager : MonoBehaviour
             leftSideBarrier.SetActive(false);
             rightSideBarrier.SetActive(false);
         }
+        GreenSpark.Play();
     }
 
     public void LaneOneVFX()

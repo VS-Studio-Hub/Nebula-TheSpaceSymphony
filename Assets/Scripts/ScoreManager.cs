@@ -49,7 +49,7 @@ public class ScoreManager : MonoBehaviour
 
     IEnumerator Score()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         displayedScore = 0;
         while (displayedScore < GameManager.instance.currentScore)
         {
