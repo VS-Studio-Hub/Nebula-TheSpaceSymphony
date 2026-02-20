@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
 
     public int currentEnergyPoints, currentBoostPoints = 0;
 
-    public Image energyBar, scoreBoosterBar;
+    public Image energyBar, scoreBoosterBar1, scoreBoosterBar2;
 
     public GameObject planetOne, planetTwo, planetThree;
 
@@ -29,7 +29,8 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         energyBar.fillAmount = Mathf.Clamp01((float)currentEnergyPoints / maxEnergyPoints);
-        scoreBoosterBar.fillAmount = Mathf.Clamp01((float)currentBoostPoints / maxBoostPoints);
+        scoreBoosterBar1.fillAmount = Mathf.Clamp01((float)currentBoostPoints / maxBoostPoints);
+        scoreBoosterBar2.fillAmount = Mathf.Clamp01((float)currentBoostPoints / maxBoostPoints);
         PlanetSpawner();
 
         if(currentBoostPoints >= 100)
