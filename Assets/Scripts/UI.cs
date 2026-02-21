@@ -5,7 +5,7 @@ public class UI : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene("Level_01");
+        SceneManager.LoadScene("PlanetSelection");
     }
 
     public void SolarSystem()
