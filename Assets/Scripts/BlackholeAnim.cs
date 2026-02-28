@@ -22,17 +22,27 @@ public class BlackholeAnim : MonoBehaviour
     void Update()
     {
 
-        transform.Rotate(0, 100 * Time.deltaTime, 0, Space.Self);
+        transform.Rotate(0, 1000 * Time.deltaTime, 0, Space.Self);
         newScale = new Vector3(a, a, a);
         if (newScale.x == 1)
         {
-            
+            if (newScale.x <= this.transform.localScale.x)
+            {
+                a = 1.5f;
+            }
+            b += 5000f * Time.deltaTime;
+           
+        }
+        else
+        {
+            b -=3800f * Time.deltaTime;
         }
 
-        if (!(newScale.z == this.transform.localScale.z))
+        if (!(newScale.x == this.transform.localScale.x))
         {
             Vector3 Addition = new Vector3(0.05f, 0.05f, 0.05f);
-            this.transform.localScale += Addition * Time.deltaTime * b;
+            this.transform.localScale += Addition * Time.deltaTime * (1 + b);
         }
+
     }
 }
