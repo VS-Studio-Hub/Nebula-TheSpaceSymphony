@@ -203,6 +203,7 @@ public class PurpleNote : MonoBehaviour
         audioSource.PlayOneShot(missSound);
         Instantiate(missEffect, transform.position, Quaternion.identity);
         GameManager.instance.PurpleNoteMiss();
+        GameManager.instance.MissNotesValue();
         UIManager.instance.BoostMiss();
         mesh.SetActive(false);
         if (laneOne)

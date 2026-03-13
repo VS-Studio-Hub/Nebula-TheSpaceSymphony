@@ -170,6 +170,17 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1b3f286d-88f2-4c68-a8a7-bed8f7597281"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Joystick"",
+                    ""action"": ""HitA"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c667747e-19a8-4111-b6eb-f2cd5ec19083"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",

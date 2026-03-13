@@ -172,6 +172,10 @@ MonoBehaviour:
   perfectEffect: {fileID: 1989052463084812574, guid: 9a478b5f632aa8945ba6348b6f4d083f, type: 3}
   missEffect: {fileID: 6800777640240049159, guid: 4c99a139814a65749a19483401665a06, type: 3}
   mesh: {fileID: 9204078273503688223}
+  laneOne: 0
+  laneTwo: 0
+  laneThree: 0
+  laneFour: 0
   canBePressed: 0
   activatedNote: 0
   pressed: 1
@@ -189,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f880b81c654d2479a300086c56b0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatTempo: 27
+  beatTempo: 40
 --- !u!114 &1070488239625746209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +263,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d3626b7850bd78949b2190f1ddb44511, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cec3713788dedc54e9bfd0e785e69474, type: 2}
     - target: {fileID: 919132149155446097, guid: d3626b7850bd78949b2190f1ddb44511, type: 3}
       propertyPath: m_Name
       value: Nebula_NoteSolo
