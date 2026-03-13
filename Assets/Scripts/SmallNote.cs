@@ -191,6 +191,7 @@ public class SmallNote : MonoBehaviour
     {
         audioSource.PlayOneShot(missSound);
         GameManager.instance.NoteMissed();
+        GameManager.instance.MissNotesValue();
         UIManager.instance.Miss();
         Instantiate(missEffect, transform.position, Quaternion.identity);
         mesh.SetActive(false);

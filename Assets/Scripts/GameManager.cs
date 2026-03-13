@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,44 +18,65 @@ public class GameManager : MonoBehaviour
     private int note = 0;
     public int purpleNoteValue;
 
+    public int missvalue;
+
     [Header("UI")]
     public TMP_Text scoreText;
     public TMP_Text multiText;
-
     public GameObject score;
 
-
-
-    public  bool activatePurpleNote = false;
+    public bool activatePurpleNote = false;
     private bool purpleTimerRunning = false;
-
 
     public int emptyPressLimit = 5;
     public int emptyPressCount = 0;
 
-
     void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()
     {
         emptyPressCount = 0;
-        score.SetActive(false);
+
+        if (score != null)
+            score.SetActive(false);
+
+        currentScore = 0;
+        totalScore = 0;
+        currentMultiplier = 1;
+        multiplierTracker = 0;
+        note = 0;
+        purpleNoteValue = 0;
+        activatePurpleNote = false;
+        purpleTimerRunning = false;
+
+        UpdateUI();
     }
 
-
-    private void Update()
+    void Update()
     {
         if (activatePurpleNote && !purpleTimerRunning)
         {
             StartCoroutine(DeactivateNote());
         }
 
-        if (musicSource.isPlaying == false && musicSource.time > 0 && !PauseMenu.gameIsPaused)
+        if (musicSource != null &&
+            !musicSource.isPlaying &&
+            musicSource.time > 0 &&
+            !PauseMenu.gameIsPaused)
         {
-            score.SetActive(true);
+            if (score != null)
+                score.SetActive(true);
+
             ScoreManager.gameOver = true;
         }
     }
@@ -67,16 +85,20 @@ public class GameManager : MonoBehaviour
     {
         purpleTimerRunning = true;
 
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(5f);
 
         activatePurpleNote = false;
         purpleTimerRunning = false;
     }
 
-    public void StartMusic(double startTime)
+    public void StartMusic()
     {
+        if (musicSource == null || musicClip == null)
+            return;
+
         musicSource.clip = musicClip;
-        musicSource.PlayScheduled(startTime);
+        musicSource.time = 0f;
+        musicSource.Play();
     }
 
     public void SmallNoteHit() => AddScore(100);
@@ -89,23 +111,44 @@ public class GameManager : MonoBehaviour
     public void PurpleNoteValue() => PurpleValue(1);
     public void PurpleActivatedNoteValue() => PurpleValue(0);
 
+    public void MissNotesValue() => MissNotesValue(1);
 
+    private void MissNotesValue(int value)
+    {
+        missvalue += value;
+        if (missvalue >= 10)
+        {
+            ScoreManager.gameOver = true;
+            ScoreManager.winState = false;
+            Time.timeScale = 0f;
+            if (score != null)
+                score.SetActive(true);
+        }
+        else
+            CameraShaking.start = true;
+    }
     public void EmptyPressCount()
     {
         Debug.Log("Empty Pressed");
-        if (Time.timeScale == 0) return;
+
+        if (Time.timeScale == 0)
+            return;
 
         emptyPressCount++;
-
         emptyPressCount = Mathf.Min(emptyPressCount, emptyPressLimit);
+
         if (emptyPressCount >= emptyPressLimit)
         {
             ScoreManager.gameOver = true;
-            score.SetActive(true);
             ScoreManager.winState = false;
+
+            if (score != null)
+                score.SetActive(true);
+
             emptyPressCount = 0;
         }
     }
+
     public void ResetEmptyPressCount()
     {
         emptyPressCount = 0;
@@ -125,6 +168,7 @@ public class GameManager : MonoBehaviour
 
     private void AddScore(int baseScore)
     {
+        missvalue = 0;
         int finalScore = baseScore * currentMultiplier;
 
         currentScore += finalScore;
@@ -147,27 +191,22 @@ public class GameManager : MonoBehaviour
     void PurpleValue(int value)
     {
         note += value;
-       
         purpleNoteValue += value;
 
         if (note == 5)
         {
             activatePurpleNote = true;
             note = 0;
-            Debug.Log("Acttivated");
+            Debug.Log("Activated");
         }
     }
+
     void UpdateUI()
     {
-        scoreText.text = "Score: " + totalScore;
-        multiText.text = "x" + currentMultiplier;
-    }
+        if (scoreText != null)
+            scoreText.text = "Score: " + totalScore;
 
-    public void ScoreBoard()
-    {
-
-        score.SetActive(true);
-        ScoreManager.gameOver = true;
-
+        if (multiText != null)
+            multiText.text = "x" + currentMultiplier;
     }
 }
