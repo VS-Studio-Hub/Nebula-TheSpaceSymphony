@@ -2303,9 +2303,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1862.0,
-            "y": -602.0,
-            "width": 207.9998779296875,
+            "x": -1935.0,
+            "y": -650.0,
+            "width": 208.0,
             "height": 302.0
         }
     },
@@ -2681,7 +2681,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Min",
     "m_StageCapability": 3,
-    "m_Value": 0.4000000059604645,
+    "m_Value": 0.949999988079071,
     "m_DefaultValue": 0.0,
     "m_Labels": []
 }
@@ -3539,7 +3539,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Max",
     "m_StageCapability": 3,
-    "m_Value": 0.800000011920929,
+    "m_Value": 1.2000000476837159,
     "m_DefaultValue": 1.0,
     "m_Labels": []
 }
@@ -3652,8 +3652,8 @@
     "m_ShaderOutputName": "Tiling",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 3.0,
-        "y": 3.0
+        "x": 5.0,
+        "y": 5.0
     },
     "m_DefaultValue": {
         "x": 1.0,
