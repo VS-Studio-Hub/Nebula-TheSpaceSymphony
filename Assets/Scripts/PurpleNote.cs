@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PurpleNote : MonoBehaviour
 {
-    public GameObject hitEffect, goodEffect, perfectEffect, missEffect,mesh;
+    public GameObject mesh;
     public bool canBePressed, laneOne, laneTwo, laneThree, laneFour;
     public bool activatedNote = false;
     public InputActionAsset InputActions;
@@ -75,7 +75,6 @@ public class PurpleNote : MonoBehaviour
             UIManager.instance.Hit();
             if(!GameManager.instance.activatePurpleNote)
                 UIManager.instance.BoostHit();
-            Instantiate(hitEffect, transform.position, Quaternion.identity);
             if (GameManager.instance.activatePurpleNote)
                 GameManager.instance.PurpleActivatedNoteValue();
             else
@@ -91,7 +90,6 @@ public class PurpleNote : MonoBehaviour
             UIManager.instance.Hit();
             if (!GameManager.instance.activatePurpleNote)
                 UIManager.instance.BoostHit();
-            Instantiate(goodEffect, transform.position, Quaternion.identity);
             if (GameManager.instance.activatePurpleNote)
                 GameManager.instance.PurpleActivatedNoteValue();
             else
@@ -107,7 +105,6 @@ public class PurpleNote : MonoBehaviour
             UIManager.instance.Hit();
             if (!GameManager.instance.activatePurpleNote)
                 UIManager.instance.BoostHit();
-            Instantiate(perfectEffect, transform.position, Quaternion.identity);
             if (GameManager.instance.activatePurpleNote)
                 GameManager.instance.PurpleActivatedNoteValue();
             else
@@ -123,7 +120,6 @@ public class PurpleNote : MonoBehaviour
             UIManager.instance.Hit();
             if (!GameManager.instance.activatePurpleNote)
                 UIManager.instance.BoostHit();
-            Instantiate(hitEffect, transform.position, Quaternion.identity);
             if (GameManager.instance.activatePurpleNote)
                 GameManager.instance.PurpleActivatedNoteValue();
             else
@@ -201,7 +197,6 @@ public class PurpleNote : MonoBehaviour
     public void MissNote()
     {
         audioSource.PlayOneShot(missSound);
-        Instantiate(missEffect, transform.position, Quaternion.identity);
         GameManager.instance.PurpleNoteMiss();
         GameManager.instance.MissNotesValue();
         UIManager.instance.BoostMiss();

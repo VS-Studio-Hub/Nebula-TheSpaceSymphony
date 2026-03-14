@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.VFX;
 using System.Collections;
+using System;
 
 public class VFXManager : MonoBehaviour
 {
@@ -18,8 +19,14 @@ public class VFXManager : MonoBehaviour
 
     public static bool blackHole, spark, greenSpark;
 
-    private float blackHoleDuration = 0.3f;
+    public GameObject leftSoundWaveVFX, rightSoundWaveVFX;
 
+    public static bool leftSoundWave = false;
+    public static bool rightSoundWave = false;
+
+    private float blackHoleDuration = 0.3f;
+    private bool isLeftWavePlaying = false;
+    private bool isRightWavePlaying = false;
     void Awake()
     {
         instance = this;
@@ -44,8 +51,48 @@ public class VFXManager : MonoBehaviour
             rightSideBarrier.SetActive(false);
         }
         GreenSpark.Play();
+
+        if (leftSoundWave && !isLeftWavePlaying)
+        {
+            StartCoroutine(PlayLeftSoundWaveVFX());
+        }
+
+        if (rightSoundWave && !isRightWavePlaying)
+        {
+            StartCoroutine(PlayRightSoundWaveVFX());
+        }
     }
 
+    IEnumerator PlayLeftSoundWaveVFX()
+    {
+        isLeftWavePlaying = true;
+        leftSoundWave = false;
+
+        if (leftSoundWaveVFX != null)
+            leftSoundWaveVFX.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        if (leftSoundWaveVFX != null)
+            leftSoundWaveVFX.SetActive(false);
+
+        isLeftWavePlaying = false;
+    }
+    IEnumerator PlayRightSoundWaveVFX()
+    {
+        isRightWavePlaying = true;
+        rightSoundWave = false;
+
+        if (rightSoundWaveVFX != null)
+            rightSoundWaveVFX.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        if (rightSoundWaveVFX != null)
+            rightSoundWaveVFX.SetActive(false);
+
+        isRightWavePlaying = false;
+    }
     public void LaneOneVFX()
     {
         if (spark)

@@ -7,7 +7,7 @@ using UnityEngine.VFX;
 
 public class SmallNote : MonoBehaviour
 {
-    public GameObject hitEffect, goodEffect, perfectEffect, missEffect, mesh;
+    public GameObject mesh;
 
     public bool laneOne, laneTwo, laneThree, laneFour;
 
@@ -77,7 +77,6 @@ public class SmallNote : MonoBehaviour
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
             UIManager.instance.Hit();
-            Instantiate(hitEffect, transform.position, Quaternion.identity);
             mesh.SetActive(false);
             activatedNote = true;
             VFX();
@@ -89,7 +88,6 @@ public class SmallNote : MonoBehaviour
             Debug.Log("Good");
             GameManager.instance.SmallNoteGood();
             UIManager.instance.Hit();
-            Instantiate(goodEffect, transform.position, Quaternion.identity);
             mesh.SetActive(false);
             activatedNote = true;
             VFX();
@@ -101,7 +99,6 @@ public class SmallNote : MonoBehaviour
             Debug.Log("Perfect");
             GameManager.instance.SmallNotePerfect();
             UIManager.instance.Hit();
-            Instantiate(perfectEffect, transform.position, Quaternion.identity);
             mesh.SetActive(false);
             activatedNote = true;
             VFX();
@@ -113,7 +110,6 @@ public class SmallNote : MonoBehaviour
             Debug.Log("Hit");
             GameManager.instance.SmallNoteHit();
             UIManager.instance.Hit();
-            Instantiate(hitEffect, transform.position, Quaternion.identity);
             mesh.SetActive(false);
             activatedNote = true;
             VFX();
@@ -131,6 +127,8 @@ public class SmallNote : MonoBehaviour
             else
                 VFXManager.spark = true;
 
+            VFXManager.leftSoundWave = true;
+
             VFXManager.instance.LaneOneVFX();
         }
         if (laneTwo)
@@ -139,6 +137,8 @@ public class SmallNote : MonoBehaviour
                 VFXManager.greenSpark = true;
             else
                 VFXManager.spark = true;
+
+            VFXManager.leftSoundWave = true;
 
             VFXManager.instance.LaneTwoVFX();
         }
@@ -149,6 +149,8 @@ public class SmallNote : MonoBehaviour
             else
                 VFXManager.spark = true;
 
+            VFXManager.rightSoundWave = true;
+
             VFXManager.instance.LaneThreeVFX();
         }
         if (laneFour)
@@ -157,6 +159,8 @@ public class SmallNote : MonoBehaviour
                 VFXManager.greenSpark = true;
             else
                 VFXManager.spark = true;
+
+            VFXManager.rightSoundWave = true;
 
             VFXManager.instance.LaneFourVFX();
         }
@@ -193,7 +197,6 @@ public class SmallNote : MonoBehaviour
         GameManager.instance.NoteMissed();
         GameManager.instance.MissNotesValue();
         UIManager.instance.Miss();
-        Instantiate(missEffect, transform.position, Quaternion.identity);
         mesh.SetActive(false);
         if (laneOne)
         {
