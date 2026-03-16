@@ -1,9 +1,54 @@
 fileFormatVersion: 2
-guid: 6a2cd5044ab3a0d4a8a3287c6085c2e7
+guid: aaf81c4eda47ea840a4c7276ae073e59
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Board_Base
+    second: {fileID: 2100000, guid: f5bf3e2a3d164ad49aba170d7e01a6f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtonBase
+    second: {fileID: 2100000, guid: 462b8668b9d7e454bb65d6616a566450, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtonTop
+    second: {fileID: 2100000, guid: f0f8314d3f7b2c7479a87cd8059d4e5e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drum_Base_Mat
+    second: {fileID: 2100000, guid: de00b31bda2f8d64f8c23b04c9e6481e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Drum_Lid_Mat
+    second: {fileID: 2100000, guid: 1c0ff15fadd7e824b873a7b810c4ebe4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Indicators
+    second: {fileID: 2100000, guid: 4b076daa112c3e44d8b611cf8b121667, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PowerBar
+    second: {fileID: 2100000, guid: 5534222f494ed194da0056600080ee6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ramp_Mat
+    second: {fileID: 2100000, guid: 37fd1cecfea045149b7573c84737f2a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Setpoint_Mat
+    second: {fileID: 2100000, guid: e767faf6140cb094c8a4a6fed0c28184, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
