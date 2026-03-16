@@ -16,11 +16,10 @@ public class Settings : MonoBehaviour
     float minBrightness = -10f;
     float maxBrightness = -5f;
 
-    Exposure exposure;
+    private Exposure exposure;
 
 
     public TMP_Dropdown resolution;
-
     public TMP_Dropdown screenMode;
 
 

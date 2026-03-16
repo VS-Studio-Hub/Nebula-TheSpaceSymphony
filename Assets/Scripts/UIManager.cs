@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class UIManager : MonoBehaviour
     public GameObject planetOne, planetTwo, planetThree;
 
     public bool planetSpawned = false;
+
+    public TMP_Text planetLevel;
 
     private void Awake()
     {
@@ -49,20 +52,24 @@ public class UIManager : MonoBehaviour
         if (currentEnergyPoints >= 100 && !planetSpawned)
         {
             planetOne.SetActive(true);
-            currentEnergyPoints = 0;
             planetSpawned = true;
+            currentEnergyPoints = 0;
+            planetLevel.text = "Phase: 1";
         }
         if (currentEnergyPoints >= 100 && planetOne.activeSelf)
         {
             planetOne.SetActive(false);
             planetTwo.SetActive(true);
             currentEnergyPoints = 0;
+            planetLevel.text = "Phase: 2";
         }
         if (currentEnergyPoints >= 100 && planetTwo.activeSelf)
         {
             planetTwo.SetActive(false);
             planetThree.SetActive(true);
             currentEnergyPoints = 0;
+            planetLevel.text = "Phase: 3";
+
         }
     }
 
@@ -70,9 +77,9 @@ public class UIManager : MonoBehaviour
 
     public void BoostMiss() => AddPoints(-100);
 
-    public void Hit() => AddScore(10);
+    public void Hit() => AddScore(2);
 
-    public void Miss() => AddScore(-5);
+    public void Miss() => AddScore(-1);
 
     private void AddScore(int baseScore)
     {

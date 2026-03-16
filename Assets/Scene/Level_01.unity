@@ -5573,7 +5573,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 127279d577f25ac4ea17dae3782e5074, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -13061,6 +13061,7 @@ MonoBehaviour:
   planetTwo: {fileID: 1681287462}
   planetThree: {fileID: 1939834134}
   planetSpawned: 0
+  planetLevel: {fileID: 2090091329}
 --- !u!1 &746648668
 GameObject:
   m_ObjectHideFlags: 0
@@ -15646,7 +15647,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1987407289}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22504,7 +22505,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1987407289}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
