@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: PressedB
+    m_ConditionEvent: Hold
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 630206317381706745}
@@ -46,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 00751522806cfef4f93c694b61e6d27d, type: 2}
+  m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -61,7 +61,7 @@ AnimatorController:
   m_Name: Button_Two
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: PressedB
+  - m_Name: Hold
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -101,10 +101,10 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 23b8286f2568ec747bca032c2aaf1614, type: 2}
+  m_Motion: {fileID: 7400000, guid: 19a289be156de3d428f96a2a704d999e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
-  m_MirrorParameter: PressedB
+  m_MirrorParameter: Hold
   m_CycleOffsetParameter: 
   m_TimeParameter: 
 --- !u!1101 &6881469071480109465
@@ -116,7 +116,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: PressedB
+    m_ConditionEvent: Hold
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3548993337510354753}
