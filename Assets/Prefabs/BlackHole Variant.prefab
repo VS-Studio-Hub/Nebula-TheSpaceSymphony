@@ -69,6 +69,10 @@ PrefabInstance:
       value: RoundPlane (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a9fb23366cf257849a255e5974094d03, type: 2}
@@ -334,6 +338,10 @@ PrefabInstance:
       value: RoundPlane
       objectReference: {fileID: 0}
     - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: d967a140d29e1cb4799e0271efe86a95, type: 2}
@@ -414,6 +422,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
       propertyPath: m_Name
       value: RoundPlane (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -527,6 +539,10 @@ PrefabInstance:
       value: RoundPlane (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a9fb23366cf257849a255e5974094d03, type: 2}
@@ -634,6 +650,10 @@ PrefabInstance:
       value: RoundPlane (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 46695a364d8490344a0be5286713379d, type: 2}
@@ -735,6 +755,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
       propertyPath: m_Name
       value: RoundPlane (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1220468753929994659, guid: 24e472adfd53ca5418917fa60d0d5497, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

@@ -11,6 +11,7 @@ TagManager:
   - LaneTwo
   - LaneThree
   - LaneFour
+  - BlackHole
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - planet
   - Water
   - UI
-  - 
+  - Displaying Planets
   - 
   - 
   - 

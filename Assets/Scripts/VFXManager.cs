@@ -36,6 +36,8 @@ public class VFXManager : MonoBehaviour
     {
         leftSideBarrier.SetActive(false);
         rightSideBarrier.SetActive(false);
+        leftSoundWaveVFX.SetActive(false);
+        rightSoundWaveVFX.SetActive(false);
     }
 
     private void Update()
