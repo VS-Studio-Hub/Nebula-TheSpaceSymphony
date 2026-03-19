@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public bool activatePurpleNote = false;
     private bool purpleTimerRunning = false;
+    public static bool gameOver;
 
     public int emptyPressLimit = 5;
     public int emptyPressCount = 0;
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        gameOver = false;
         emptyPressCount = 0;
 
         if (score != null)
@@ -64,15 +66,17 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (gameOver)
+        {
+            musicSource.Stop();
+            return;
+        }
         if (activatePurpleNote && !purpleTimerRunning)
         {
             StartCoroutine(DeactivateNote());
         }
 
-        if (musicSource != null &&
-            !musicSource.isPlaying &&
-            musicSource.time > 0 &&
-            !PauseMenu.gameIsPaused)
+        if (musicSource != null && !musicSource.isPlaying && musicSource.time > 0 && !PauseMenu.gameIsPaused)
         {
             if (score != null)
                 score.SetActive(true);
@@ -120,7 +124,7 @@ public class GameManager : MonoBehaviour
         {
             ScoreManager.gameOver = true;
             ScoreManager.winState = false;
-            Time.timeScale = 0f;
+            gameOver = true;
             if (score != null)
                 score.SetActive(true);
         }
@@ -131,9 +135,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Empty Pressed");
 
-        if (Time.timeScale == 0)
-            return;
-
         emptyPressCount++;
         emptyPressCount = Mathf.Min(emptyPressCount, emptyPressLimit);
 
@@ -141,7 +142,7 @@ public class GameManager : MonoBehaviour
         {
             ScoreManager.gameOver = true;
             ScoreManager.winState = false;
-
+            gameOver = true;
             if (score != null)
                 score.SetActive(true);
 

@@ -1,16 +1,17 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlanetSelectionManager : MonoBehaviour
 {
     [SerializeField] GameObject frdBtn, bckBtn;
-    [SerializeField] Button OpenLevel;
+    public Button play;
 
     [SerializeField] RectTransform planetsTransform;
     [SerializeField] float moveDistance = 1795f;
     [SerializeField] float moveSpeed = 4f;
+
 
     Vector2 planetPosition;
     bool moving;
@@ -96,11 +97,11 @@ public class PlanetSelectionManager : MonoBehaviour
         if (currentPlanetIndex == 0)
         {
             SceneManager.LoadScene("Level_01");
-            OpenLevel.SetEnabled(true);
+            //OpenLevel.SetEnabled(true);
         }
         else
         {
-            OpenLevel.SetEnabled(false);
+            play.interactable = false;
         }
     }
 

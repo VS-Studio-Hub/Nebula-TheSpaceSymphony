@@ -2207,6 +2207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frdBtn: {fileID: 84031699}
   bckBtn: {fileID: 1130082079}
+  play: {fileID: 1456083441}
   planetsTransform: {fileID: 1206736639}
   moveDistance: 1795
   moveSpeed: 3

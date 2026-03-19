@@ -9,20 +9,18 @@ public class Settings : MonoBehaviour
 {
     public GameObject settingsMenu;
 
+    [Header("Brightness")]
     public Volume globalVolume;
-    public Slider brightnessSlider;      
-    public TMP_InputField brightnessInput; 
+    public Slider brightnessSlider;
+    public TMP_InputField brightnessInput;
 
-    float minBrightness = -10f;
-    float maxBrightness = -5f;
-
+    private float minBrightness = -10f;
+    private float maxBrightness = -5f;
     private Exposure exposure;
 
-
+    [Header("Display")]
     public TMP_Dropdown resolution;
     public TMP_Dropdown screenMode;
-
-
 
     [Header("Input Asset (for Save/Load)")]
     [SerializeField] private InputActionAsset inputActionsAsset;
@@ -41,56 +39,104 @@ public class Settings : MonoBehaviour
 
     private InputActionRebindingExtensions.RebindingOperation rebindingOp;
 
-    private const string SaveKey = "rhythm_rebinds";
+    private const string RebindSaveKey = "rhythm_rebinds";
+    private const string BrightnessSaveKey = "settings_brightness";
+    private const string ResolutionSaveKey = "settings_resolution";
+    private const string ScreenModeSaveKey = "settings_screenmode";
 
-
-
-    void Start()
+    private void Awake()
     {
-        globalVolume.profile.TryGet(out exposure);
-        if (exposure == null) return;
+        if (globalVolume != null && globalVolume.profile != null)
+        {
+            globalVolume.profile.TryGet(out exposure);
+        }
 
-        exposure.mode.value = ExposureMode.Fixed;
+        if (exposure != null)
+        {
+            exposure.mode.value = ExposureMode.Fixed;
+        }
 
         brightnessSlider.onValueChanged.AddListener(OnSlider);
         brightnessInput.onEndEdit.AddListener(OnInput);
+        resolution.onValueChanged.AddListener(OnResolutionChanged);
+        screenMode.onValueChanged.AddListener(OnScreenModeChanged);
 
-        UpdateUI(exposure.compensation.value);
-
-        resolution.onValueChanged.AddListener(SetResolution);
-
-        resolution.value = 0;
-        resolution.RefreshShownValue();
-        SetResolution(0);
-
-        screenMode.onValueChanged.AddListener(SetScreenMode);
-
-        screenMode.value = 0;
-        screenMode.RefreshShownValue();
-        SetScreenMode(0);
-
+        LoadAllSettings();
         LoadRebinds();
         RefreshUI();
-
     }
+
+    private void LoadAllSettings()
+    {
+        // Brightness
+        float defaultBrightness = Mathf.Lerp(minBrightness, maxBrightness, 0.5f);
+        float savedBrightness = PlayerPrefs.GetFloat(BrightnessSaveKey, defaultBrightness);
+
+        if (exposure != null)
+        {
+            exposure.compensation.value = savedBrightness;
+            UpdateUI(savedBrightness);
+        }
+
+        // Resolution
+        int savedResolution = PlayerPrefs.GetInt(ResolutionSaveKey, 0);
+
+        if (resolution != null)
+        {
+            resolution.value = savedResolution;
+            resolution.RefreshShownValue();
+            SetResolution(savedResolution);
+        }
+
+        // Screen Mode
+        int savedScreenMode = PlayerPrefs.GetInt(ScreenModeSaveKey, 0);
+
+        if (screenMode != null)
+        {
+            screenMode.value = savedScreenMode;
+            screenMode.RefreshShownValue();
+            SetScreenMode(savedScreenMode);
+        }
+    }
+
+    // Resolution
+    private void OnResolutionChanged(int index)
+    {
+        SetResolution(index);
+        SaveResolution(index);
+    }
+
     public void SetResolution(int index)
     {
-        var resolution = Screen.currentResolution.refreshRateRatio;
+        var refreshRate = Screen.currentResolution.refreshRateRatio;
 
         switch (index)
         {
             case 0:
-                Screen.SetResolution(1280, 720, Screen.fullScreenMode, resolution);
+                Screen.SetResolution(1280, 720, Screen.fullScreenMode, refreshRate);
                 break;
 
             case 1:
-                Screen.SetResolution(1920, 1080, Screen.fullScreenMode, resolution);
+                Screen.SetResolution(1920, 1080, Screen.fullScreenMode, refreshRate);
                 break;
 
-            //case 2:
-            //    Screen.SetResolution(2560, 1440, Screen.fullScreenMode, resolution);
-            //    break;
+                // case 2:
+                //     Screen.SetResolution(2560, 1440, Screen.fullScreenMode, refreshRate);
+                //     break;
         }
+    }
+
+    private void SaveResolution(int index)
+    {
+        PlayerPrefs.SetInt(ResolutionSaveKey, index);
+        PlayerPrefs.Save();
+    }
+
+    // Screen Mode
+    private void OnScreenModeChanged(int index)
+    {
+        SetScreenMode(index);
+        SaveScreenMode(index);
     }
 
     public void SetScreenMode(int index)
@@ -111,15 +157,26 @@ public class Settings : MonoBehaviour
         }
     }
 
-    void OnSlider(float value)
+    private void SaveScreenMode(int index)
     {
+        PlayerPrefs.SetInt(ScreenModeSaveKey, index);
+        PlayerPrefs.Save();
+    }
+
+    // Brightness
+    private void OnSlider(float value)
+    {
+        if (exposure == null) return;
+
         float brightness = Mathf.Lerp(minBrightness, maxBrightness, value);
         exposure.compensation.value = brightness;
         UpdateUI(brightness);
+        SaveBrightness(brightness);
     }
 
-    void OnInput(string text)
+    private void OnInput(string text)
     {
+        if (exposure == null) return;
         if (!float.TryParse(text, out float percent)) return;
 
         percent = Mathf.Clamp(percent, 0, 100);
@@ -128,13 +185,23 @@ public class Settings : MonoBehaviour
         exposure.compensation.value = brightness;
 
         UpdateUI(brightness);
+        SaveBrightness(brightness);
     }
 
-    public void IncreaseBrightness() => Change(5);
-    public void DecreaseBrightness() => Change(-5);
-
-    void Change(float percentStep)
+    public void IncreaseBrightness()
     {
+        Change(5);
+    }
+
+    public void DecreaseBrightness()
+    {
+        Change(-5);
+    }
+
+    private void Change(float percentStep)
+    {
+        if (exposure == null) return;
+
         float currentPercent = Mathf.InverseLerp(minBrightness, maxBrightness, exposure.compensation.value) * 100f;
         currentPercent = Mathf.Clamp(currentPercent + percentStep, 0, 100);
 
@@ -142,21 +209,27 @@ public class Settings : MonoBehaviour
         exposure.compensation.value = brightness;
 
         UpdateUI(brightness);
+        SaveBrightness(brightness);
     }
 
-    void UpdateUI(float brightness)
+    private void UpdateUI(float brightness)
     {
         float percent = Mathf.InverseLerp(minBrightness, maxBrightness, brightness) * 100f;
 
-        brightnessSlider.value = percent / 100f;
-        brightnessInput.text = Mathf.RoundToInt(percent).ToString();
+        if (brightnessSlider != null)
+            brightnessSlider.value = percent / 100f;
+
+        if (brightnessInput != null)
+            brightnessInput.text = Mathf.RoundToInt(percent).ToString();
     }
 
+    private void SaveBrightness(float brightness)
+    {
+        PlayerPrefs.SetFloat(BrightnessSaveKey, brightness);
+        PlayerPrefs.Save();
+    }
 
-
-
-
-    // UI Buttons call these:
+    // Rebinding
     public void RebindLane1() => StartRebind(lane1, lane1Text);
     public void RebindLane2() => StartRebind(lane2, lane2Text);
     public void RebindLane3() => StartRebind(lane3, lane3Text);
@@ -168,20 +241,20 @@ public class Settings : MonoBehaviour
 
         var action = actionRef.action;
 
-        // show message
         label.text = "Press a key...";
-
-        // disable while rebinding (prevents gameplay hit)
         action.Disable();
 
-        // bindingIndex 0 = first binding (your keyboard binding)
-        rebindingOp = action.PerformInteractiveRebinding(0).WithCancelingThrough("<Keyboard>/escape").WithControlsExcluding("<Mouse>/position").WithControlsExcluding("<Mouse>/delta").OnComplete(op =>
-        {
-            op.Dispose();
-            action.Enable();
-            SaveRebinds();
-            RefreshUI();
-        })
+        rebindingOp = action.PerformInteractiveRebinding(0)
+            .WithCancelingThrough("<Keyboard>/escape")
+            .WithControlsExcluding("<Mouse>/position")
+            .WithControlsExcluding("<Mouse>/delta")
+            .OnComplete(op =>
+            {
+                op.Dispose();
+                action.Enable();
+                SaveRebinds();
+                RefreshUI();
+            })
             .OnCancel(op =>
             {
                 op.Dispose();
@@ -207,10 +280,10 @@ public class Settings : MonoBehaviour
 
     public void ResetDefaults()
     {
-        lane1.action.RemoveAllBindingOverrides();
-        lane2.action.RemoveAllBindingOverrides();
-        lane3.action.RemoveAllBindingOverrides();
-        lane4.action.RemoveAllBindingOverrides();
+        if (lane1 != null && lane1.action != null) lane1.action.RemoveAllBindingOverrides();
+        if (lane2 != null && lane2.action != null) lane2.action.RemoveAllBindingOverrides();
+        if (lane3 != null && lane3.action != null) lane3.action.RemoveAllBindingOverrides();
+        if (lane4 != null && lane4.action != null) lane4.action.RemoveAllBindingOverrides();
 
         SaveRebinds();
         RefreshUI();
@@ -221,26 +294,18 @@ public class Settings : MonoBehaviour
         if (inputActionsAsset == null) return;
 
         string json = inputActionsAsset.SaveBindingOverridesAsJson();
-        PlayerPrefs.SetString(SaveKey, json);
+        PlayerPrefs.SetString(RebindSaveKey, json);
         PlayerPrefs.Save();
     }
 
     private void LoadRebinds()
     {
         if (inputActionsAsset == null) return;
-        if (!PlayerPrefs.HasKey(SaveKey)) return;
+        if (!PlayerPrefs.HasKey(RebindSaveKey)) return;
 
-        string json = PlayerPrefs.GetString(SaveKey);
+        string json = PlayerPrefs.GetString(RebindSaveKey);
         inputActionsAsset.LoadBindingOverridesFromJson(json);
     }
-
-
-
-
-
-
-
-
 
     public void CloseSettings()
     {

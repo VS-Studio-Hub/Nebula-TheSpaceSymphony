@@ -42,7 +42,7 @@ public class NodeSpawnManager : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance == null || GameManager.instance.musicSource == null)
+        if (GameManager.instance == null || GameManager.instance.musicSource == null || GameManager.gameOver)
             return;
 
         float songTime = GameManager.instance.musicSource.time;
