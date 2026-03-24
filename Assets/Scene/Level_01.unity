@@ -2557,6 +2557,9 @@ Transform:
   - {fileID: 1881539992}
   - {fileID: 1771018124}
   - {fileID: 807060602}
+  - {fileID: 2004717398}
+  - {fileID: 1130641492}
+  - {fileID: 1075432268}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &551842246
@@ -5947,8 +5950,9 @@ GameObject:
   - component: {fileID: 1075432271}
   - component: {fileID: 1075432270}
   - component: {fileID: 1075432269}
+  - component: {fileID: 1075432272}
   m_Layer: 6
-  m_Name: Sphere (2)
+  m_Name: Saturn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5962,13 +5966,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075432267}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -142.2, y: 22.6, z: 118.84}
-  m_LocalScale: {x: 0.8143801, y: 0.81438, z: 0.8143801}
+  m_LocalRotation: {x: -0.32439196, y: -0.62830716, z: -0.32439196, w: 0.62830716}
+  m_LocalPosition: {x: -14.240004, y: 10.121671, z: 26.000017}
+  m_LocalScale: {x: 1.0383085, y: 1.0383085, z: 1.0383085}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 551842245}
+  m_LocalEulerAnglesHint: {x: -54.614, y: -90, z: 0}
 --- !u!135 &1075432269
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6043,6 +6047,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075432267}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1075432272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075432267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5214ac14662e0334ea80530dbd0328f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 1, y: 5, z: 0}
 --- !u!1001 &1082752430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6122,6 +6139,14 @@ PrefabInstance:
     - target: {fileID: 7562330708784023140, guid: 61d4d4c061728d449bec8930cd73daed, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402149633167429762, guid: 61d4d4c061728d449bec8930cd73daed, type: 3}
+      propertyPath: rotationSpeed.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402149633167429762, guid: 61d4d4c061728d449bec8930cd73daed, type: 3}
+      propertyPath: rotationSpeed.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9199684969582258615, guid: 61d4d4c061728d449bec8930cd73daed, type: 3}
       propertyPath: m_Name
@@ -6688,8 +6713,9 @@ GameObject:
   - component: {fileID: 1130641495}
   - component: {fileID: 1130641494}
   - component: {fileID: 1130641493}
+  - component: {fileID: 1130641496}
   m_Layer: 6
-  m_Name: Sphere (1)
+  m_Name: Saturn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6703,13 +6729,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130641491}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -166.3, y: 12.2, z: 102.619995}
-  m_LocalScale: {x: 1.4330999, y: 1.4331, z: 1.4330999}
+  m_LocalRotation: {x: -0.03477702, y: -0.7062511, z: -0.03477702, w: 0.7062511}
+  m_LocalPosition: {x: 1.8409958, y: -0.2643299, z: 1.8199925}
+  m_LocalScale: {x: 1.4330995, y: 1.4331, z: 1.4330995}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 551842245}
+  m_LocalEulerAnglesHint: {x: -5.638, y: 0, z: 0}
 --- !u!135 &1130641493
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6784,6 +6810,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130641491}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1130641496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130641491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5214ac14662e0334ea80530dbd0328f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 0, y: 3, z: 0}
 --- !u!1 &1131937199
 GameObject:
   m_ObjectHideFlags: 0
@@ -8517,6 +8556,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7204453959378930939, guid: 7841c098565b3fe4bb024e05cc97d4aa, type: 3}
+      propertyPath: rotationSpeed.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204453959378930939, guid: 7841c098565b3fe4bb024e05cc97d4aa, type: 3}
+      propertyPath: rotationSpeed.y
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8597073137843816299, guid: 7841c098565b3fe4bb024e05cc97d4aa, type: 3}
       propertyPath: m_Intensity
       value: 63.661976
@@ -9450,7 +9497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1732414880
 Transform:
   m_ObjectHideFlags: 0
@@ -9897,7 +9944,7 @@ Transform:
   m_GameObject: {fileID: 1771018123}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5248665, y: -0.4738303, z: -0.47383037, w: 0.5248666}
-  m_LocalPosition: {x: -0, y: -0, z: 7.37}
+  m_LocalPosition: {x: -0, y: 0.26, z: 7.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11780,8 +11827,9 @@ GameObject:
   - component: {fileID: 2004717397}
   - component: {fileID: 2004717396}
   - component: {fileID: 2004717395}
+  - component: {fileID: 2004717399}
   m_Layer: 6
-  m_Name: Sphere
+  m_Name: Mars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11869,13 +11917,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004717394}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -161.01, y: 11.68, z: 111.799995}
-  m_LocalScale: {x: 0.7525101, y: 0.75251, z: 0.7525101}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -7.2, y: -0.54, z: 7.54}
+  m_LocalScale: {x: 0.7525099, y: 0.75251, z: 0.7525099}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 551842245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2004717399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004717394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5214ac14662e0334ea80530dbd0328f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 5, y: 16, z: 0}
 --- !u!1 &2018239793
 GameObject:
   m_ObjectHideFlags: 0
@@ -35924,9 +35985,6 @@ SceneRoots:
   - {fileID: 8409929275179236165}
   - {fileID: 878251487}
   - {fileID: 1691302938}
-  - {fileID: 2004717398}
-  - {fileID: 1130641492}
-  - {fileID: 1075432268}
   - {fileID: 551842245}
   - {fileID: 455350800}
   - {fileID: 1331932497}
