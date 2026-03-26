@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public int emptyPressLimit = 5;
     public int emptyPressCount = 0;
 
+    public static bool startGame;
+
     void Awake()
     {
         if (instance == null)
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        startGame = false;
         gameOver = false;
         emptyPressCount = 0;
 
@@ -66,6 +69,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (!startGame)
+            return;
         if (gameOver)
         {
             musicSource.Stop();
