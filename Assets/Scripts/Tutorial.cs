@@ -1,63 +1,57 @@
+using System;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
 
 public class Tutorial : MonoBehaviour
 {
-    public GameObject tutorialOne;
-    public GameObject tutorialTwo;
-    public GameObject tutorialThree;
-
-    public Button next;
-    public Button previous;
-
-    private int currentPage = 0;
-    private float delay = 5f;
-
+    public GameObject[] background;
+    public GameObject[] tutorialImg;
+    public TMP_Text description;
+    private int progressCnt;
+    public string[] text;
+    
     void Start()
     {
-        next.onClick.AddListener(NextPage);
-        previous.onClick.AddListener(PreviousPage);
-
-        ShowPage();
-        StartCoroutine(AutoNext());
+        progressCnt = 0;
+        ShowPage(progressCnt);
     }
 
-    void ShowPage()
-    {
-        tutorialOne.SetActive(currentPage == 0);
-        tutorialTwo.SetActive(currentPage == 1);
-        tutorialThree.SetActive(currentPage == 2);
 
-        previous.gameObject.SetActive(currentPage > 0);
-        next.gameObject.SetActive(currentPage < 2);
-    }
-
-    IEnumerator AutoNext()
+    void Update()
     {
-        while (currentPage < 2)
-        {
-            yield return new WaitForSeconds(delay);
+        if(Input.anyKeyDown)
             NextPage();
-        }
     }
 
-    void NextPage()
+    private void NextPage()
     {
-        if (currentPage < 2)
+        progressCnt++;
+        if (progressCnt >= background.Length)
         {
-            currentPage++;
-            ShowPage();
+            EndTutorial();
+            return;
         }
+
+        ShowPage(progressCnt);
     }
 
-    void PreviousPage()
+    private void ShowPage(int index)
     {
-        if (currentPage > 0)
+        for (int i = 0; i < background.Length; i++)
         {
-            currentPage--;
-            ShowPage();
+            background[i].gameObject.SetActive(false);
+            tutorialImg[i].gameObject.SetActive(false);
         }
+
+        background[index].gameObject.SetActive(true);
+        tutorialImg[index].gameObject.SetActive(true);
+        description.text = text[index];
+    }
+
+    private void EndTutorial()
+    {
+        gameObject.SetActive(false);
+        GameManager.startGame = true;
+        GameManager.instance.StartMusic();
     }
 }
-

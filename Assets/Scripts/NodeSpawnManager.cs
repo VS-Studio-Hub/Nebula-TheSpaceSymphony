@@ -34,10 +34,10 @@ public class NodeSpawnManager : MonoBehaviour
         smnIndex = 0;
         lgnIndex = 0;
 
-        if (GameManager.instance != null)
-        {
-            GameManager.instance.StartMusic();
-        }
+        //if (GameManager.instance != null)
+        //{
+        //    GameManager.instance.StartMusic();
+        //}
     }
 
     void Update()
