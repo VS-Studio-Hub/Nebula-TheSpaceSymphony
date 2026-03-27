@@ -7,8 +7,10 @@ public class Tutorial : MonoBehaviour
     public GameObject[] background;
     public GameObject[] tutorialImg;
     public TMP_Text description;
+    public TMP_Text sideDescriptionTxt;
     private int progressCnt;
     public string[] text;
+    public string[] sideDescription;
     
     void Start()
     {
@@ -46,6 +48,7 @@ public class Tutorial : MonoBehaviour
         background[index].gameObject.SetActive(true);
         tutorialImg[index].gameObject.SetActive(true);
         description.text = text[index];
+        sideDescriptionTxt.text = sideDescription[index];
     }
 
     private void EndTutorial()
