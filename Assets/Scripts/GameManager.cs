@@ -33,7 +33,9 @@ public class GameManager : MonoBehaviour
     public int emptyPressCount = 0;
 
     public static bool startGame;
-
+    public CrackingScreenController CrackController;
+    public int Counter = 0;
+    public GameObject CustomPass;
     void Awake()
     {
         if (instance == null)
@@ -43,6 +45,12 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+        if (CrackController == null)
+        {
+            CustomPass = GameObject.Find("Custom Pass");
+            CrackController = GameObject.Find("Custom Pass").GetComponent<CrackingScreenController>();
+            CustomPass.SetActive(false);
         }
     }
 
@@ -123,7 +131,7 @@ public class GameManager : MonoBehaviour
     public void MissNotesValue() => MissNotesValue(1);
 
     private void MissNotesValue(int value)
-    {
+    {   
         missvalue += value;
         if (missvalue >= 10)
         {
@@ -134,7 +142,21 @@ public class GameManager : MonoBehaviour
                 score.SetActive(true);
         }
         else
+        {
             CameraShaking.start = true;
+            if (Counter == 0)
+            {
+                CustomPass.SetActive(true);
+                Counter++;
+            }
+            else
+            {
+                CrackController.EffectVisibility();
+                Counter++;
+            }
+        }
+            
+
     }
     public void EmptyPressCount()
     {
@@ -158,6 +180,16 @@ public class GameManager : MonoBehaviour
     public void ResetEmptyPressCount()
     {
         emptyPressCount = 0;
+        if (Counter > 0)
+        {
+            Counter--;
+            CrackController.EffectInVisibility();
+        }
+        else
+        {   
+
+            CustomPass.SetActive(false);
+        }
     }
 
     public void NoteMissed()
