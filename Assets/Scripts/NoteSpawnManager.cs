@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeSpawnManager : MonoBehaviour
+public class NoteSpawnManager : MonoBehaviour
 {
     [Header("Timings")]
     public float[] smallNoteTimings;
@@ -11,6 +12,7 @@ public class NodeSpawnManager : MonoBehaviour
     public GameObject smallNotePrefab;
     public GameObject longNotePrefab;
     public GameObject purpleNote;
+    public GameObject noteSpawnVfx;
     public Transform spawnPoint;
 
     [Header("Audio Clips")]
@@ -33,6 +35,7 @@ public class NodeSpawnManager : MonoBehaviour
         currentLongNoteIndex = 0;
         smnIndex = 0;
         lgnIndex = 0;
+        noteSpawnVfx.gameObject.SetActive(false);
 
         //if (GameManager.instance != null)
         //{
@@ -74,6 +77,8 @@ public class NodeSpawnManager : MonoBehaviour
         GameObject prefabToSpawn = isPurple ? purpleNote : smallNotePrefab;
         GameObject note = Instantiate(prefabToSpawn, spawnPoint.position, Quaternion.identity);
 
+        StartCoroutine(notesSpawnVfx());
+
         AudioSource audioSource = note.GetComponent<AudioSource>();
         if (audioSource != null && smnIndex < smnClip.Length)
         {
@@ -81,6 +86,13 @@ public class NodeSpawnManager : MonoBehaviour
         }
 
         smnIndex++;
+    }
+
+    IEnumerator notesSpawnVfx()
+    {
+        noteSpawnVfx.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.6f);
+        noteSpawnVfx.gameObject.SetActive(false);
     }
 
     private void SpawnLongNote(float startTime, float endTime)
