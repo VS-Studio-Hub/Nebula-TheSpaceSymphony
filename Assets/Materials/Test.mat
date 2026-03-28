@@ -269,7 +269,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     - _freshnel: 3.01
-    - _outline: 450.93884
+    - _outline: 496.6585
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
