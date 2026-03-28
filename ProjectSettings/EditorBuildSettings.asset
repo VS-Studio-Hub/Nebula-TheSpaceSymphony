@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scene/MainMenu.unity
     guid: 55bbd1410dc453d40bcca470036b76dc
   - enabled: 1
+    path: Assets/Scene/Credits.unity
+    guid: 0ef4dfce963d4914ea61ce91c0631918
+  - enabled: 1
     path: Assets/Scene/PlanetSelection.unity
     guid: c215a65fe129e124e956d9f3775a44fc
   - enabled: 1
