@@ -24,7 +24,8 @@ public class SmallNote : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip missSound;
-
+    public CrackingScreenController CrackController;
+    public int Counter = 0;
     private void OnEnable()
     {
         InputActions.FindActionMap("PlayerInput");
@@ -37,6 +38,10 @@ public class SmallNote : MonoBehaviour
         hitSAction = InputSystem.actions.FindAction("HitS");
         hitDAction = InputSystem.actions.FindAction("HitD");
         hitFAction = InputSystem.actions.FindAction("HitF");
+        /*if (CrackController == null)
+        {
+            CrackController = GameObject.Find("Custom Pass").GetComponent<CrackingScreenController>();
+        }*/
     }
 
 
@@ -218,5 +223,14 @@ public class SmallNote : MonoBehaviour
             VFXManager.blackHole = true;
             VFXManager.instance.LaneFourVFX();
         }
+        
+        /*if (Counter == 0)
+        {
+            CrackController.enabled = true;
+        }
+        else
+        {
+            CrackController.EffectVisibility();
+        }*/
     }
 }
