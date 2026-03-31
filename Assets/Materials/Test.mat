@@ -269,11 +269,8 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     - _freshnel: 3.01
-<<<<<<< Updated upstream
-    - _outline: 341.24994
-=======
+
     - _outline: 362.32608
->>>>>>> Stashed changes
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
