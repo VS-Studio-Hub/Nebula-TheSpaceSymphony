@@ -8102,6 +8102,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Custom Pass
       objectReference: {fileID: 0}
+    - target: {fileID: 1163652831792260698, guid: 0671230be150ddf4db1820cc8e96d385, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8905378960544240988, guid: 0671230be150ddf4db1820cc8e96d385, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.43021

@@ -46,12 +46,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (CrackController == null)
-        {
-            CustomPass = GameObject.Find("Custom Pass");
-            CrackController = GameObject.Find("Custom Pass").GetComponent<CrackingScreenController>();
-            CustomPass.SetActive(false);
-        }
+        //if (CrackController == null)
+        //{
+        //    CustomPass = GameObject.Find("Custom Pass");
+        //    CrackController = GameObject.Find("Custom Pass").GetComponent<CrackingScreenController>();
+        //    CustomPass.SetActive(false);
+        //}
     }
 
     void Start()
@@ -144,16 +144,16 @@ public class GameManager : MonoBehaviour
         else
         {
             CameraShaking.start = true;
-            if (Counter == 0)
-            {
-                CustomPass.SetActive(true);
-                Counter++;
-            }
-            else
-            {
-                CrackController.EffectVisibility();
-                Counter++;
-            }
+            //if (Counter == 0)
+            //{
+            //    CustomPass.SetActive(true);
+            //    Counter++;
+            //}
+            //else
+            //{
+            //    CrackController.EffectVisibility();
+            //    Counter++;
+            //}
         }
             
 
@@ -180,16 +180,16 @@ public class GameManager : MonoBehaviour
     public void ResetEmptyPressCount()
     {
         emptyPressCount = 0;
-        if (Counter > 0)
-        {
-            Counter--;
-            CrackController.EffectInVisibility();
-        }
-        else
-        {   
+        //if (Counter > 0)
+        //{
+        //    Counter--;
+        //    //CrackController.EffectInVisibility();
+        //}
+        //else
+        //{   
 
-            CustomPass.SetActive(false);
-        }
+        //    CustomPass.SetActive(false);
+        //}
     }
 
     public void NoteMissed()
