@@ -107,7 +107,7 @@ public class VFXManager : MonoBehaviour
         else if (greenSpark)
         {
             ParticleSystem clone = Instantiate(GreenSpark, laneVFXTransform[0].transform.position, Quaternion.identity);
-            GreenSpark.Play();
+            clone.Play();
             greenSpark = false;
             StartCoroutine(DestroyParticleSystemAfterTime(clone, 2f));
         }
@@ -130,7 +130,7 @@ public class VFXManager : MonoBehaviour
         else if (greenSpark)
         {
             ParticleSystem clone = Instantiate(GreenSpark, laneVFXTransform[1].transform.position, Quaternion.identity);
-            GreenSpark.Play();
+            clone.Play();
             greenSpark = false;
             StartCoroutine(DestroyParticleSystemAfterTime(clone, 2f));
         }
@@ -154,7 +154,7 @@ public class VFXManager : MonoBehaviour
         else if (greenSpark)
         {
             ParticleSystem clone = Instantiate(GreenSpark, laneVFXTransform[2].transform.position, Quaternion.identity);
-            GreenSpark.Play();
+            clone.Play();
             greenSpark = false;
             StartCoroutine(DestroyParticleSystemAfterTime(clone, 2f));
         }
@@ -177,7 +177,7 @@ public class VFXManager : MonoBehaviour
         else if (greenSpark)
         {
             ParticleSystem clone = Instantiate(GreenSpark, laneVFXTransform[3].transform.position, Quaternion.identity);
-            GreenSpark.Play();
+            clone.Play();
             greenSpark = false;
             StartCoroutine(DestroyParticleSystemAfterTime(clone, 2f));
         }

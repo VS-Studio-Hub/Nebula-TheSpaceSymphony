@@ -174,9 +174,7 @@ public class SmallNote : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Activator"))
-        {
             canBePressed = true;
-        }
         if (other.CompareTag("LaneOne"))
             laneOne = true;
         if (other.CompareTag("LaneTwo"))

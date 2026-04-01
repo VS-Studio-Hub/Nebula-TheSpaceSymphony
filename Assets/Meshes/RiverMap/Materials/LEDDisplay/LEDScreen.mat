@@ -167,7 +167,7 @@ Material:
     - _BlendMode: 0
     - _CoatMask: 0
     - _ConservativeDepthOffsetEnable: 0
-    - _Contrast: 0.52
+    - _Contrast: 0.45999998
     - _CrackDistortAmount: 0.2
     - _CrackNormalAmount: 0.78
     - _CullMode: 2
@@ -212,7 +212,7 @@ Material:
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 1
-    - _MaskSize: 0.19999993
+    - _MaskSize: 0.29999992
     - _MaterialID: 1
     - _MaterialTypeMask: 2
     - _Metallic: 0
