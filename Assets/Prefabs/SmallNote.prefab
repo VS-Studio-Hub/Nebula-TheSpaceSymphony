@@ -167,10 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2c1d2d0d49d0f44b83c606aab8230e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 0}
-  goodEffect: {fileID: 0}
-  perfectEffect: {fileID: 0}
-  missEffect: {fileID: 0}
   mesh: {fileID: 9204078273503688223}
   laneOne: 0
   laneTwo: 0
@@ -213,8 +209,10 @@ MonoBehaviour:
   defaultMaterial:
   - {fileID: 2100000, guid: bf566beada769c24fa2d97614cb9f87c, type: 2}
   - {fileID: 2100000, guid: ad11c7d2522a3994e993335de21aa6c1, type: 2}
-  - {fileID: 2100000, guid: c4b91a03407906d488561e6b2735ba2b, type: 2}
   - {fileID: 2100000, guid: dd111c95e8eb2904280616a87fd541ba, type: 2}
+  - {fileID: 2100000, guid: 8d831b21c9b497f42be7d403a4c90673, type: 2}
+  Intensity: 1000
+  DimSpeed: 225
 --- !u!1001 &8320995960400300878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -266,7 +264,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: d3626b7850bd78949b2190f1ddb44511, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: cec3713788dedc54e9bfd0e785e69474, type: 2}
+      objectReference: {fileID: 2100000, guid: 8d831b21c9b497f42be7d403a4c90673, type: 2}
     - target: {fileID: 919132149155446097, guid: d3626b7850bd78949b2190f1ddb44511, type: 3}
       propertyPath: m_Name
       value: Nebula_NoteSolo
@@ -325,7 +323,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9204078273503688223}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 757662795a34d8d4b99721eb04e8528d, type: 3}
   m_Name: 
@@ -339,3 +337,5 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7a564618f9b855e4bab942fb1ded933e, type: 2}
   - {fileID: 2100000, guid: dd111c95e8eb2904280616a87fd541ba, type: 2}
   - {fileID: 2100000, guid: c4b91a03407906d488561e6b2735ba2b, type: 2}
+  Intensity: 10
+  DimSpeed: 0.5
