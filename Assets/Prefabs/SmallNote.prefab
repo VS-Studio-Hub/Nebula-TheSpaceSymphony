@@ -208,7 +208,7 @@ MonoBehaviour:
   laneFour: 0
   defaultMaterial:
   - {fileID: 2100000, guid: bf566beada769c24fa2d97614cb9f87c, type: 2}
-  - {fileID: 2100000, guid: ad11c7d2522a3994e993335de21aa6c1, type: 2}
+  - {fileID: 2100000, guid: 7a564618f9b855e4bab942fb1ded933e, type: 2}
   - {fileID: 2100000, guid: dd111c95e8eb2904280616a87fd541ba, type: 2}
   - {fileID: 2100000, guid: 8d831b21c9b497f42be7d403a4c90673, type: 2}
   Intensity: 1000

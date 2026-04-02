@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class UIManager : MonoBehaviour
     public bool planetSpawned = false;
 
     public TMP_Text planetLevel;
-
+    public Material[] planetTransitionMaterial;
+    public GameObject[] TransitioningPlanets;
+    public GameObject[] PlaceHolderPlanets;
     private void Awake()
     {
         instance = this;
@@ -59,7 +62,9 @@ public class UIManager : MonoBehaviour
         if (currentEnergyPoints >= 100 && planetOne.activeSelf)
         {
             planetOne.SetActive(false);
-            planetTwo.SetActive(true);
+            TransitioningPlanets[0].SetActive(true);
+            PlaceHolderPlanets[0].SetActive(true);
+            StartCoroutine(SummonPlanet(planetTwo));
             currentEnergyPoints = 0;
             planetLevel.text = "Phase: 2";
         }
@@ -92,5 +97,10 @@ public class UIManager : MonoBehaviour
     {
         currentBoostPoints = currentBoostPoints + basePoints;
         currentBoostPoints = Mathf.Clamp(currentBoostPoints, 0, maxBoostPoints);
+    }
+    IEnumerator SummonPlanet(GameObject planet)
+    {
+        yield return new WaitForSecondsRealtime(5f);
+        planet.SetActive(true);
     }
 }
