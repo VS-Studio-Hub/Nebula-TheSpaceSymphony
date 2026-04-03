@@ -158,10 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4e64d6d3900a84a939f09b4d906065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 1558725806215378535, guid: 7fda46ee8c9916e46b7faff7cfd7f9dd, type: 3}
-  goodEffect: {fileID: 7351607583570229049, guid: 03111ed7c47928d479b2cd7e0ff3e751, type: 3}
-  perfectEffect: {fileID: 1989052463084812574, guid: 9a478b5f632aa8945ba6348b6f4d083f, type: 3}
-  missEffect: {fileID: 6800777640240049159, guid: 4c99a139814a65749a19483401665a06, type: 3}
   mesh: {fileID: 9121044893594134191}
   canBePressed: 0
   laneOne: 0
@@ -286,6 +282,8 @@ MonoBehaviour:
   laneThree: 0
   laneFour: 0
   defaultMaterial: {fileID: 2100000, guid: dc87dbb3b41595b48aeb25ac77eedf31, type: 2}
+  Intensity: 1000
+  DimSpeed: 225
 --- !u!64 &6251054477487588122
 MeshCollider:
   m_ObjectHideFlags: 0

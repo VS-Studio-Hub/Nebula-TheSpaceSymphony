@@ -9,7 +9,7 @@ public class PlanetTransition : MonoBehaviour
     [SerializeField] private float objectHeight = -1.0f;
 
     private Material[] material;
-
+    public float height = 600;
     private void Awake()
     {
         material = GetComponent<Renderer>().materials;
@@ -21,7 +21,7 @@ public class PlanetTransition : MonoBehaviour
     {
         var time = Time.time * Mathf.PI * 0.25f;
 
-        float height = -2;
+        
         height += time * (objectHeight / 2.0f);
         SetHeight(height);
     }
