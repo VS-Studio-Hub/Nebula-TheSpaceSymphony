@@ -30,12 +30,12 @@ public class BlackholeAnim : MonoBehaviour
             {
                 a = 1.5f;
             }
-            b += 5000f * Time.deltaTime;
+            b += 2000f * Time.deltaTime;
            
         }
         else
         {
-            b -=3800f * Time.deltaTime;
+            b -=1520f * Time.deltaTime;
         }
 
         if (!(newScale.x == this.transform.localScale.x))

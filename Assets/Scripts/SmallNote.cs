@@ -24,8 +24,8 @@ public class SmallNote : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip missSound;
-    public CrackingScreenController CrackController;
-    public int Counter = 0;
+    /*public CrackingScreenController CrackController;
+    public int Counter = 0;*/
     private void OnEnable()
     {
         InputActions.FindActionMap("PlayerInput");
