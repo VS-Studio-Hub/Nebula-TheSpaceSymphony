@@ -22,6 +22,13 @@ public class Settings : MonoBehaviour
     public TMP_Dropdown resolution;
     public TMP_Dropdown screenMode;
 
+    [Header("Audio")]
+    public Slider masterVolumeSlider;
+    public TMP_InputField masterVolumeInput;
+
+    public Slider musicVolumeSlider;
+    public TMP_InputField musicVolumeInput;
+
     [Header("Input Asset (for Save/Load)")]
     [SerializeField] private InputActionAsset inputActionsAsset;
 
@@ -37,12 +44,16 @@ public class Settings : MonoBehaviour
     [SerializeField] private TMP_Text lane3Text;
     [SerializeField] private TMP_Text lane4Text;
 
+    public GameObject content;
+
     private InputActionRebindingExtensions.RebindingOperation rebindingOp;
 
     private const string RebindSaveKey = "rhythm_rebinds";
     private const string BrightnessSaveKey = "settings_brightness";
     private const string ResolutionSaveKey = "settings_resolution";
     private const string ScreenModeSaveKey = "settings_screenmode";
+    private const string MasterVolumeSaveKey = "settings_mastervolume";
+    private const string MusicVolumeSaveKey = "settings_musicvolume";
 
     private void Awake()
     {
@@ -60,6 +71,10 @@ public class Settings : MonoBehaviour
         brightnessInput.onEndEdit.AddListener(OnInput);
         resolution.onValueChanged.AddListener(OnResolutionChanged);
         screenMode.onValueChanged.AddListener(OnScreenModeChanged);
+        masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeSlider);
+        masterVolumeInput.onEndEdit.AddListener(OnMasterVolumeInput);
+        musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeSlider);
+        musicVolumeInput.onEndEdit.AddListener(OnMusicVolumeInput);
 
         LoadAllSettings();
         LoadRebinds();
@@ -97,6 +112,9 @@ public class Settings : MonoBehaviour
             screenMode.RefreshShownValue();
             SetScreenMode(savedScreenMode);
         }
+
+        LoadMasterVolume();
+        LoadMusicVolume();
     }
 
     // Resolution
@@ -113,16 +131,12 @@ public class Settings : MonoBehaviour
         switch (index)
         {
             case 0:
-                Screen.SetResolution(1280, 720, Screen.fullScreenMode, refreshRate);
-                break;
-
-            case 1:
                 Screen.SetResolution(1920, 1080, Screen.fullScreenMode, refreshRate);
                 break;
 
-                // case 2:
-                //     Screen.SetResolution(2560, 1440, Screen.fullScreenMode, refreshRate);
-                //     break;
+            case 1:
+                Screen.SetResolution(1280, 720, Screen.fullScreenMode, refreshRate);
+                break;
         }
     }
 
@@ -144,15 +158,11 @@ public class Settings : MonoBehaviour
         switch (index)
         {
             case 0:
-                Screen.fullScreenMode = FullScreenMode.Windowed;
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
                 break;
 
             case 1:
-                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
-                break;
-
-            case 2:
-                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                Screen.fullScreenMode = FullScreenMode.Windowed;
                 break;
         }
     }
@@ -227,6 +237,84 @@ public class Settings : MonoBehaviour
     {
         PlayerPrefs.SetFloat(BrightnessSaveKey, brightness);
         PlayerPrefs.Save();
+    }
+
+    //Master Volume
+    private void LoadMasterVolume()
+    {
+        float savedVolume = PlayerPrefs.GetFloat(MasterVolumeSaveKey, 1f);
+        AudioListener.volume = savedVolume;
+        UpdateAudioUI(masterVolumeSlider, masterVolumeInput, savedVolume);
+    }
+
+    private void OnMasterVolumeSlider(float value)
+    {
+        AudioListener.volume = value;
+        UpdateAudioUI(masterVolumeSlider, masterVolumeInput, value);
+
+        PlayerPrefs.SetFloat(MasterVolumeSaveKey, value);
+        PlayerPrefs.Save();
+    }
+
+    private void OnMasterVolumeInput(string text)
+    {
+        if (!float.TryParse(text, out float percent)) return;
+
+        percent = Mathf.Clamp(percent, 0, 100) / 100f;
+        float value = percent / 100f;
+
+        AudioListener.volume = value;
+        UpdateAudioUI(masterVolumeSlider, masterVolumeInput, value);
+
+        PlayerPrefs.SetFloat(MasterVolumeSaveKey, value);
+        PlayerPrefs.Save();
+    }
+
+    // Music Volume
+
+    private void LoadMusicVolume()
+    {
+        float savedVolume = PlayerPrefs.GetFloat(MusicVolumeSaveKey, 1f);
+
+        if(GameManager.instance != null && GameManager.instance.musicSource != null)
+            GameManager.instance.musicSource.volume = savedVolume;
+
+        UpdateAudioUI(musicVolumeSlider, musicVolumeInput, savedVolume);
+    }
+    private void OnMusicVolumeSlider(float value)
+    {
+        if (GameManager.instance != null && GameManager.instance.musicSource != null)
+            GameManager.instance.musicSource.volume = value;
+
+        UpdateAudioUI(musicVolumeSlider, musicVolumeInput, value);
+
+        PlayerPrefs.SetFloat(MusicVolumeSaveKey, value);
+        PlayerPrefs.Save();
+    }
+
+    private void OnMusicVolumeInput(string text)
+    {
+        if (!float.TryParse(text, out float percent)) return;
+
+        percent = Mathf.Clamp(percent, 0f, 100f);
+        float value = percent / 100f;
+
+        if (GameManager.instance != null && GameManager.instance.musicSource != null)
+            GameManager.instance.musicSource.volume = value;
+
+        UpdateAudioUI(musicVolumeSlider, musicVolumeInput, value);
+
+        PlayerPrefs.SetFloat(MusicVolumeSaveKey, value);
+        PlayerPrefs.Save();
+    }
+
+    private void UpdateAudioUI(Slider slider, TMP_InputField input, float value)
+    {
+        if (slider != null)
+            slider.value = value;
+
+        if (input != null)
+            input.text = Mathf.RoundToInt(value * 100f).ToString();
     }
 
     // Rebinding
@@ -310,5 +398,22 @@ public class Settings : MonoBehaviour
     public void CloseSettings()
     {
         settingsMenu.SetActive(false);
+    }
+
+    public void GeneralBtn()
+    {
+        content.transform.localPosition = new Vector3(0, -305, 0);
+    }
+    public void AudioBtn()
+    {
+        content.transform.localPosition = new Vector3(0, 30, 0);
+    }
+    public void AccessibilityBtn()
+    {
+        content.transform.localPosition = new Vector3(0, 286, 0);
+    }
+    public void CustomizationBtn()
+    {
+        content.transform.localPosition = new Vector3(0, 305, 0);
     }
 }

@@ -49,6 +49,6 @@ public class PlanetLevelSelection : MonoBehaviour
 
     public void Back()
     {
-        SceneManager.LoadScene("Solar System");
+        SceneManager.LoadScene("MainMenu");
     }
 }

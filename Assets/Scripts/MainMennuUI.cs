@@ -18,7 +18,7 @@ public class MainMennuUI : MonoBehaviour
 
     public void SolarSystem()
     {
-        SceneManager.LoadScene("Solar System");
+        SceneManager.LoadScene("Planet01");
     }
 
     public void Settings()
