@@ -19,9 +19,8 @@ public class UIManager : MonoBehaviour
     public bool planetSpawned = false;
 
     public TMP_Text planetLevel;
-    public Material[] planetTransitionMaterial;
     public GameObject[] TransitioningPlanets;
-    public GameObject[] PlaceHolderPlanets;
+    
     private void Awake()
     {
         instance = this;
@@ -54,24 +53,25 @@ public class UIManager : MonoBehaviour
     {
         if (currentEnergyPoints >= 100 && !planetSpawned)
         {
-            planetOne.SetActive(true);
+            TransitioningPlanets[0].SetActive(true);
             planetSpawned = true;
+            StartCoroutine(SummonPlanet(planetOne, 0));
             currentEnergyPoints = 0;
             planetLevel.text = "Phase: 1";
         }
         if (currentEnergyPoints >= 100 && planetOne.activeSelf)
         {
             planetOne.SetActive(false);
-            TransitioningPlanets[0].SetActive(true);
-            PlaceHolderPlanets[0].SetActive(true);
-            StartCoroutine(SummonPlanet(planetTwo));
+            TransitioningPlanets[1].SetActive(true);
+            StartCoroutine(SummonPlanet(planetTwo, 1));
             currentEnergyPoints = 0;
             planetLevel.text = "Phase: 2";
         }
         if (currentEnergyPoints >= 100 && planetTwo.activeSelf)
         {
             planetTwo.SetActive(false);
-            planetThree.SetActive(true);
+            TransitioningPlanets[2].SetActive(true);
+            StartCoroutine(SummonPlanet(planetThree, 2));
             currentEnergyPoints = 0;
             planetLevel.text = "Phase: 3";
 
@@ -98,9 +98,11 @@ public class UIManager : MonoBehaviour
         currentBoostPoints = currentBoostPoints + basePoints;
         currentBoostPoints = Mathf.Clamp(currentBoostPoints, 0, maxBoostPoints);
     }
-    IEnumerator SummonPlanet(GameObject planet)
+    IEnumerator SummonPlanet(GameObject planet, int transitionIndex)
     {
         yield return new WaitForSecondsRealtime(5f);
         planet.SetActive(true);
+        TransitioningPlanets[transitionIndex].SetActive(false);
+        
     }
 }
