@@ -17875,6 +17875,10 @@ MonoBehaviour:
   brightnessInput: {fileID: 873635835807391846}
   resolution: {fileID: 744106839596542925}
   screenMode: {fileID: 5937485602463882131}
+  masterVolumeSlider: {fileID: 9057050175765771512}
+  masterVolumeInput: {fileID: 7072646127430867754}
+  musicVolumeSlider: {fileID: 7738596492935768716}
+  musicVolumeInput: {fileID: 4104006299243261035}
   inputActionsAsset: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   lane1: {fileID: -56928651243643539, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   lane2: {fileID: 3247929734336615380, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
