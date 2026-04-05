@@ -29,6 +29,9 @@ public class Settings : MonoBehaviour
     public Slider musicVolumeSlider;
     public TMP_InputField musicVolumeInput;
 
+    [Header("Scene Music Source")]
+    public AudioSource musicSource;
+
     [Header("Input Asset (for Save/Load)")]
     [SerializeField] private InputActionAsset inputActionsAsset;
 
@@ -67,33 +70,79 @@ public class Settings : MonoBehaviour
             exposure.mode.value = ExposureMode.Fixed;
         }
 
-        brightnessSlider.onValueChanged.AddListener(OnSlider);
-        brightnessInput.onEndEdit.AddListener(OnInput);
-        resolution.onValueChanged.AddListener(OnResolutionChanged);
-        screenMode.onValueChanged.AddListener(OnScreenModeChanged);
-        masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeSlider);
-        masterVolumeInput.onEndEdit.AddListener(OnMasterVolumeInput);
-        musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeSlider);
-        musicVolumeInput.onEndEdit.AddListener(OnMusicVolumeInput);
+        if (brightnessSlider != null)
+            brightnessSlider.onValueChanged.AddListener(OnSlider);
+
+        if (brightnessInput != null)
+            brightnessInput.onEndEdit.AddListener(OnInput);
+
+        if (resolution != null)
+            resolution.onValueChanged.AddListener(OnResolutionChanged);
+
+        if (screenMode != null)
+            screenMode.onValueChanged.AddListener(OnScreenModeChanged);
+
+        if (masterVolumeSlider != null)
+            masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeSlider);
+
+        if (masterVolumeInput != null)
+            masterVolumeInput.onEndEdit.AddListener(OnMasterVolumeInput);
+
+        if (musicVolumeSlider != null)
+            musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeSlider);
+
+        if (musicVolumeInput != null)
+            musicVolumeInput.onEndEdit.AddListener(OnMusicVolumeInput);
 
         LoadAllSettings();
         LoadRebinds();
         RefreshUI();
     }
 
+    private void OnDestroy()
+    {
+        if (brightnessSlider != null)
+            brightnessSlider.onValueChanged.RemoveListener(OnSlider);
+
+        if (brightnessInput != null)
+            brightnessInput.onEndEdit.RemoveListener(OnInput);
+
+        if (resolution != null)
+            resolution.onValueChanged.RemoveListener(OnResolutionChanged);
+
+        if (screenMode != null)
+            screenMode.onValueChanged.RemoveListener(OnScreenModeChanged);
+
+        if (masterVolumeSlider != null)
+            masterVolumeSlider.onValueChanged.RemoveListener(OnMasterVolumeSlider);
+
+        if (masterVolumeInput != null)
+            masterVolumeInput.onEndEdit.RemoveListener(OnMasterVolumeInput);
+
+        if (musicVolumeSlider != null)
+            musicVolumeSlider.onValueChanged.RemoveListener(OnMusicVolumeSlider);
+
+        if (musicVolumeInput != null)
+            musicVolumeInput.onEndEdit.RemoveListener(OnMusicVolumeInput);
+
+        if (rebindingOp != null)
+        {
+            rebindingOp.Dispose();
+            rebindingOp = null;
+        }
+    }
+
     private void LoadAllSettings()
     {
-        // Brightness
         float defaultBrightness = Mathf.Lerp(minBrightness, maxBrightness, 0.5f);
         float savedBrightness = PlayerPrefs.GetFloat(BrightnessSaveKey, defaultBrightness);
 
         if (exposure != null)
         {
             exposure.compensation.value = savedBrightness;
-            UpdateUI(savedBrightness);
+            UpdateBrightnessUI(savedBrightness);
         }
 
-        // Resolution
         int savedResolution = PlayerPrefs.GetInt(ResolutionSaveKey, 0);
 
         if (resolution != null)
@@ -103,7 +152,6 @@ public class Settings : MonoBehaviour
             SetResolution(savedResolution);
         }
 
-        // Screen Mode
         int savedScreenMode = PlayerPrefs.GetInt(ScreenModeSaveKey, 0);
 
         if (screenMode != null)
@@ -117,7 +165,6 @@ public class Settings : MonoBehaviour
         LoadMusicVolume();
     }
 
-    // Resolution
     private void OnResolutionChanged(int index)
     {
         SetResolution(index);
@@ -133,7 +180,6 @@ public class Settings : MonoBehaviour
             case 0:
                 Screen.SetResolution(1920, 1080, Screen.fullScreenMode, refreshRate);
                 break;
-
             case 1:
                 Screen.SetResolution(1280, 720, Screen.fullScreenMode, refreshRate);
                 break;
@@ -146,7 +192,6 @@ public class Settings : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // Screen Mode
     private void OnScreenModeChanged(int index)
     {
         SetScreenMode(index);
@@ -160,7 +205,6 @@ public class Settings : MonoBehaviour
             case 0:
                 Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
                 break;
-
             case 1:
                 Screen.fullScreenMode = FullScreenMode.Windowed;
                 break;
@@ -173,14 +217,16 @@ public class Settings : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // Brightness
     private void OnSlider(float value)
     {
         if (exposure == null) return;
 
+        value = Mathf.Clamp01(value);
+
         float brightness = Mathf.Lerp(minBrightness, maxBrightness, value);
         exposure.compensation.value = brightness;
-        UpdateUI(brightness);
+
+        UpdateBrightnessUI(brightness);
         SaveBrightness(brightness);
     }
 
@@ -189,40 +235,40 @@ public class Settings : MonoBehaviour
         if (exposure == null) return;
         if (!float.TryParse(text, out float percent)) return;
 
-        percent = Mathf.Clamp(percent, 0, 100);
+        percent = Mathf.Clamp(percent, 0f, 100f);
 
         float brightness = Mathf.Lerp(minBrightness, maxBrightness, percent / 100f);
         exposure.compensation.value = brightness;
 
-        UpdateUI(brightness);
+        UpdateBrightnessUI(brightness);
         SaveBrightness(brightness);
     }
 
     public void IncreaseBrightness()
     {
-        Change(5);
+        ChangeBrightness(5f);
     }
 
     public void DecreaseBrightness()
     {
-        Change(-5);
+        ChangeBrightness(-5f);
     }
 
-    private void Change(float percentStep)
+    private void ChangeBrightness(float percentStep)
     {
         if (exposure == null) return;
 
         float currentPercent = Mathf.InverseLerp(minBrightness, maxBrightness, exposure.compensation.value) * 100f;
-        currentPercent = Mathf.Clamp(currentPercent + percentStep, 0, 100);
+        currentPercent = Mathf.Clamp(currentPercent + percentStep, 0f, 100f);
 
         float brightness = Mathf.Lerp(minBrightness, maxBrightness, currentPercent / 100f);
         exposure.compensation.value = brightness;
 
-        UpdateUI(brightness);
+        UpdateBrightnessUI(brightness);
         SaveBrightness(brightness);
     }
 
-    private void UpdateUI(float brightness)
+    private void UpdateBrightnessUI(float brightness)
     {
         float percent = Mathf.InverseLerp(minBrightness, maxBrightness, brightness) * 100f;
 
@@ -239,16 +285,19 @@ public class Settings : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    //Master Volume
     private void LoadMasterVolume()
     {
         float savedVolume = PlayerPrefs.GetFloat(MasterVolumeSaveKey, 1f);
+        savedVolume = Mathf.Clamp01(savedVolume);
+
         AudioListener.volume = savedVolume;
         UpdateAudioUI(masterVolumeSlider, masterVolumeInput, savedVolume);
     }
 
     private void OnMasterVolumeSlider(float value)
     {
+        value = Mathf.Clamp01(value);
+
         AudioListener.volume = value;
         UpdateAudioUI(masterVolumeSlider, masterVolumeInput, value);
 
@@ -260,7 +309,7 @@ public class Settings : MonoBehaviour
     {
         if (!float.TryParse(text, out float percent)) return;
 
-        percent = Mathf.Clamp(percent, 0, 100) / 100f;
+        percent = Mathf.Clamp(percent, 0f, 100f);
         float value = percent / 100f;
 
         AudioListener.volume = value;
@@ -270,21 +319,23 @@ public class Settings : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // Music Volume
-
     private void LoadMusicVolume()
     {
         float savedVolume = PlayerPrefs.GetFloat(MusicVolumeSaveKey, 1f);
+        savedVolume = Mathf.Clamp01(savedVolume);
 
-        if(GameManager.instance != null && GameManager.instance.musicSource != null)
-            GameManager.instance.musicSource.volume = savedVolume;
+        if (musicSource != null)
+            musicSource.volume = savedVolume;
 
         UpdateAudioUI(musicVolumeSlider, musicVolumeInput, savedVolume);
     }
+
     private void OnMusicVolumeSlider(float value)
     {
-        if (GameManager.instance != null && GameManager.instance.musicSource != null)
-            GameManager.instance.musicSource.volume = value;
+        value = Mathf.Clamp01(value);
+
+        if (musicSource != null)
+            musicSource.volume = value;
 
         UpdateAudioUI(musicVolumeSlider, musicVolumeInput, value);
 
@@ -299,8 +350,8 @@ public class Settings : MonoBehaviour
         percent = Mathf.Clamp(percent, 0f, 100f);
         float value = percent / 100f;
 
-        if (GameManager.instance != null && GameManager.instance.musicSource != null)
-            GameManager.instance.musicSource.volume = value;
+        if (musicSource != null)
+            musicSource.volume = value;
 
         UpdateAudioUI(musicVolumeSlider, musicVolumeInput, value);
 
@@ -317,7 +368,6 @@ public class Settings : MonoBehaviour
             input.text = Mathf.RoundToInt(value * 100f).ToString();
     }
 
-    // Rebinding
     public void RebindLane1() => StartRebind(lane1, lane1Text);
     public void RebindLane2() => StartRebind(lane2, lane2Text);
     public void RebindLane3() => StartRebind(lane3, lane3Text);
@@ -325,7 +375,13 @@ public class Settings : MonoBehaviour
 
     private void StartRebind(InputActionReference actionRef, TMP_Text label)
     {
-        if (actionRef == null || actionRef.action == null) return;
+        if (actionRef == null || actionRef.action == null || label == null) return;
+
+        if (rebindingOp != null)
+        {
+            rebindingOp.Dispose();
+            rebindingOp = null;
+        }
 
         var action = actionRef.action;
 
@@ -339,6 +395,7 @@ public class Settings : MonoBehaviour
             .OnComplete(op =>
             {
                 op.Dispose();
+                rebindingOp = null;
                 action.Enable();
                 SaveRebinds();
                 RefreshUI();
@@ -346,6 +403,7 @@ public class Settings : MonoBehaviour
             .OnCancel(op =>
             {
                 op.Dispose();
+                rebindingOp = null;
                 action.Enable();
                 RefreshUI();
             })
@@ -354,10 +412,10 @@ public class Settings : MonoBehaviour
 
     private void RefreshUI()
     {
-        lane1Text.text = GetBindingName(lane1);
-        lane2Text.text = GetBindingName(lane2);
-        lane3Text.text = GetBindingName(lane3);
-        lane4Text.text = GetBindingName(lane4);
+        if (lane1Text != null) lane1Text.text = GetBindingName(lane1);
+        if (lane2Text != null) lane2Text.text = GetBindingName(lane2);
+        if (lane3Text != null) lane3Text.text = GetBindingName(lane3);
+        if (lane4Text != null) lane4Text.text = GetBindingName(lane4);
     }
 
     private string GetBindingName(InputActionReference actionRef)
@@ -397,23 +455,31 @@ public class Settings : MonoBehaviour
 
     public void CloseSettings()
     {
-        settingsMenu.SetActive(false);
+        if (settingsMenu != null)
+            settingsMenu.SetActive(false);
     }
 
     public void GeneralBtn()
     {
-        content.transform.localPosition = new Vector3(0, -305, 0);
+        if (content != null)
+            content.transform.localPosition = new Vector3(0, -305, 0);
     }
+
     public void AudioBtn()
     {
-        content.transform.localPosition = new Vector3(0, 30, 0);
+        if (content != null)
+            content.transform.localPosition = new Vector3(0, 30, 0);
     }
+
     public void AccessibilityBtn()
     {
-        content.transform.localPosition = new Vector3(0, 286, 0);
+        if (content != null)
+            content.transform.localPosition = new Vector3(0, 286, 0);
     }
+
     public void CustomizationBtn()
     {
-        content.transform.localPosition = new Vector3(0, 305, 0);
+        if (content != null)
+            content.transform.localPosition = new Vector3(0, 305, 0);
     }
 }
