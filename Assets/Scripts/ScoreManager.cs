@@ -15,6 +15,8 @@ public class ScoreManager : MonoBehaviour
 
     public static bool winState = true;
 
+    public static bool isTutorial = true;
+
 
     bool hasUpdatedScore = true;
     void Start()
@@ -153,10 +155,12 @@ public class ScoreManager : MonoBehaviour
     public void PlayAgain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        isTutorial = false;
     }
 
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
+
 }

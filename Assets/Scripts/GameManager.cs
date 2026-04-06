@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     public CrackingScreenController CrackController;
     public int Counter = 0;
     public GameObject CustomPass;
+
+    public GameObject tutorial;
+
     void Awake()
     {
         if (instance == null)
@@ -56,6 +59,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (!ScoreManager.isTutorial)
+        {
+            EndTutorial();
+        }
         startGame = false;
         gameOver = false;
         emptyPressCount = 0;
@@ -246,5 +253,13 @@ public class GameManager : MonoBehaviour
 
         if (multiText != null)
             multiText.text = "x" + currentMultiplier;
+    }
+
+
+    private void EndTutorial()
+    {
+        tutorial.gameObject.SetActive(false);
+        startGame = true;
+        StartMusic();
     }
 }

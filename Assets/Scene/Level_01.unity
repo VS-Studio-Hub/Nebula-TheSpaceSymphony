@@ -6506,6 +6506,7 @@ MonoBehaviour:
   CrackController: {fileID: 0}
   Counter: 0
   CustomPass: {fileID: 0}
+  tutorial: {fileID: 159257308}
 --- !u!4 &1116607254
 Transform:
   m_ObjectHideFlags: 0
@@ -17879,6 +17880,7 @@ MonoBehaviour:
   masterVolumeInput: {fileID: 7072646127430867754}
   musicVolumeSlider: {fileID: 7738596492935768716}
   musicVolumeInput: {fileID: 4104006299243261035}
+  musicSource: {fileID: 0}
   inputActionsAsset: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   lane1: {fileID: -56928651243643539, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   lane2: {fileID: 3247929734336615380, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
@@ -17888,6 +17890,7 @@ MonoBehaviour:
   lane2Text: {fileID: 7872978550565518936}
   lane3Text: {fileID: 5215268384093852925}
   lane4Text: {fileID: 2007973766568760475}
+  content: {fileID: 0}
 --- !u!114 &1935744328039682311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27038,10 +27041,10 @@ MonoBehaviour:
   m_MultiSelect: 0
   m_Options:
     m_Options:
-    - m_Text: 1280 * 720
+    - m_Text: 1920 * 1080
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: 1920 * 1080
+    - m_Text: 1280 * 720
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_OnValueChanged:
@@ -30155,7 +30158,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1280 * 720
+  m_text: 1920 * 1080
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 91af0e0ac7681cb4d808beada7f94945, type: 2}
   m_sharedMaterial: {fileID: -1023140450414450701, guid: 91af0e0ac7681cb4d808beada7f94945, type: 2}

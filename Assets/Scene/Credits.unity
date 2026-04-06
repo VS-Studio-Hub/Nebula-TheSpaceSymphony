@@ -764,9 +764,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Programming and Mechanics\r\nVenthan Francis Michael Prakash\r\n\r\nVisual
-    Effects\r\nCuong Le\r\n\r\nMarketing and Art \r\nArjun Takur Komagan\n\nSpecial
-    Controller and Marketing Assistance\r\nCameron Dennis "
+  m_text: "-- Programming & Gameplay Mechanics --\r\nVenthan Francis Michael Prakash\r\r\n\r\n--
+    Technical Artist --\nVenthan Francis Michael Prakash\nCuong Le\n\n-- Concept,
+    Sound Design & Special Controller --\r\nSongs from Pixabay - Copyright Free\nTarcio
+    Assis \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 91af0e0ac7681cb4d808beada7f94945, type: 2}
   m_sharedMaterial: {fileID: -1023140450414450701, guid: 91af0e0ac7681cb4d808beada7f94945, type: 2}
@@ -1096,9 +1097,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Concept and Game Design\r\nTarcio Assis \r\n\r\nSound Design \r\nSongs
-    from Pixabay - Copyright Free\r\nTarcio Assis \r\n\r\nArt and Modeling\r\nAriane
-    Raby\r"
+  m_text: "-- Visual Effects --\nCuong Le\n\n-- Art & Modelling --\nAriane Raby \nArjun
+    Takur Komagan\n\n-- Marketing --\nCameron Dennis\n\r\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 91af0e0ac7681cb4d808beada7f94945, type: 2}
   m_sharedMaterial: {fileID: -1023140450414450701, guid: 91af0e0ac7681cb4d808beada7f94945, type: 2}
