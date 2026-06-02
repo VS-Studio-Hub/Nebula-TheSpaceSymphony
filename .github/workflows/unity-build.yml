@@ -71,3 +71,39 @@ jobs:
           path: build/StandaloneWindows64
           if-no-files-found: error
           retention-days: 7
+
+      - name: Check itch.io deployment secrets
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        shell: bash
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+          ITCH_TARGET: ${{ secrets.ITCH_TARGET }}
+        run: |
+          if [ -z "$BUTLER_API_KEY" ]; then
+            echo "::error::Add BUTLER_API_KEY in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+          if [ -z "$ITCH_TARGET" ]; then
+            echo "::error::Add ITCH_TARGET in Settings > Secrets and variables > Actions. Example: your-itch-username/your-game-slug"
+            exit 1
+          fi
+
+      - name: Install butler
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          curl --location --output butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip -q butler.zip -d butler
+          chmod +x butler/butler
+          echo "$PWD/butler" >> "$GITHUB_PATH"
+          ./butler/butler --version
+
+      - name: Deploy Windows build to itch.io
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        shell: bash
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+          ITCH_TARGET: ${{ secrets.ITCH_TARGET }}
+        run: |
+          butler push build/StandaloneWindows64 "$ITCH_TARGET:windows" --userversion "${GITHUB_SHA::7}"
