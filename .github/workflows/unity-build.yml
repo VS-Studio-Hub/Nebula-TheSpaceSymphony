@@ -93,7 +93,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         shell: bash
         run: |
-          curl --location --output butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          curl --fail --location --output butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
           unzip -q butler.zip -d butler
           chmod +x butler/butler
           echo "$PWD/butler" >> "$GITHUB_PATH"
